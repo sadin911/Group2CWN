@@ -126,3 +126,4 @@ $$\text{Thai Market Price} = \text{tcgplayer\_usd} \times 34.00 \times \text{tha
 
 ---
 **จบฉากการประชุมทบทวนความต้องการ (Curtain Falls)**
+
