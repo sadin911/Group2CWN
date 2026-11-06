@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#3b82f6" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.6" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Card Border & Background -->
+  <rect x="10" y="10" width="480" height="680" rx="32" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="4" />
+  
+  <!-- Subtle Glow Effect -->
+  <circle cx="250" cy="330" r="180" fill="url(#glowGrad)" />
+
+  <!-- Pokéball Wireframe Silhouette -->
+  <g transform="translate(250, 310)" opacity="0.25" stroke="#94a3b8" stroke-width="8" fill="none">
+    <circle cx="0" cy="0" r="110" />
+    <line x1="-110" y1="0" x2="-38" y2="0" stroke-width="10" />
+    <line x1="38" y1="0" x2="110" y2="0" stroke-width="10" />
+    <circle cx="0" cy="0" r="38" />
+    <circle cx="0" cy="0" r="18" fill="#94a3b8" />
+  </g>
+
+  <!-- Top Badge -->
+  <g transform="translate(250, 80)">
+    <rect x="-85" y="-18" width="170" height="36" rx="18" fill="#1e293b" stroke="#475569" stroke-width="2" />
+    <text x="0" y="6" text-anchor="middle" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="900" letter-spacing="2">
+      POKÉMON TCG
+    </text>
+  </g>
+
+  <!-- Center Card Icon & Text -->
+  <g transform="translate(250, 520)">
+    <text x="0" y="0" text-anchor="middle" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800">
+      ยังไม่มีรูปภาพการ์ด
+    </text>
+    <text x="0" y="32" text-anchor="middle" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" letter-spacing="1">
+      NO IMAGE AVAILABLE
+    </text>
+  </g>
+
+  <!-- Corner Deco -->
+  <circle cx="45" cy="45" r="8" fill="#475569" opacity="0.5" />
+  <circle cx="455" cy="45" r="8" fill="#475569" opacity="0.5" />
+  <circle cx="45" cy="655" r="8" fill="#475569" opacity="0.5" />
+  <circle cx="455" cy="655" r="8" fill="#475569" opacity="0.5" />
+</svg>

@@ -1,0 +1,1367 @@
+{
+  "version": "1.0",
+  "exportedAt": "2026-08-20T16:18:14.804Z",
+  "collections": {
+    "english": {
+      "ownedCards": [],
+      "deckCards": []
+    },
+    "thai": {
+      "ownedCards": [
+        {
+          "setId": "ma3",
+          "cardId": "ma3_2 ยันยันมา.webp",
+          "cardNumber": "002",
+          "cardName": "2 ยันยันมา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_4 เคมุตโสะ.webp",
+          "cardNumber": "004",
+          "cardName": "4 เคมุตโสะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_10 โรสเรด ของชิโรนะ.webp",
+          "cardNumber": "010",
+          "cardName": "10 โรสเรด ของชิโรนะ",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_13 อิชิซึไม.webp",
+          "cardNumber": "013",
+          "cardName": "13 อิชิซึไม",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_14 อิวาพาเลซ.webp",
+          "cardNumber": "014",
+          "cardName": "14 อิวาพาเลซ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_16 วาไนเดอร์ ของแก๊งร็อกเกต.webp",
+          "cardNumber": "016",
+          "cardName": "16 วาไนเดอร์ ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_18 มักแม็ก ของฮิบิกิ.webp",
+          "cardNumber": "018",
+          "cardName": "18 มักแม็ก ของฮิบิกิ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_19 มักคาร์โก ของฮิบิกิ.webp",
+          "cardNumber": "019",
+          "cardName": "19 มักคาร์โก ของฮิบิกิ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_20 เอ็นเต.webp",
+          "cardNumber": "020",
+          "cardName": "20 เอ็นเต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_21 โฮโอ ex ของฮิบิกิ.webp",
+          "cardNumber": "021",
+          "cardName": "21 โฮโอ ex ของฮิบิกิ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_23 บาคูดา.webp",
+          "cardNumber": "023",
+          "cardName": "23 บาคูดา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_24 โพคาบู.webp",
+          "cardNumber": "024",
+          "cardName": "24 โพคาบู",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_27 ดารุมักกะ ของ N.webp",
+          "cardNumber": "027",
+          "cardName": "27 ดารุมักกะ ของ N",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_30 คาร์โบ.webp",
+          "cardNumber": "030",
+          "cardName": "30 คาร์โบ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_31 โซเบลดส์ ex.webp",
+          "cardNumber": "031",
+          "cardName": "31 โซเบลดส์ ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_32 โคดัก.webp",
+          "cardNumber": "032",
+          "cardName": "32 โคดัก",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_33 โกลดัก.webp",
+          "cardNumber": "033",
+          "cardName": "33 โกลดัก",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_35 ยูกิวาราชิ.webp",
+          "cardNumber": "035",
+          "cardName": "35 ยูกิวาราชิ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_37 วานิเพ็ตติ ของ N.webp",
+          "cardNumber": "037",
+          "cardName": "37 วานิเพ็ตติ ของ N",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_40 ยูกิฮามิ.webp",
+          "cardNumber": "040",
+          "cardName": "40 ยูกิฮามิ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_41 มอสโนว์.webp",
+          "cardNumber": "041",
+          "cardName": "41 มอสโนว์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_43 เป้าเจี้ยน.webp",
+          "cardNumber": "043",
+          "cardName": "43 เป้าเจี้ยน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_46 แรคอยล์.webp",
+          "cardNumber": "046",
+          "cardName": "46 แรคอยล์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_47 ชิบิชิราซึ.webp",
+          "cardNumber": "047",
+          "cardName": "47 ชิบิชิราซึ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_49 เมก้าชิบิรูดอน ex.webp",
+          "cardNumber": "049",
+          "cardName": "49 เมก้าชิบิรูดอน ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_53 เอเลซาร์ด.webp",
+          "cardNumber": "053",
+          "cardName": "53 เอเลซาร์ด",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_54 คาปู โคเคโค.webp",
+          "cardNumber": "054",
+          "cardName": "54 คาปู โคเคโค",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_56 ซุพีคา ของนันจาโม.webp",
+          "cardNumber": "056",
+          "cardName": "56 ซุพีคา ของนันจาโม",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_57 ฮาราบารี ex ของนันจาโม.webp",
+          "cardNumber": "057",
+          "cardName": "57 ฮาราบารี ex ของนันจาโม",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_58 ไคเด็น ของนันจาโม.webp",
+          "cardNumber": "058",
+          "cardName": "58 ไคเด็น ของนันจาโม",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_59 ไทไคเด็น ของนันจาโม.webp",
+          "cardNumber": "059",
+          "cardName": "59 ไทไคเด็น ของนันจาโม",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_61 ทามะทามะ ของแก๊งร็อกเกต.webp",
+          "cardNumber": "061",
+          "cardName": "61 ทามะทามะ ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_62 นัชชี ของแก๊งร็อกเกต.webp",
+          "cardNumber": "062",
+          "cardName": "62 นัชชี ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_63 มิวทู ex ของแก๊งร็อกเกต.webp",
+          "cardNumber": "063",
+          "cardName": "63 มิวทู ex ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_64 โทเกปี.webp",
+          "cardNumber": "064",
+          "cardName": "64 โทเกปี",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_65 โทเกชิก.webp",
+          "cardNumber": "065",
+          "cardName": "65 โทเกชิก",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_67 มูมา.webp",
+          "cardNumber": "067",
+          "cardName": "67 มูมา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_71 เมก้าเซอไนท์ ex.webp",
+          "cardNumber": "071",
+          "cardName": "71 เมก้าเซอไนท์ ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_74 โยนัวร์.webp",
+          "cardNumber": "074",
+          "cardName": "74 โยนัวร์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_77 โบคุเร ของฮ็อป.webp",
+          "cardNumber": "077",
+          "cardName": "77 โบคุเร ของฮ็อป",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_78 โอร็อต ของฮ็อป.webp",
+          "cardNumber": "078",
+          "cardName": "78 โอร็อต ของฮ็อป",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_81 มาชิมาชิระ.webp",
+          "cardNumber": "081",
+          "cardName": "81 มาชิมาชิระ",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_84 อาซานัน.webp",
+          "cardNumber": "084",
+          "cardName": "84 อาซานัน",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_86 ลูนาโทน.webp",
+          "cardNumber": "086",
+          "cardName": "86 ลูนาโทน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_93 ยันชัม.webp",
+          "cardNumber": "093",
+          "cardName": "93 ยันชัม",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_97 เซคิทันซัง.webp",
+          "cardNumber": "097",
+          "cardName": "97 เซคิทันซัง",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_98 อี้เนะอินุ.webp",
+          "cardNumber": "098",
+          "cardName": "98 อี้เนะอินุ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_99 ซูแบท ของแก๊งร็อกเกต.webp",
+          "cardNumber": "099",
+          "cardName": "99 ซูแบท ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_100 โกลแบท ของแก๊งร็อกเกต.webp",
+          "cardNumber": "100",
+          "cardName": "100 โกลแบท ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_102 ยามิคาราซึ ของแก๊งร็อกเกต.webp",
+          "cardNumber": "102",
+          "cardName": "102 ยามิคาราซึ ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_103 ดอนคาราซึ ของแก๊งร็อกเกต.webp",
+          "cardNumber": "103",
+          "cardName": "103 ดอนคาราซึ ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_104 นิวลา ของแก๊งร็อกเกต.webp",
+          "cardNumber": "104",
+          "cardName": "104 นิวลา ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_105 กาลาร์ จิกุซากุมะ.webp",
+          "cardNumber": "105",
+          "cardName": "105 กาลาร์ จิกุซากุมะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_106 กาลาร์ มัสสึกุมะ.webp",
+          "cardNumber": "106",
+          "cardName": "106 กาลาร์ มัสสึกุมะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_107 กาลาร์ ทาจิฟุซากุมะ.webp",
+          "cardNumber": "107",
+          "cardName": "107 กาลาร์ ทาจิฟุซากุมะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_112 โซโรอาร์ค ex ของ N.webp",
+          "cardNumber": "112",
+          "cardName": "112 โซโรอาร์ค ex ของ N",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_113 โกรอนดะ.webp",
+          "cardNumber": "113",
+          "cardName": "113 โกรอนดะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_114 คิจิคิกิสึ ex.webp",
+          "cardNumber": "114",
+          "cardName": "114 คิจิคิกิสึ ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_118 โดโดเกซัน.webp",
+          "cardNumber": "118",
+          "cardName": "118 โดโดเกซัน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_124 มินิริว.webp",
+          "cardNumber": "124",
+          "cardName": "124 มินิริว",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_132 โดราเมชิยะ.webp",
+          "cardNumber": "132",
+          "cardName": "132 โดราเมชิยะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_134 โดราพัลท์ ex.webp",
+          "cardNumber": "134",
+          "cardName": "134 โดราพัลท์ ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_135 ชาริทัตสึ.webp",
+          "cardNumber": "135",
+          "cardName": "135 ชาริทัตสึ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_136 คาบิกอน ของฮ็อป.webp",
+          "cardNumber": "136",
+          "cardName": "136 คาบิกอน ของฮ็อป",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_139 สปินโรตอม.webp",
+          "cardNumber": "139",
+          "cardName": "139 สปินโรตอม",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_141 วูลู ของฮ็อป.webp",
+          "cardNumber": "141",
+          "cardName": "141 วูลู ของฮ็อป",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_142 ไบวูลู ของฮ็อป.webp",
+          "cardNumber": "142",
+          "cardName": "142 ไบวูลู ของฮ็อป",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_143 อุ๊อุ ของฮ็อป.webp",
+          "cardNumber": "143",
+          "cardName": "143 อุ๊อุ ของฮ็อป",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_144 เทราปากอส.webp",
+          "cardNumber": "144",
+          "cardName": "144 เทราปากอส",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_146 ยาเพิ่มพลังงานของ N.webp",
+          "cardNumber": "146",
+          "cardName": "146 ยาเพิ่มพลังงานของ N",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_153 โปฟฟินมิตรภาพ.webp",
+          "cardNumber": "153",
+          "cardName": "153 โปฟฟินมิตรภาพ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_154 พาวเวอร์โปรตีน.webp",
+          "cardNumber": "154",
+          "cardName": "154 พาวเวอร์โปรตีน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_155 ฆ้องต่อสู้.webp",
+          "cardNumber": "155",
+          "cardName": "155 ฆ้องต่อสู้",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_158 เมก้าซิกแนล.webp",
+          "cardNumber": "158",
+          "cardName": "158 เมก้าซิกแนล",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_160 รีซีฟเวอร์ของแก๊งร็อกเกต.webp",
+          "cardNumber": "160",
+          "cardName": "160 รีซีฟเวอร์ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_161 เคาน์เตอร์เกน.webp",
+          "cardNumber": "161",
+          "cardName": "161 เคาน์เตอร์เกน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_163 ลูกแก้วไฟฟ้า.webp",
+          "cardNumber": "163",
+          "cardName": "163 ลูกแก้วไฟฟ้า",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_165 ลูกโป่ง.webp",
+          "cardNumber": "165",
+          "cardName": "165 ลูกโป่ง",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_166 กำไลแห่งความกล้า.webp",
+          "cardNumber": "166",
+          "cardName": "166 กำไลแห่งความกล้า",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_167 ผ้าคาดหัวแห่งความแน่วแน่ของฮ็อป.webp",
+          "cardNumber": "167",
+          "cardName": "167 ผ้าคาดหัวแห่งความแน่วแน่ของฮ็อป",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_178 ซากากิแห่งแก๊งร็อกเกต.webp",
+          "cardNumber": "178",
+          "cardName": "178 ซากากิแห่งแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_179 แลมป์ดาแห่งแก๊งร็อกเกต.webp",
+          "cardNumber": "179",
+          "cardName": "179 แลมป์ดาแห่งแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_180 แลนซ์แห่งแก๊งร็อกเกต.webp",
+          "cardNumber": "180",
+          "cardName": "180 แลนซ์แห่งแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_182 ป่าเปี่ยมพลัง.webp",
+          "cardNumber": "182",
+          "cardName": "182 ป่าเปี่ยมพลัง",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_183 กราวิตีเมาน์เทน.webp",
+          "cardNumber": "183",
+          "cardName": "183 กราวิตีเมาน์เทน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_186 เฟอร์ลองทาวน์.webp",
+          "cardNumber": "186",
+          "cardName": "186 เฟอร์ลองทาวน์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_187 มิสเทรีการ์เด้น.webp",
+          "cardNumber": "187",
+          "cardName": "187 มิสเทรีการ์เด้น",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_189 หอเฝ้าระวังของแก๊งร็อกเกต.webp",
+          "cardNumber": "189",
+          "cardName": "189 หอเฝ้าระวังของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_194 อาเกฮันท์.webp",
+          "cardNumber": "194",
+          "cardName": "194 อาเกฮันท์",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_199 โคดัก.webp",
+          "cardNumber": "199",
+          "cardName": "199 โคดัก",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_211 โดราเมชิยะ.webp",
+          "cardNumber": "211",
+          "cardName": "211 โดราเมชิยะ",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_217 รีซีฟเวอร์ของแก๊งร็อกเกต.webp",
+          "cardNumber": "217",
+          "cardName": "217 รีซีฟเวอร์ของแก๊งร็อกเกต",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma3",
+          "cardId": "ma3_231 เมก้าซึรุซึคิน ex.webp",
+          "cardNumber": "231",
+          "cardName": "231 เมก้าซึรุซึคิน ex",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_1 นาโซโนะคุสะ.webp",
+          "cardNumber": "001",
+          "cardName": "1 นาโซโนะคุสะ",
+          "quantity": 3,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_3 รัฟเฟรเซีย.webp",
+          "cardNumber": "003",
+          "cardName": "3 รัฟเฟรเซีย",
+          "quantity": 3,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_4 เมก้าเฮราครอส ex.webp",
+          "cardNumber": "004",
+          "cardName": "4 เมก้าเฮราครอส ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_5 ฮาซึโบ.webp",
+          "cardNumber": "005",
+          "cardName": "5 ฮาซึโบ",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_6 ฮาซึเบรโร.webp",
+          "cardNumber": "006",
+          "cardName": "6 ฮาซึเบรโร",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_7 รุนปัปปา.webp",
+          "cardNumber": "007",
+          "cardName": "7 รุนปัปปา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_8 เกโนเซ็กท์.webp",
+          "cardNumber": "008",
+          "cardName": "8 เกโนเซ็กท์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_9 มาเมะบัตตะ.webp",
+          "cardNumber": "009",
+          "cardName": "9 มาเมะบัตตะ",
+          "quantity": 3,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_12 ลิซาร์โดะ.webp",
+          "cardNumber": "012",
+          "cardName": "12 ลิซาร์โดะ",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_14 ไฟเยอร์.webp",
+          "cardNumber": "014",
+          "cardName": "14 ไฟเยอร์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_15 ดารุมักกะ.webp",
+          "cardNumber": "015",
+          "cardName": "15 ดารุมักกะ",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_16 ฮิฮิดารุมะ.webp",
+          "cardNumber": "016",
+          "cardName": "16 ฮิฮิดารุมะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_18 โอโดริโดริ ex.webp",
+          "cardNumber": "018",
+          "cardName": "18 โอโดริโดริ ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_19 คาร์โบ.webp",
+          "cardNumber": "019",
+          "cardName": "19 คาร์โบ",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_21 เพาเวา.webp",
+          "cardNumber": "021",
+          "cardName": "21 เพาเวา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_22 จูกอน.webp",
+          "cardNumber": "022",
+          "cardName": "22 จูกอน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_23 อุริมู.webp",
+          "cardNumber": "023",
+          "cardName": "23 อุริมู",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_24 อิโนมู.webp",
+          "cardNumber": "024",
+          "cardName": "24 อิโนมู",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_25 แมมมู.webp",
+          "cardNumber": "025",
+          "cardName": "25 แมมมู",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_27 โพจจามะ.webp",
+          "cardNumber": "027",
+          "cardName": "27 โพจจามะ",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_30 วันปาจิ.webp",
+          "cardNumber": "030",
+          "cardName": "30 วันปาจิ",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_32 พาโม.webp",
+          "cardNumber": "032",
+          "cardName": "32 พาโม",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_33 พาม็อต.webp",
+          "cardNumber": "033",
+          "cardName": "33 พาม็อต",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_34 เพอร์ม็อต.webp",
+          "cardNumber": "034",
+          "cardName": "34 เพอร์ม็อต",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_35 มูมา.webp",
+          "cardNumber": "035",
+          "cardName": "35 มูมา",
+          "quantity": 3,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_37 บูล.webp",
+          "cardNumber": "037",
+          "cardName": "37 บูล",
+          "quantity": 4,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_38 แกรนบูล.webp",
+          "cardNumber": "038",
+          "cardName": "38 แกรนบูล",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_40 โมนเมน.webp",
+          "cardNumber": "040",
+          "cardName": "40 โมนเมน",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_41 เอลฟูน.webp",
+          "cardNumber": "041",
+          "cardName": "41 เอลฟูน",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_42 เมโลเอตตา.webp",
+          "cardNumber": "042",
+          "cardName": "42 เมโลเอตตา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_43 เมก้าดีแอนซี ex.webp",
+          "cardNumber": "043",
+          "cardName": "43 เมก้าดีแอนซี ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_45 มาโฮมิล.webp",
+          "cardNumber": "045",
+          "cardName": "45 มาโฮมิล",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_46 มาวิป.webp",
+          "cardNumber": "046",
+          "cardName": "46 มาวิป",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_48 อาโนะคุสะ.webp",
+          "cardNumber": "048",
+          "cardName": "48 อาโนะคุสะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_49 อาโนะโฮรากุสะ.webp",
+          "cardNumber": "049",
+          "cardName": "49 อาโนะโฮรากุสะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_51 ไกลกา.webp",
+          "cardNumber": "051",
+          "cardName": "51 ไกลกา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_52 ไกลออน.webp",
+          "cardNumber": "052",
+          "cardName": "52 ไกลออน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_54 วิบราวา.webp",
+          "cardNumber": "054",
+          "cardName": "54 วิบราวา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_55 ฟลายกอน.webp",
+          "cardNumber": "055",
+          "cardName": "55 ฟลายกอน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_56 โกส.webp",
+          "cardNumber": "056",
+          "cardName": "56 โกส",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_57 โกสท์.webp",
+          "cardNumber": "057",
+          "cardName": "57 โกสท์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_58 เมก้าเก็งกา ex.webp",
+          "cardNumber": "058",
+          "cardName": "58 เมก้าเก็งกา ex",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_59 ยามิคาราซึ.webp",
+          "cardNumber": "059",
+          "cardName": "59 ยามิคาราซึ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_66 ฮาบูเนค.webp",
+          "cardNumber": "066",
+          "cardName": "66 ฮาบูเนค",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_67 แอบโซล.webp",
+          "cardNumber": "067",
+          "cardName": "67 แอบโซล",
+          "quantity": 3,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_68 เมะกุโรโกะ.webp",
+          "cardNumber": "068",
+          "cardName": "68 เมะกุโรโกะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_69 วารุวิล.webp",
+          "cardNumber": "069",
+          "cardName": "69 วารุวิล",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_72 สตรินเดอร์.webp",
+          "cardNumber": "072",
+          "cardName": "72 สตรินเดอร์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_73 มุเก็นไดนา.webp",
+          "cardNumber": "073",
+          "cardName": "73 มุเก็นไดนา",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_75 โดมิเรอร์.webp",
+          "cardNumber": "075",
+          "cardName": "75 โดมิเรอร์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_76 โดทาคุน.webp",
+          "cardNumber": "076",
+          "cardName": "76 โดทาคุน",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_77 โทเกะเดมารุ.webp",
+          "cardNumber": "077",
+          "cardName": "77 โทเกะเดมารุ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_78 ดิวรัลดอน.webp",
+          "cardNumber": "078",
+          "cardName": "78 ดิวรัลดอน",
+          "quantity": 4,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_80 พูริน.webp",
+          "cardNumber": "080",
+          "cardName": "80 พูริน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_81 พูคูริน.webp",
+          "cardNumber": "081",
+          "cardName": "81 พูคูริน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_84 โดเบิล.webp",
+          "cardNumber": "084",
+          "cardName": "84 โดเบิล",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_86 มัสสึกุมะ.webp",
+          "cardNumber": "086",
+          "cardName": "86 มัสสึกุมะ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_87 มิมิโรล.webp",
+          "cardNumber": "087",
+          "cardName": "87 มิมิโรล",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_89 สลับการ์ดพลังงาน.webp",
+          "cardNumber": "089",
+          "cardName": "89 สลับการ์ดพลังงาน",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_90 ไอศกรีมจัมโบ้.webp",
+          "cardNumber": "090",
+          "cardName": "90 ไอศกรีมจัมโบ้",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_92 ฮีทเบิร์นเนอร์.webp",
+          "cardNumber": "092",
+          "cardName": "92 ฮีทเบิร์นเนอร์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_93 ลูกอมประหลาด.webp",
+          "cardNumber": "093",
+          "cardName": "93 ลูกอมประหลาด",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_94 สับเปลี่ยนโปเกมอน.webp",
+          "cardNumber": "094",
+          "cardName": "94 สับเปลี่ยนโปเกมอน",
+          "quantity": 2,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_95 วันเดอร์แพตช์.webp",
+          "cardNumber": "095",
+          "cardName": "95 วันเดอร์แพตช์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_96 เครื่องรางศักดิ์สิทธิ์.webp",
+          "cardNumber": "096",
+          "cardName": "96 เครื่องรางศักดิ์สิทธิ์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_97 หมวกนิรภัยพังก์.webp",
+          "cardNumber": "097",
+          "cardName": "97 หมวกนิรภัยพังก์",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_99 ฮิคาริ.webp",
+          "cardNumber": "099",
+          "cardName": "99 ฮิคาริ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_100 เจ้าหนุ่มพ่นไฟ.webp",
+          "cardNumber": "100",
+          "cardName": "100 เจ้าหนุ่มพ่นไฟ",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_101 คำสั่งของบอส.webp",
+          "cardNumber": "101",
+          "cardName": "101 คำสั่งของบอส",
+          "quantity": 1,
+          "ownerValue": 0.1
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_104 รุนปัปปา.webp",
+          "cardNumber": "104",
+          "cardName": "104 รุนปัปปา",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_108 โพจจามะ.webp",
+          "cardNumber": "108",
+          "cardName": "108 โพจจามะ",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_112 ฟลายกอน.webp",
+          "cardNumber": "112",
+          "cardName": "112 ฟลายกอน",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_130 เครื่องรางศักดิ์สิทธิ์.webp",
+          "cardNumber": "130",
+          "cardName": "130 เครื่องรางศักดิ์สิทธิ์",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_134 เจ้าหนุ่มพ่นไฟ.webp",
+          "cardNumber": "134",
+          "cardName": "134 เจ้าหนุ่มพ่นไฟ",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_137 เมก้าลิซาร์ดอน X ex.webp",
+          "cardNumber": "137",
+          "cardName": "137 เมก้าลิซาร์ดอน X ex",
+          "quantity": 1,
+          "ownerValue": 30
+        },
+        {
+          "setId": "ma2",
+          "cardId": "ma2_141 เมก้ามิมิล็อป ex.webp",
+          "cardNumber": "141",
+          "cardName": "141 เมก้ามิมิล็อป ex",
+          "quantity": 1,
+          "ownerValue": 30
+        }
+      ],
+      "deckCards": []
+    }
+  }
+}

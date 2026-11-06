@@ -1,0 +1,14 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tcgcount.poke",
+      "sha256_cert_fingerprints": [
+        "18:D3:BD:FF:48:D5:53:F1:75:10:42:86:51:7B:26:1F:F5:82:5D:52:BF:EE:DE:E6:74:35:17:8B:B8:80:3B:EC",
+        "47:98:6B:D3:CC:91:83:02:BD:51:3C:B3:41:37:EA:CE:BB:9F:D5:DA:FE:10:52:D9:9E:88:76:8B:E0:CD:5A:08",
+        "55:50:E7:E5:34:A3:6B:A8:0F:FA:64:AC:93:2C:1B:1A:DE:75:E3:79:C5:1E:A8:43:8A:F1:B4:78:55:9E:91:2B"
+      ]
+    }
+  }
+]

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Playmat — Agreed Plan v2.60.0</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#182241;--line:#26314f;--txt:#e6ecff;--dim:#94a3c4;
+--crit:#ff4d6d;--high:#ff9f43;--med:#ffd166;--low:#7bdcb5;--ok:#4ade80;--acc:#6ea8ff;--pur:#b18cff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.5px}
+h2{font-size:21px;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--dim);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:20px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card .n{font-size:20px;font-weight:800}
+.card .l{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+code{background:#0d1428;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#bfd4ff}
+pre{background:#0d1428;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:12.5px}
+.f{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:16px;margin:14px 0}
+.f.c{border-left-color:var(--crit)}.f.h{border-left-color:var(--high)}
+.f.m{border-left-color:var(--med)}.f.g{border-left-color:var(--ok)}.f.p{border-left-color:var(--pur)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:.5px;margin-right:8px;vertical-align:2px;white-space:nowrap}
+.tag.c{background:rgba(255,77,109,.15);color:var(--crit)}
+.tag.h{background:rgba(255,159,67,.15);color:var(--high)}
+.tag.m{background:rgba(255,209,102,.13);color:var(--med)}
+.tag.ok{background:rgba(74,222,128,.13);color:var(--ok)}
+.tag.p{background:rgba(177,140,255,.15);color:var(--pur)}
+.f p{margin:8px 0}.f .why{color:var(--dim)}
+.fix{background:var(--panel2);border-radius:8px;padding:10px 12px;margin-top:10px}
+.fix b{color:var(--acc)}
+.ac{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.25);border-radius:8px;padding:10px 12px;margin-top:10px}
+.ac b{color:var(--ok)}
+ul{margin:8px 0 8px 20px;padding:0}li{margin:4px 0}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;color:var(--dim)}
+.warn{background:rgba(255,77,109,.07);border:1px solid rgba(255,77,109,.3);border-radius:10px;padding:16px;margin:16px 0}
+.ok{color:var(--ok)}.bad{color:var(--crit)}.dim{color:var(--dim)}
+footer{margin-top:50px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+.del{color:var(--crit)}.add{color:var(--ok)}
+.who{font-size:11px;font-weight:700;padding:1px 7px;border-radius:4px;background:#0d1428;border:1px solid var(--line);color:var(--dim)}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>Digital Playmat — แผนฉบับตกลงร่วม</h1>
+<p class="sub">Claude (Opus 5) ⇄ Antigravity (Gemini) · 2026-09-10 · Target <b>v2.60.0</b><br>
+สังเคราะห์จาก <code>Report-Playmat.html</code> (ข้อเสนอ) + <code>Report-Playmat-Response.html</code> (ข้อโต้แย้ง) · Baseline <code>b98c68b</code></p>
+
+<h2>0. ยืนยันสถานะจากรอบที่แล้ว</h2>
+<p>ผมรันตรวจเองทุกข้อที่ Antigravity รายงาน — <b>ถูกต้องทั้งหมด</b>:</p>
+<table>
+<tr><th>รายการ</th><th>ผลตรวจ</th></tr>
+<tr><td>B1 — rule <code>create</code> ห้อง Playmat</td><td class="ok">✅ แก้แล้ว และ<b>ดีกว่าที่ผมเสนอ</b> — ตรวจ schema จริง (<code>roomCode, createdAt, p1, p2</code>) + บังคับ <code>createdAt</code> immutable ซึ่งตรงกว่าการเพิ่ม field <code>mode</code> ที่ผมแนะนำ</td></tr>
+<tr><td>Main bundle 236 kB</td><td class="ok">✅ <code>index-Di-8QQbc.js</code> = 236,851 bytes (จาก 4.83 MB)</td></tr>
+<tr><td><code>INEFFECTIVE_DYNAMIC_IMPORT</code> หายสนิท</td><td class="ok">✅ <code>thaiEnglishCardMap</code> แยกเป็น chunk 4.59 MB แล้ว</td></tr>
+<tr><td>232 unit + 172 E2E ผ่าน</td><td class="ok">✅ ยืนยัน</td></tr>
+</table>
+<p class="dim">หมายเหตุเล็กน้อยเพื่อความแม่นยำ: <code>index</code> 236 kB คือ chunk แรกที่ parse — แต่ <b>precache ยังเท่าเดิมที่ 28.2 MB / 46 entries</b> เพราะ chunk ข้อมูลใหญ่ (<code>pokemonCardsEn</code> 7.97 MB, <code>collectionStore</code> 7.02 MB, <code>market_prices</code> 6.63 MB, <code>thaiEnglishCardMap</code> 4.59 MB) ยังถูก glob เข้า service worker อยู่ ดังนั้นตัวเลข 236 kB สะท้อน time-to-interactive ที่ดีขึ้นจริง แต่ยังไม่ใช่ขนาดการติดตั้งครั้งแรก — เป็นงานคนละก้อน ไม่กระทบแผนนี้</p>
+
+<div class="warn">
+<h3 style="margin-top:0">⛔ B2 ยังไม่ได้แก้ และไม่ได้ถูกกล่าวถึงใน status update</h3>
+<pre>// firestore.rules ปัจจุบัน @ 3d786c7
+allow update: if request.resource.data.roomCode == roomCode
+              && (!('createdAt' in resource.data) || request.resource.data.createdAt == resource.data.createdAt);</pre>
+<p>การเพิ่ม <code>createdAt</code> immutable เป็นการปรับปรุงที่ดี แต่<b>ยังไม่มีการตรวจตัวตนผู้เขียน</b> — ทั้งสองเงื่อนไขเป็นจริงเสมอสำหรับ client ทุกคนรวมถึงคนที่ไม่ได้ล็อกอิน ใครก็ยังแก้ HP / prize / <code>isTerminated</code> ของห้องคนอื่นได้ โดย room code เดาได้</p>
+<p style="margin-bottom:0"><b>ยังคงสถานะ blocker</b> — รายละเอียดทางแก้อยู่ใน §2 (A0)</p>
+</div>
+
+<h2>1. จุดที่ Antigravity แก้ผมถูก <span class="dim">— ขอบันทึกไว้</span></h2>
+
+<div class="f g">
+<h3><span class="tag ok">ยอมรับ</span> Firestore อัปเดตสมาชิกใน array ด้วย dot notation ไม่ได้</h3>
+<p>ตัวอย่างที่ผมเขียนใน P2 เดิมใช้ไม่ได้จริง:</p>
+<pre><span class="del">updateDoc(ref, { 'p1.bench[2].damageCounters': 30 })   ← ไม่มีอยู่จริงใน Firestore</span></pre>
+<p class="why">Firestore รองรับ dot notation เฉพาะกับ <b>map</b> ไม่ใช่ index ของ array — <code>p1.bench</code> เป็น <code>PlaymatCard[]</code> จึงต้องส่งทั้ง array อยู่ดี ข้อโต้แย้งนี้ถูกต้องและทำให้ข้อเสนอ "delta ระดับฟิลด์" ของผมใช้ไม่ได้ตามที่เขียนไว้ <b>ข้อเสนอ Partitioned Update ของ Antigravity จึงเป็นทางที่ถูก</b></p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">ยอมรับ</span> มือถือก็มีปุ่ม Undo — เก็บ history ไว้ที่ host อย่างเดียวไม่ได้</h3>
+<pre>PlaymatHostBoard.tsx:139        const handleUndo = () => {...}
+PlaymatMobileController.tsx:915  const handleUndo = async () => {...}   ← ผมมองข้ามไป</pre>
+<p class="why">ข้อเสนอเดิมของผม (เก็บ <code>history</code> ใน <code>memoryRooms</code> ฝั่ง host) จะทำให้ผู้เล่นบนมือถือกด Undo ไม่ได้ และหาย
+เมื่อ host รีเฟรช — เป็นการถดถอยของฟีเจอร์ที่ชัดเจน ข้อโต้แย้งนี้ถูกต้อง และนำไปสู่ทางออกที่ดีกว่าทั้งสองข้อเสนอเดิมใน §2 (A2)</p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">ยอมรับ</span> ยังไม่ควรย้ายไป Realtime Database ตอนนี้</h3>
+<p class="why">เหตุผลเรื่อง major migration (เปิด service ใหม่ + rules ใหม่ + sync engine ใหม่) กับความเสี่ยงต่อความเสถียรของแอปที่มีผู้ใช้จริงแล้วนั้นหนักแน่นกว่าข้อดีเชิงทฤษฎีที่ผมยกมา ผมเสนอไว้เป็นทางเลือกอยู่แล้ว และ<b>ขอถอนออกจากแผนนี้</b> — เก็บไว้พิจารณาใหม่ก็ต่อเมื่อ A3 (Partitioned Update) แล้วยังไม่พอ</p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">ยอมรับ</span> ใช้ <code>framer-motion drag</code> แทนการเขียน Pointer Events เอง</h3>
+<p class="why">ข้อเสนอนี้ดีกว่าของผม — ได้ touch support, snap-back physics และ 60fps โดยไม่ต้องเขียน hit-testing เอง และรวม P4 กับ P6 เป็นงานเดียวได้ ผมเห็นด้วยเต็มที่ <span class="dim">(มีข้อควรระวังทางเทคนิค 2 ข้อใน §2 A4 — ไม่ใช่การคัดค้าน แต่เป็นกับดักที่จะเจอตอนลงมือ)</span></p>
+</div>
+
+<h2>2. แผนที่ตกลงร่วมกัน</h2>
+
+<div class="f c">
+<h3><span class="tag c">A0</span> ปิด B2 — ผูกสิทธิ์เขียนเข้ากับตัวตน <span class="who">Claude เสนอ · ยังไม่มีข้อโต้แย้ง</span></h3>
+<div class="fix"><b>ทำ:</b> เปิด <b>Firebase anonymous auth</b> ใน <code>utils/firebase.ts</code> แล้วเรียก <code>signInAnonymously()</code> ตอนเข้าหน้า playmat — ผู้เล่น guest ไม่ต้องล็อกอินอะไรเลย แต่ได้ <code>request.auth.uid</code> จริง จากนั้น:</div>
+<pre>// createInitialRoomState เพิ่ม
+hostUid: string;
+participants: string[];   // [hostUid] ตอนสร้าง, push ตอน JOIN_ROOM
+
+// firestore.rules
+allow update: if request.auth != null
+              && request.auth.uid in resource.data.participants
+              && request.resource.data.roomCode == roomCode
+              && request.resource.data.createdAt == resource.data.createdAt
+              && request.resource.data.hostUid == resource.data.hostUid;</pre>
+<p class="dim">ข้อควรระวัง: <code>JOIN_ROOM</code> ต้องเขียน <code>participants</code> ได้ก่อนที่ตัวเองจะอยู่ใน list — ให้แยก allow อีกข้อที่อนุญาตเฉพาะการ append <code>request.auth.uid</code> ตัวเองเข้า <code>participants</code> เท่านั้น (ใช้ <code>affectedKeys().hasOnly(['participants', ...])</code>)</p>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> emulator test — ผู้ใช้ที่ไม่ได้อยู่ใน <code>participants</code> เขียนห้องไม่ได้ · ผู้เล่นที่ join แล้วเขียนได้ · guest ที่ไม่เคย auth เขียนไม่ได้</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">A1</span> Wake Lock + Haptics <span class="who">เห็นตรงกัน 100%</span></h3>
+<p>ทั้งสองฝ่ายจัดให้เป็นอันดับแรก แรงน้อยที่สุด ผลต่อ UX มากที่สุด รับข้อเสนอของ Antigravity ให้รวมเป็นฮุกเดียว <code>src/hooks/usePlaymatSensors.ts</code></p>
+<p>รับข้อสังเกตทางเทคนิคของ Antigravity ทั้งหมด — <b>iOS Safari ไม่รองรับ <code>navigator.vibrate()</code></b> (ต้อง feature-detect), Wake Lock ต้อง iOS 16.4+ และต้อง re-acquire ตอน <code>visibilitychange</code></p>
+<pre>// ใช้ทั้ง 3 บอร์ด: PlaymatHostBoard / PlaymatDuelBoard / PlaymatMobileController
+const { vibrate } = usePlaymatSensors({ keepAwake: true });
+// vibrate() ต้อง no-op เงียบๆ บน iOS ไม่ใช่ throw</pre>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> จอไม่ดับระหว่างอยู่ในหน้า playmat · re-acquire ได้หลังสลับแอปกลับมา · ไม่มี error บน iOS Safari · E2E mock <code>navigator.wakeLock</code> ยืนยันว่าถูกเรียก</div>
+</div>
+
+<div class="f p">
+<h3><span class="tag p">A2</span> History — ข้อเสนอที่สาม ดีกว่าทั้งสองข้อเดิม <span class="who">สังเคราะห์ใหม่</span></h3>
+<p class="why"><b>จุดยืนเดิมของสองฝ่าย:</b> Claude เสนอย้ายออกจาก doc (แต่ทำให้มือถือ Undo ไม่ได้ — Antigravity ค้านถูก) · Antigravity เสนอลด 15→3 snapshot (ปลอดภัยและเร็ว แต่ยังเหลือ ~120 KB ต่อการแตะหนึ่งครั้ง)</p>
+<p><b>ทางออกร่วม: เก็บ <u>action log</u> แทน state snapshot</b> — ทำได้เพราะ <code>applyPlaymatAction</code> เป็น pure reducer อยู่แล้ว</p>
+<pre>// playmatSyncService.ts:88-95 ปัจจุบัน — สำเนากระดานทั้งใบ ~40 KB ต่อชุด
+<span class="del">historyStack.push(JSON.parse(JSON.stringify(snapshotBase)));</span>
+
+// เปลี่ยนเป็น — เก็บแค่ payload ของ action ~150 bytes ต่อชุด
+<span class="add">actionLog.push(payload);        // เก็บ 15 ชุด = ~2 KB
+// UNDO = replay จาก baseState + actionLog ที่ตัดตัวสุดท้ายออก</span></pre>
+<table>
+<tr><th>แนวทาง</th><th>ขนาด history ใน doc</th><th>มือถือ Undo ได้</th><th>รอด host refresh</th><th>ต้องทำ subcollection</th></tr>
+<tr><td>ปัจจุบัน (15 snapshot)</td><td class="bad">~600 KB</td><td>✅</td><td>✅</td><td>—</td></tr>
+<tr><td>Claude เดิม (host memory)</td><td class="ok">0</td><td class="bad">❌</td><td class="bad">❌</td><td>—</td></tr>
+<tr><td>Antigravity (3 snapshot)</td><td style="color:var(--med)">~120 KB</td><td>✅</td><td>✅</td><td>ภายหลัง</td></tr>
+<tr><td><b>ตกลงร่วม (action log 15)</b></td><td class="ok"><b>~2 KB</b></td><td>✅</td><td>✅</td><td class="ok"><b>ไม่ต้อง</b></td></tr>
+</table>
+<p><b>ข้อควรระวังที่ต้องแก้ก่อน:</b> replay ต้อง deterministic แต่ <code>playmatSyncService.ts:153</code> มี <code>Math.random()</code> อยู่</p>
+<pre>const chosenFirst = payload.firstPlayer || (Math.random() &lt; 0.5 ? 'p1' : 'p2');</pre>
+<p>โชคดีที่บรรทัดนี้อ่าน <code>payload.firstPlayer</code> ก่อนอยู่แล้ว — แค่ให้ฝั่งผู้เรียกสุ่มแล้วใส่ค่าลง payload ก่อน dispatch ก็ deterministic ทันที <b>กรุณา grep หา <code>Math.random</code> / <code>Date.now</code> ใน reducer ให้ครบก่อนลงมือ</b></p>
+<div class="fix"><b>ลำดับที่ตกลง</b> — รับข้อเสนอ "ระยะสั้นก่อน" ของ Antigravity แต่เปลี่ยนปลายทาง:<br>
+<b>Sprint 1:</b> ลด <code>historyStack</code> 15 → 3 <span class="dim">(แก้ตัวเลขเดียว ~5 นาที ตัดความเสี่ยงชนเพดาน 1 MiB ทันที เป็นวาล์วนิรภัยระหว่างทำ A3)</span><br>
+<b>Sprint 2:</b> เปลี่ยนเป็น action log <span class="dim">(แทนที่จะทำ subcollection — ง่ายกว่า เล็กกว่า 60 เท่า และไม่ต้องเพิ่ม read ตอน Undo)</span></div>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> payload ต่อ action ลด ≥95% · <code>playmatSyncService.test.ts</code> 540 บรรทัดผ่านครบ · Undo ทำงานทั้งบน host และ mobile · เพิ่ม unit test ที่ replay action log แล้วได้ state เดิมเป๊ะ</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">A3</span> Partitioned Update <span class="who">ข้อเสนอ Antigravity — รับเต็ม</span></h3>
+<p class="why">เนื่องจาก dot notation ใช้กับ array ไม่ได้ (§1) การเขียนเฉพาะฝั่งผู้เล่นที่ action นั้นแตะจึงเป็นการปรับที่ทำได้จริงและปลอดภัยที่สุด</p>
+<pre>// แทน setDoc ทั้งก้อน (playmatSyncService.ts:856-866)
+const side = payloadOwner(payload);          // 'p1' | 'p2'
+await updateDoc(ref, { [side]: nextState[side], updatedAt, serverUpdatedAt });</pre>
+<p><b>ผลรวมเมื่อทำ A2 + A3 ด้วยกัน:</b></p>
+<pre>ปัจจุบัน           ~640 KB / action   (กระดาน 2 ฝั่ง × history 15 snapshot)
+หลัง A2 (log)      ~ 42 KB / action   (กระดาน 2 ฝั่ง + action log 2 KB)
+หลัง A2 + A3       ~ 21 KB / action   (กระดานฝั่งเดียว + action log)   ← ลด 97%</pre>
+<p class="dim"><b>ทางเลือกอนาคต (ยังไม่อยู่ในแผนนี้):</b> ถ้าเปลี่ยน <code>bench</code> จาก <code>PlaymatCard[]</code> เป็น map คีย์ตามช่อง (<code>{'0': card, '1': card}</code>) dot notation จะใช้ได้ทันที — <code>p1.bench.2.damageCounters</code> — เปิดทางสู่ delta ระดับฟิลด์จริงโดยไม่ต้องย้ายไป RTDB ยกมาเป็นตัวเลือกไว้พิจารณาหลัง A3 ไม่ใช่ข้อเสนอสำหรับรอบนี้</p>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">A4</span> Framer Motion Drag + Layout Animation <span class="who">ข้อเสนอ Antigravity — รับ พร้อมข้อควรระวัง 2 ข้อ</span></h3>
+<p>เห็นด้วยกับการรวม P4+P6 และใช้ <code>&lt;motion.div drag dragSnapToOrigin /&gt;</code> แทนการเขียน Pointer Events ดิบ — ตัดงานคำนวณพิกัดออกไปมาก และได้ physics ฟรี</p>
+<p><b>สองกับดักที่จะเจอตอนลงมือ</b> (แจ้งไว้ล่วงหน้า ไม่ใช่การคัดค้าน):</p>
+<ul>
+<li><b>Framer จัดการ gesture ให้ แต่ไม่จัดการ drop target ให้</b> — <code>drag</code> ทำให้การ์ดลากได้และดีดกลับ แต่การรู้ว่า "ปล่อยลงช่อง bench ที่ 3" ยังต้องเขียนเอง ผ่าน <code>onDragEnd</code> + <code>document.elementFromPoint()</code> หรือคำนวณ overlap กับ ref ของแต่ละโซน ประเมินว่าตัดงานได้ราว 60% ไม่ใช่ 100%</li>
+<li><b><code>layoutId</code> กับ <code>drag</code> บน element เดียวกันจะตีกัน</b> — layout animation จะพยายามดึงการ์ดกลับตำแหน่งที่คำนวณไว้ระหว่างที่นิ้วยังลากอยู่ ทางแก้คือแยกชั้น: <code>layout</code> ที่ wrapper ด้านนอก และ <code>drag</code> ที่ inner element หรือปิด <code>layoutId</code> เฉพาะใบที่กำลังถูกลาก</li>
+</ul>
+<p>เพิ่มเติม: ใส่ <code>touch-action: none</code> บนโซนที่ลากได้ ไม่งั้น browser จะแย่ง gesture ไปทำ scroll · เคารพ <code>prefers-reduced-motion</code> · และเพิ่ม <code>aria-label</code> บนปุ่ม action กับ <code>role="status" aria-live="polite"</code> บน <code>recentActionText</code> (ตอนนี้ทั้งฟีเจอร์มี <code>aria-</code> 0 จุด)</p>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> E2E ใน project <code>[mobile]</code> ลากการ์ดจากมือขึ้น active ได้จริง · ลากบน <code>PlaymatHostBoard</code> (แท็บเล็ต) ได้ · ไม่มีการ์ดค้างกลางจอเมื่อปล่อยนอกโซน</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">A5</span> Refactor 3 เฟส <span class="who">ข้อเสนอ Antigravity — รับเต็ม</span></h3>
+<p class="why">ข้อโต้แย้งเรื่อง regression risk ถูกต้อง — ทั้งสามบอร์ดมี layout ต่างกันจริง (host = แนวนอนหันเข้าหากัน, mobile = แนวตั้ง + safe-area, duel = split-screen) การ rewrite รวดเดียว 6,576 บรรทัดเสี่ยงเกินไปกับ E2E 172 ตัว</p>
+<p>รับลำดับ 3 เฟสของ Antigravity ทั้งหมด: <b>Phase 1</b> ดึง presentational ที่ไม่มี state (<code>CardSprite</code>, <code>DamageCountersBadge</code>, <code>AttachedEnergyList</code>) → <b>Phase 2</b> ดึง zone modules (<code>BenchRow</code>, <code>ActiveSpot</code>, <code>PrizeZone</code>) โดยคง layout styling แยกตาม board → <b>Phase 3</b> ค่อยเปลี่ยน state ให้ dispatch ผ่าน reducer</p>
+<p>ขอเพิ่มเงื่อนไขเดียว: <b>รัน E2E คั่นทุกเฟส</b> และ commit แยกเฟส เพื่อให้ revert ได้ทีละชั้นถ้าพัง</p>
+</div>
+
+<h2>3. Roadmap ที่ตกลงแล้ว</h2>
+<table>
+<tr><th>Sprint</th><th>งาน</th><th>แรง</th><th>ที่มา</th></tr>
+<tr><td rowspan="3"><b>1</b></td><td><b>A0</b> — anonymous auth + <code>participants</code> ปิด B2</td><td>~2 ชม.</td><td>Claude</td></tr>
+<tr><td><b>A1</b> — <code>usePlaymatSensors</code> (Wake Lock + Haptics)</td><td>~1 ชม.</td><td>ตรงกัน</td></tr>
+<tr><td><b>A2-a</b> — ลด <code>historyStack</code> 15 → 3 (วาล์วนิรภัย)</td><td>~5 น.</td><td>Antigravity</td></tr>
+<tr><td rowspan="3"><b>2</b></td><td><b>A2-b</b> — เปลี่ยน history เป็น action log</td><td>~4 ชม.</td><td class="ok">สังเคราะห์</td></tr>
+<tr><td><b>A3</b> — Partitioned Update</td><td>~4 ชม.</td><td>Antigravity</td></tr>
+<tr><td><b>A4</b> — Framer Motion drag + layout + a11y</td><td>~1-2 วัน</td><td>Antigravity</td></tr>
+<tr><td><b>3</b></td><td><b>A5</b> — Refactor 3 เฟส</td><td>~2-3 วัน</td><td>Antigravity</td></tr>
+</table>
+
+<h2>4. เงื่อนไขที่ทั้งสองฝ่ายเห็นตรงกัน — Rules Testing</h2>
+<div class="note">
+<p>ทั้งสองรายงานสรุปตรงกันว่า <b>quality gate ปัจจุบันไม่ครอบคลุม <code>firestore.rules</code> เลย</b> เพราะ Playwright รันในสภาพที่ Firestore ต่อไม่ได้ แล้วแอป fallback ไป local ทุกอย่างจึงเขียวเสมอ</p>
+<p style="color:var(--txt)"><b>ข้อตกลง: A0 จะไม่ merge จนกว่าจะมี <code>test:rules</code></b> — เพราะ A0 เป็นการแก้ rules ล้วนๆ ซึ่งเป็นประเภทเดียวกับที่หลุดไปในรอบก่อน (B1) และไม่มีทางตรวจได้ด้วย gate ที่มีอยู่</p>
+<pre>npm i -D @firebase/rules-unit-testing
+# firebase.json — ปัจจุบันมีแค่ firestore.rules + indexes ยังไม่มี block emulators</pre>
+<p>เคสขั้นต่ำ 5 ข้อ:</p>
+<ul>
+<li>สร้างห้องสำเร็จ <span class="dim">(regression guard ของ B1)</span></li>
+<li>ผู้ใช้นอก <code>participants</code> เขียนห้องไม่ได้ <span class="dim">(A0)</span></li>
+<li>ผู้เล่นที่ join แล้วเขียนได้ · guest ที่ไม่เคย auth เขียนไม่ได้ <span class="dim">(A0)</span></li>
+<li>non-admin แก้ <code>market_prices.regular</code> ไม่ได้ แต่ create เอกสารใหม่ได้</li>
+<li><code>viewCount</code> เพิ่มได้ทีละ 1 เท่านั้น</li>
+</ul>
+</div>
+
+<h2>5. ที่ยังค้างนอกขอบเขตแผนนี้</h2>
+<div class="note">
+<ul>
+<li><b>F7 — catch block กลืน error 62 จุด</b> <span class="bad">เกี่ยวข้องกับ Playmat โดยตรง</span> ทุก <code>setDoc</code> ที่ล้มเหลวใน <code>playmatSyncService.ts</code> เงียบสนิท ซึ่งคือเหตุผลที่ B1 ไม่มีใครสังเกตเห็น อย่างน้อยควรทำใน A0/A3 ให้ playmat sync แสดงสถานะ "เชื่อมต่อไม่ได้" บนหน้าจอ</li>
+<li><b>precache 28.2 MB</b> — ยังไม่แตะ แยกเป็นงานของ collection/pricing ไม่ใช่ playmat</li>
+<li><b>F11 god files · F12 <code>any</code> 227 จุด · F15 <code>console.*</code> 93 จุด</b> — เลื่อนได้</li>
+<li><b>tag <code>v2.59.1</code></b> — ตรวจว่ามี annotated tag ตาม deploy guardrail ใน CLAUDE.md แล้วหรือยัง</li>
+</ul>
+</div>
+
+<footer>
+แผนฉบับตกลงร่วม · Claude (Opus 5) ⇄ Antigravity (Gemini) · 2026-09-10 · Target v2.60.0<br>
+ข้อเท็จจริงทุกข้อในเอกสารนี้ตรวจสอบด้วยการรันคำสั่งจริงบน <code>b98c68b</code> — build, lint, vitest, playwright, และอ่าน <code>firestore.rules</code> ปัจจุบัน
+</footer>
+
+</div></body></html>

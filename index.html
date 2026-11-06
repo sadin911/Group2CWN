@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png?v=3" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- Instant Force Redirect from old GitHub Pages URL to poke.tcgcount.com -->
+    <script>
+      (function() {
+        if (window.location.hostname === 'sadin911.github.io') {
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(regs) {
+              for (var i = 0; i < regs.length; i++) regs[i].unregister();
+            });
+          }
+          var cleanPath = window.location.pathname.replace(/^\/PokeCountTracker\/?/, '/');
+          if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
+          window.location.replace('https://poke.tcgcount.com' + cleanPath + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNNXCMKZZ9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-BNNXCMKZZ9');
+    </script>
+
+    <!-- Primary SEO Metadata -->
+    <title>PokeCount Tracker | สมุดสะสมการ์ดโปเกมอนไทย จัดเด็ค และคำนวณการ์ดที่ขาด</title>
+    <meta name="title" content="PokeCount Tracker | สมุดสะสมการ์ดโปเกมอนไทย จัดเด็ค และคำนวณการ์ดที่ขาด" />
+    <meta
+      name="description"
+      content="แอปพลิเคชันจัดการคอลเลกชันการ์ดโปเกมอนภาษาไทย (Pokémon TCG Thai) ระบบจัดเด็ค PokeDeck Builder เช็คการ์ดที่ขาด ตรวจสอบราคา และสถิติการครอบครองการ์ดแบบเรียลไทม์"
+    />
+    <meta
+      name="keywords"
+      content="โปเกมอนการ์ด, Pokemon TCG Thailand, สมุดสะสมการ์ด, เช็คการ์ดโปเกมอน, จัดเด็คโปเกมอน, Pokemon Card Thai, PokeCount Tracker, PokéCount Tracker, PTCG Thai, Deck Builder, Regulation Mark, การ์ดที่ขาด, ราคาการ์ด"
+    />
+    <meta name="author" content="PokeCount Tracker" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://poke.tcgcount.com/" />
+
+    <!-- Theme & Mobile PWA Styling -->
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="PokeCount" />
+    <meta name="application-name" content="PokeCount Tracker" />
+
+    <!-- Open Graph / Facebook / Discord Embeds -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://poke.tcgcount.com/" />
+    <meta property="og:title" content="PokeCount Tracker | สมุดสะสมการ์ดโปเกมอนไทย & จัดเด็ค" />
+    <meta
+      property="og:description"
+      content="จัดการคอลเลกชันการ์ดโปเกมอนไทยกว่า 9,600+ ใบ จัดเด็ค คำนวณการ์ดที่ขาด และบันทึกคลาวด์ฟรี"
+    />
+    <meta property="og:image" content="https://poke.tcgcount.com/pwa-512x512.png" />
+    <meta property="og:image:alt" content="PokeCount Tracker App Preview" />
+    <meta property="og:site_name" content="PokeCount Tracker" />
+    <meta property="og:locale" content="th_TH" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://poke.tcgcount.com/" />
+    <meta name="twitter:title" content="PokeCount Tracker | สมุดสะสมการ์ดโปเกมอนไทย & จัดเด็ค" />
+    <meta
+      name="twitter:description"
+      content="แอปพลิเคชันคอลเลกชันและจัดเด็คโปเกมอนการ์ดภาษาไทยครบวงจร รองรับ PWA ติดตั้งบนมือถือได้"
+    />
+    <meta name="twitter:image" content="https://poke.tcgcount.com/pwa-512x512.png" />
+
+    <!-- JSON-LD Structured Data for Google Rich Snippets -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://poke.tcgcount.com/#webapp",
+            "name": "PokeCount Tracker",
+            "url": "https://poke.tcgcount.com/",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "All",
+            "description": "แอปพลิเคชันจัดการคอลเลกชันการ์ดโปเกมอนภาษาไทย (Pokémon TCG Thai) ระบบจัดเด็ค PokeDeck Builder เช็คการ์ดที่ขาด ตรวจสอบราคา และสถิติการครอบครองการ์ดแบบเรียลไทม์",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "THB"
+            },
+            "featureList": [
+              "ฐานข้อมูลการ์ดโปเกมอนภาษาไทยครบทุกชุดกว่า 9,600+ ใบ",
+              "ระบบจัดเด็ค PokeDeck Builder พร้อมกฎ 60 ใบ และคำนวณการ์ดที่ยังขาดในคอลเลกชัน",
+              "ระบบกรองการ์ดตาม Regulation Mark (Standard HIJ, Series D-J, Expanded A-B)",
+              "แยกหมวดหมู่ โปเกมอน, เทรนเนอร์, พลังงาน และระดับความหายาก SAR, AR, SR, UR, ex",
+              "รองรับการซิงค์ข้อมูลบน Cloud กับ Google Account",
+              "ระบบเช็คการ์ดที่ขาดในเด็คเทียบกับสมุดสะสม พร้อมระบบทดลองสุ่มการ์ดขึ้นมือ (Test Hand)",
+              "รองรับการติดตั้ง Progressive Web App (PWA) บน iOS และ Android"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://poke.tcgcount.com/#website",
+            "url": "https://poke.tcgcount.com/",
+            "name": "PokeCount Tracker",
+            "description": "สุดยอดเครื่องมือสำหรับนักสะสมและผู้เล่นโปเกมอนการ์ดภาษาไทย (Pokémon TCG Thai)",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://poke.tcgcount.com/?search={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Script to decode SPA GitHub Pages redirect -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

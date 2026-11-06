@@ -1,0 +1,43 @@
+name: Scheduled Card Prices Update
+
+on:
+  schedule:
+    # Run everyday at 00:00 UTC (07:00 AM Bangkok time)
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch and build latest card prices
+        run: npm run data:prices
+
+      # Guards the generated data before it can reach main.
+      - name: Verify Thai price ratio
+        run: npx vitest run src/data/thaiPriceRatio.test.ts
+
+      - name: Commit and push price updates
+        id: commit
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/market_prices.json src/data/market_prices.json
+          if git diff --staged --quiet; then
+            echo "No price changes to commit."
+          else
+            git commit -m "chore(data): update daily market card prices"
+            git push origin HEAD
+          fi

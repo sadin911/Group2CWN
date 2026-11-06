@@ -1,0 +1,2964 @@
+[
+  {
+    "id": "meta-limitless-284",
+    "name": "Dragapult ex",
+    "tier": "Tier 1",
+    "playstyle": "Setup",
+    "pros": [
+      "แดเมจกระจายตีเบนช์ทรงพลัง (Phantom Dive)",
+      "มีเอนจิ้นโดรอนจิจั่วการ์ดเสถียรมาก",
+      "พลังชีวิตสูง 320 HP รับมือยาก"
+    ],
+    "cons": [
+      "แพ้ทางโปเกมอนที่กันแดเมจบนเบนช์ เช่น มิว/มานาฟี",
+      "ใช้เวลาเซ็ตโปเกมอนร่าง 2"
+    ],
+    "sharePercent": 36.06,
+    "points": 3972,
+    "event": "Louisville",
+    "author": "Yuya Kogai",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/29678",
+    "coverCardId": "TH-13044",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA3/134-193_%E0%B9%82%E0%B8%94%E0%B8%A3%E0%B8%B2%E0%B8%9E%E0%B8%B1%E0%B8%A5%E0%B8%97%E0%B9%8Cex.webp",
+    "strategyDescription": "เด็ค Dragapult ex อันดับ #1 (Setup) สถิติแข่งขันระดับโลก (36.06% Meta Share) เล่นโดย Yuya Kogai (Louisville)",
+    "keyPokemon": [
+      "โดราเมชิยะ",
+      "โดรอนจิ",
+      "โดราพัลท์ex",
+      "มาชิมาชิระ"
+    ],
+    "cards": {
+      "TH-13042": {
+        "cardId": "TH-13042",
+        "count": 4
+      },
+      "TH-13043": {
+        "cardId": "TH-13043",
+        "count": 4
+      },
+      "TH-13044": {
+        "cardId": "TH-13044",
+        "count": 3
+      },
+      "TH-14328": {
+        "cardId": "TH-14328",
+        "count": 2
+      },
+      "TH-12921": {
+        "cardId": "TH-12921",
+        "count": 2
+      },
+      "TH-11196": {
+        "cardId": "TH-11196",
+        "count": 1
+      },
+      "TH-10814": {
+        "cardId": "TH-10814",
+        "count": 1
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 3
+      },
+      "TH-10101": {
+        "cardId": "TH-10101",
+        "count": 2
+      },
+      "TH-13884": {
+        "cardId": "TH-13884",
+        "count": 1
+      },
+      "TH-11216": {
+        "cardId": "TH-11216",
+        "count": 1
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-13900": {
+        "cardId": "TH-13900",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 3
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 3
+      },
+      "TH-8169": {
+        "cardId": "TH-8169",
+        "count": 1
+      },
+      "TH-12208": {
+        "cardId": "TH-12208",
+        "count": 2
+      },
+      "TH-14912": {
+        "cardId": "TH-14912",
+        "count": 3
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 3
+      },
+      "TH-14917": {
+        "cardId": "TH-14917",
+        "count": 3
+      }
+    },
+    "exportText": "4 Dreepy TWM 128\n4 Drakloak TWM 129\n3 Dragapult ex TWM 130\n2 Munkidori TWM 95\n2 Budew ASC 16\n1 Dunsparce TEF 128\n1 Dudunsparce TEF 129\n1 Meowth ex POR 62\n1 Fezandipiti ex ASC 142\n4 Lillie's Determination MEG 119\n3 Boss's Orders MEG 114\n2 Crispin SCR 133\n1 Rosa's Encouragement POR 84\n1 Judge POR 76\n4 Buddy-Buddy Poffin TEF 144\n4 Poké Pad POR 81\n4 Crushing Hammer POR 71\n3 Ultra Ball MEG 131\n3 Night Stretcher ASC 196\n1 Unfair Stamp TWM 165\n2 Risky Ruins MEG 127\n3 Fire Energy MEE 10\n3 Psychic Energy MEE 13\n3 Darkness Energy MEE 15",
+    "createdAt": 1792999532028,
+    "updatedAt": 1792999532028
+  },
+  {
+    "id": "meta-limitless-339",
+    "name": "Basic Box",
+    "tier": "Tier 1",
+    "playstyle": "Toolbox",
+    "pros": [
+      "ไม่ต้องรอวิวัฒนาการ เล่นเร็วและยืดหยุ่นสูง",
+      "มีตัวตีหลากหลายธาตุรับมือได้ทุกเมต้า",
+      "ดึงการ์ดแก้ทางได้ง่าย"
+    ],
+    "cons": [
+      "ตัวตีเป็นโปเกมอน Basic อาจมีเพดานแดเมจจำกัดในบางรอบ",
+      "แพ้การ์ดล็อกไอเทม/ความสามารถ Basic"
+    ],
+    "sharePercent": 8.94,
+    "points": 985,
+    "event": "Louisville",
+    "author": "Luc Gantner",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/29659",
+    "coverCardId": "TH-14383",
+    "coverImageUrl": "/PokeCountTracker/card-images/MATK/011-023_%E0%B9%80%E0%B8%A1%E0%B8%81%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%B9%E0%B8%A3%E0%B8%B2ex.webp",
+    "strategyDescription": "เด็ค Basic Box อันดับ #2 (Toolbox) สถิติแข่งขันระดับโลก (8.94% Meta Share) เล่นโดย Luc Gantner (Louisville)",
+    "keyPokemon": [
+      "เมก้าการูราex",
+      "เนียสex",
+      "โอการ์ปอง หน้ากากสีทีลex",
+      "โอการ์ปอง หน้ากากบ่อน้ำex"
+    ],
+    "cards": {
+      "TH-14383": {
+        "cardId": "TH-14383",
+        "count": 4
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 3
+      },
+      "TH-12927": {
+        "cardId": "TH-12927",
+        "count": 2
+      },
+      "TH-11055": {
+        "cardId": "TH-11055",
+        "count": 2
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 2
+      },
+      "TH-14349": {
+        "cardId": "TH-14349",
+        "count": 2
+      },
+      "TH-7878": {
+        "cardId": "TH-7878",
+        "count": 1
+      },
+      "TH-10190": {
+        "cardId": "TH-10190",
+        "count": 1
+      },
+      "TH-7932": {
+        "cardId": "TH-7932",
+        "count": 1
+      },
+      "TH-10244": {
+        "cardId": "TH-10244",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-7912": {
+        "cardId": "TH-7912",
+        "count": 1
+      },
+      "TH-10101": {
+        "cardId": "TH-10101",
+        "count": 4
+      },
+      "TH-10311": {
+        "cardId": "TH-10311",
+        "count": 2
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-10849": {
+        "cardId": "TH-10849",
+        "count": 1
+      },
+      "TH-12531": {
+        "cardId": "TH-12531",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-8169": {
+        "cardId": "TH-8169",
+        "count": 1
+      },
+      "TH-13059": {
+        "cardId": "TH-13059",
+        "count": 1
+      },
+      "TH-13094": {
+        "cardId": "TH-13094",
+        "count": 3
+      },
+      "TH-14911": {
+        "cardId": "TH-14911",
+        "count": 6
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 3
+      },
+      "TH-14914": {
+        "cardId": "TH-14914",
+        "count": 2
+      },
+      "TH-14916": {
+        "cardId": "TH-14916",
+        "count": 2
+      },
+      "TH-14913": {
+        "cardId": "TH-14913",
+        "count": 2
+      }
+    },
+    "exportText": "4 Mega Kangaskhan ex MEG 104\n3 Meowth ex POR 62\n2 Teal Mask Ogerpon ex TWM 25\n2 Wellspring Mask Ogerpon ex TWM 64\n2 Latias ex SSP 76\n2 Lillie's Clefairy ex JTG 56\n1 Raging Bolt ex TEF 123\n1 Chien-Pao SSP 56\n1 Iron Crown ex TEF 81\n1 Passimian SSP 111\n1 Fezandipiti ex ASC 142\n1 Iron Leaves ex TEF 25\n4 Crispin SCR 133\n2 Cyrano SSP 170\n2 Boss's Orders MEG 114\n1 Ciphermaniac's Codebreaking TEF 145\n4 Energy Switch MEG 115\n4 Ultra Ball MEG 131\n2 Night Stretcher ASC 196\n1 Unfair Stamp TWM 165\n1 Glass Trumpet SCR 135\n3 Area Zero Underdepths SCR 131\n6 Grass Energy MEE 9\n3 Psychic Energy MEE 13\n2 Lightning Energy MEE 12\n2 Fighting Energy MEE 14\n2 Water Energy MEE 11",
+    "createdAt": 1792999532265,
+    "updatedAt": 1792999532265
+  },
+  {
+    "id": "meta-limitless-322",
+    "name": "Slowking Seek Inspiration",
+    "tier": "Tier 1",
+    "playstyle": "Single Prize",
+    "pros": [
+      "แลก Prize คุ้มค่า แจกเพียง 1 Prize เมื่อหมดสภาพ",
+      "สุ่มใช้ท่าโจมตีทรงพลังจากการ์ดบนสุดของกองการ์ด",
+      "ประหยัดงบประกอบเด็ค"
+    ],
+    "cons": [
+      "ต้องพึ่งดวงหรือการเซ็ตกองการ์ดให้แม่นยำ",
+      "พลังชีวิตน้อย โดนเก็บง่าย"
+    ],
+    "sharePercent": 7.73,
+    "points": 851,
+    "event": "Louisville",
+    "author": "Tomás Malaca",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30523",
+    "coverCardId": "TH-9688",
+    "coverImageUrl": "/PokeCountTracker/card-images/SV7s/054-166_%E0%B8%A2%E0%B8%B2%E0%B9%82%E0%B8%94%E0%B8%84%E0%B8%B4%E0%B8%87.webp",
+    "strategyDescription": "เด็ค Slowking Seek Inspiration อันดับ #3 (Single Prize) สถิติแข่งขันระดับโลก (7.73% Meta Share) เล่นโดย Tomás Malaca (Louisville)",
+    "keyPokemon": [
+      "ยาดง",
+      "ยาโดคิง",
+      "เมก้าการูราex",
+      "ลาทิอาสex"
+    ],
+    "cards": {
+      "TH-9687": {
+        "cardId": "TH-9687",
+        "count": 4
+      },
+      "TH-9688": {
+        "cardId": "TH-9688",
+        "count": 3
+      },
+      "TH-14383": {
+        "cardId": "TH-14383",
+        "count": 3
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 2
+      },
+      "TH-14077": {
+        "cardId": "TH-14077",
+        "count": 2
+      },
+      "TH-9755": {
+        "cardId": "TH-9755",
+        "count": 2
+      },
+      "TH-14041": {
+        "cardId": "TH-14041",
+        "count": 1
+      },
+      "TH-14377": {
+        "cardId": "TH-14377",
+        "count": 1
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-14349": {
+        "cardId": "TH-14349",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-10849": {
+        "cardId": "TH-10849",
+        "count": 3
+      },
+      "TH-10310": {
+        "cardId": "TH-10310",
+        "count": 1
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-14364": {
+        "cardId": "TH-14364",
+        "count": 3
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 3
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 3
+      },
+      "TH-8274": {
+        "cardId": "TH-8274",
+        "count": 1
+      },
+      "TH-14319": {
+        "cardId": "TH-14319",
+        "count": 1
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 1
+      },
+      "TH-8176": {
+        "cardId": "TH-8176",
+        "count": 1
+      },
+      "TH-9800": {
+        "cardId": "TH-9800",
+        "count": 4
+      },
+      "TH-13888": {
+        "cardId": "TH-13888",
+        "count": 4
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 4
+      },
+      "TH-8182": {
+        "cardId": "TH-8182",
+        "count": 2
+      }
+    },
+    "exportText": "4 Slowpoke SCR 57\n3 Slowking SCR 58\n3 Mega Kangaskhan ex MEG 104\n2 Latias ex SSP 76\n2 Metagross CRI 61\n2 Kyurem SFA 47\n1 Annihilape PBL 41\n1 Zeraora DRI 78\n1 Meowth ex POR 62\n1 Fezandipiti ex ASC 142\n1 Lillie's Clefairy ex JTG 56\n4 Lillie's Determination MEG 119\n3 Ciphermaniac's Codebreaking TEF 145\n1 Surfer SSP 187\n4 Poké Pad POR 81\n3 Wondrous Patch PFL 94\n3 Night Stretcher ASC 196\n3 Ultra Ball MEG 131\n1 Secret Box TWM 163\n1 Switch MEG 130\n1 Special Red Card CRI 82\n1 Lucky Helmet TWM 158\n4 Academy at Night SFA 54\n4 Telepathic Psychic Energy POR 88\n4 Psychic Energy MEE 13\n2 Boomerang Energy TWM 166",
+    "createdAt": 1792999532486,
+    "updatedAt": 1792999532486
+  },
+  {
+    "id": "meta-limitless-320",
+    "name": "N's Zoroark ex",
+    "tier": "Tier 1",
+    "playstyle": "Toolbox",
+    "pros": [
+      "อบิลิตี้เปลี่ยนร่างก็อปปี้สกิลโปเกมอน Basic Stage 1 ได้อิสระ",
+      "แก้ทางได้แทบทุกสถานการณ์",
+      "ใช้ของคู่แข่งเป็นประโยชน์"
+    ],
+    "cons": [
+      "ต้องพึ่งพาการทิ้งการ์ดลงสุสาน",
+      "กินทรัพยากรการ์ดบนมือสูง"
+    ],
+    "sharePercent": 7.36,
+    "points": 811,
+    "event": "Louisville",
+    "author": "Arthur Gibelin",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30533",
+    "coverCardId": "TH-13022",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA3/112-193_%E0%B9%82%E0%B8%8B%E0%B9%82%E0%B8%A3%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84ex_%E0%B8%82%E0%B8%AD%E0%B8%87_N.webp",
+    "strategyDescription": "เด็ค N's Zoroark ex อันดับ #4 (Toolbox) สถิติแข่งขันระดับโลก (7.36% Meta Share) เล่นโดย Arthur Gibelin (Louisville)",
+    "keyPokemon": [
+      "โซรัว <ของ N>",
+      "โซโรอาร์คex <ของ N>",
+      "เซครอม <ของ N>",
+      "มาชิมาชิระ"
+    ],
+    "cards": {
+      "TH-13021": {
+        "cardId": "TH-13021",
+        "count": 4
+      },
+      "TH-13022": {
+        "cardId": "TH-13022",
+        "count": 4
+      },
+      "TH-13039": {
+        "cardId": "TH-13039",
+        "count": 2
+      },
+      "TH-14328": {
+        "cardId": "TH-14328",
+        "count": 2
+      },
+      "TH-13038": {
+        "cardId": "TH-13038",
+        "count": 1
+      },
+      "TH-11165": {
+        "cardId": "TH-11165",
+        "count": 1
+      },
+      "TH-12173": {
+        "cardId": "TH-12173",
+        "count": 1
+      },
+      "TH-14335": {
+        "cardId": "TH-14335",
+        "count": 1
+      },
+      "TH-12921": {
+        "cardId": "TH-12921",
+        "count": 1
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 4
+      },
+      "TH-10311": {
+        "cardId": "TH-10311",
+        "count": 2
+      },
+      "TH-10646": {
+        "cardId": "TH-10646",
+        "count": 1
+      },
+      "TH-11216": {
+        "cardId": "TH-11216",
+        "count": 1
+      },
+      "TH-10850": {
+        "cardId": "TH-10850",
+        "count": 1
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 3
+      },
+      "TH-13056": {
+        "cardId": "TH-13056",
+        "count": 3
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 2
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 1
+      },
+      "TH-8274": {
+        "cardId": "TH-8274",
+        "count": 1
+      },
+      "TH-10838": {
+        "cardId": "TH-10838",
+        "count": 2
+      },
+      "TH-13091": {
+        "cardId": "TH-13091",
+        "count": 2
+      },
+      "TH-13099": {
+        "cardId": "TH-13099",
+        "count": 2
+      },
+      "TH-14917": {
+        "cardId": "TH-14917",
+        "count": 7
+      }
+    },
+    "exportText": "4 N's Zorua JTG 97\n4 N's Zoroark ex JTG 98\n2 N's Zekrom ASC 155\n2 Munkidori TWM 95\n1 N's Reshiram JTG 116\n1 N's Purrloin JTG 96\n1 Yveltal MEG 88\n1 Pecharunt ex SFA 39\n1 Budew ASC 16\n1 Meowth ex POR 62\n4 Lillie's Determination MEG 119\n4 Boss's Orders MEG 114\n2 Cyrano SSP 170\n1 Black Belt's Training JTG 143\n1 Judge POR 76\n1 Janine's Secret Art PRE 112\n4 Buddy-Buddy Poffin TEF 144\n3 Ultra Ball MEG 131\n3 N's PP Up JTG 153\n2 Poké Pad POR 81\n2 Night Stretcher ASC 196\n1 Special Red Card CRI 82\n1 Secret Box TWM 163\n2 Binding Mochi PRE 95\n2 N's Castle JTG 152\n2 Team Rocket's Watchtower DRI 180\n7 Darkness Energy MEE 15",
+    "createdAt": 1792999532737,
+    "updatedAt": 1792999532737
+  },
+  {
+    "id": "meta-limitless-336",
+    "name": "Festival Lead",
+    "tier": "Tier 2",
+    "playstyle": "Single Prize",
+    "pros": [
+      "โจมตีได้สองครั้งในเทิร์นเดียวจากอบิลิตี้ Festival Lead",
+      "เด็คตัวเล็ก Prize Trade ได้เปรียบสูง",
+      "คอมโบกับ Festival Grounds"
+    ],
+    "cons": [
+      "ต้องพึ่งพาสเตเดียม Festival Grounds อย่างต่อเนื่อง",
+      "HP ต่ำ เสี่ยงโดนแดเมจกระจายกวาดเรียบ"
+    ],
+    "sharePercent": 6.47,
+    "points": 713,
+    "event": "Louisville",
+    "author": "Oscar Rivas Perez",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30519",
+    "coverCardId": "TH-10690",
+    "coverImageUrl": "/PokeCountTracker/card-images/Sv8a/006-187_%E0%B8%8B%E0%B8%B2%E0%B8%A3%E0%B8%B8%E0%B9%82%E0%B8%99%E0%B8%A3%E0%B8%B4.webp",
+    "strategyDescription": "เด็ค Festival Lead อันดับ #5 (Single Prize) สถิติแข่งขันระดับโลก (6.47% Meta Share) เล่นโดย Oscar Rivas Perez (Louisville)",
+    "keyPokemon": [
+      "ซารุโนริ",
+      "บาจินคี",
+      "โทซาคินโตะ",
+      "อซึมาโอ"
+    ],
+    "cards": {
+      "TH-10690": {
+        "cardId": "TH-10690",
+        "count": 4
+      },
+      "TH-8191": {
+        "cardId": "TH-8191",
+        "count": 4
+      },
+      "TH-13987": {
+        "cardId": "TH-13987",
+        "count": 4
+      },
+      "TH-10713": {
+        "cardId": "TH-10713",
+        "count": 3
+      },
+      "TH-12942": {
+        "cardId": "TH-12942",
+        "count": 1
+      },
+      "TH-12922": {
+        "cardId": "TH-12922",
+        "count": 1
+      },
+      "TH-12456": {
+        "cardId": "TH-12456",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-14111": {
+        "cardId": "TH-14111",
+        "count": 3
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 3
+      },
+      "TH-14319": {
+        "cardId": "TH-14319",
+        "count": 1
+      },
+      "TH-8274": {
+        "cardId": "TH-8274",
+        "count": 1
+      },
+      "TH-14389": {
+        "cardId": "TH-14389",
+        "count": 3
+      },
+      "TH-13076": {
+        "cardId": "TH-13076",
+        "count": 3
+      },
+      "TH-10864": {
+        "cardId": "TH-10864",
+        "count": 4
+      },
+      "TH-10870": {
+        "cardId": "TH-10870",
+        "count": 4
+      },
+      "TH-14912": {
+        "cardId": "TH-14912",
+        "count": 2
+      }
+    },
+    "exportText": "4 Grookey TWM 14\n4 Thwackey TWM 15\n3 Goldeen TWM 44\n1 Goldeen PBL 13\n3 Seaking PRE 21\n1 Psyduck ASC 39\n1 Shaymin DRI 10\n1 Moltres PFL 14\n4 Lillie's Determination MEG 119\n3 Gladion's Final Battle PBL 77\n2 Boss's Orders MEG 114\n4 Buddy-Buddy Poffin TEF 144\n4 Poké Pad POR 81\n4 Ultra Ball MEG 131\n3 Night Stretcher ASC 196\n1 Switch MEG 130\n1 Secret Box TWM 163\n3 Air Balloon ASC 181\n3 Brave Bangle WHT 80\n4 Festival Grounds TWM 149\n4 Mist Energy TEF 161\n2 Fire Energy MEE 10",
+    "createdAt": 1792999532943,
+    "updatedAt": 1792999532943
+  },
+  {
+    "id": "meta-limitless-350",
+    "name": "Alakazam Powerful Hand",
+    "tier": "Tier 2",
+    "playstyle": "Control",
+    "pros": [
+      "โจมตีจากบนเบนช์ได้ ปลอดภัยจากตัวตีหน้าสนาม",
+      "มือหนาจั่วการ์ดมหาศาล ยิ่งการ์ดในมือเยอะยิ่งตีแรง",
+      "คุมจังหวะเกมได้เฉียบขาด"
+    ],
+    "cons": [
+      "แพ้การ์ดรีเซ็ตมือ (Iono / Judge / Roxanne)",
+      "ต้องใช้เวลาสะสมการ์ดบนมือ"
+    ],
+    "sharePercent": 5.92,
+    "points": 652,
+    "event": "Louisville",
+    "author": "Michael Hessing",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/29493",
+    "coverCardId": "TH-12141",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA1/056-126_%E0%B8%9F%E0%B8%B9%E0%B8%94%E0%B8%B4%E0%B8%99.webp",
+    "strategyDescription": "เด็ค Alakazam Powerful Hand อันดับ #6 (Control) สถิติแข่งขันระดับโลก (5.92% Meta Share) เล่นโดย Michael Hessing (Louisville)",
+    "keyPokemon": [
+      "โยมาวารุ",
+      "ซามาโยรุ",
+      "โยนัวร์",
+      "เคซี"
+    ],
+    "cards": {
+      "TH-12982": {
+        "cardId": "TH-12982",
+        "count": 4
+      },
+      "TH-10749": {
+        "cardId": "TH-10749",
+        "count": 2
+      },
+      "TH-12984": {
+        "cardId": "TH-12984",
+        "count": 2
+      },
+      "TH-12139": {
+        "cardId": "TH-12139",
+        "count": 3
+      },
+      "TH-10741": {
+        "cardId": "TH-10741",
+        "count": 1
+      },
+      "TH-12140": {
+        "cardId": "TH-12140",
+        "count": 4
+      },
+      "TH-12141": {
+        "cardId": "TH-12141",
+        "count": 3
+      },
+      "TH-12921": {
+        "cardId": "TH-12921",
+        "count": 2
+      },
+      "TH-12922": {
+        "cardId": "TH-12922",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-14368": {
+        "cardId": "TH-14368",
+        "count": 4
+      },
+      "TH-14323": {
+        "cardId": "TH-14323",
+        "count": 4
+      },
+      "TH-14116": {
+        "cardId": "TH-14116",
+        "count": 3
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 1
+      },
+      "TH-14387": {
+        "cardId": "TH-14387",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 3
+      },
+      "TH-12199": {
+        "cardId": "TH-12199",
+        "count": 3
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 2
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-13060": {
+        "cardId": "TH-13060",
+        "count": 1
+      },
+      "TH-14339": {
+        "cardId": "TH-14339",
+        "count": 1
+      },
+      "TH-13888": {
+        "cardId": "TH-13888",
+        "count": 4
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 1
+      }
+    },
+    "exportText": "4 Duskull PRE 35\n2 Dusclops PRE 36\n2 Dusknoir PRE 37\n3 Abra MEG 54\n1 Abra TWM 80\n4 Kadabra MEG 55\n3 Alakazam MEG 56\n2 Budew ASC 16\n1 Shaymin DRI 10\n1 Fezandipiti ex ASC 142\n4 Hilda WHT 84\n4 Dawn PFL 87\n3 Gwynn PBL 78\n1 Boss's Orders MEG 114\n4 Rare Candy MEG 125\n4 Poké Pad POR 81\n3 Buddy-Buddy Poffin TEF 144\n3 Strange Timepiece MEG 128\n2 Special Red Card CRI 82\n2 Night Stretcher ASC 196\n1 Sacred Ash DRI 168\n1 Prime Catcher TEF 157\n4 Telepathic Psychic Energy POR 88\n1 Psychic Energy MEE 13",
+    "createdAt": 1792999533180,
+    "updatedAt": 1792999533180
+  },
+  {
+    "id": "meta-limitless-352",
+    "name": "Hydrapple ex",
+    "tier": "Tier 2",
+    "playstyle": "Setup",
+    "pros": [
+      "ฮีลพลังชีวิตได้มหาศาลทุกเทิร์น",
+      "ยิ่งพลังงานพืชเยอะ ยิ่งตีแรง",
+      "ยืนบอร์ดอึดยากจะล้มลงได้"
+    ],
+    "cons": [
+      "แพ้ทางธาตุไฟ",
+      "ต้องใช้เวลาตั้งต้นบอร์ดหลายเทิร์น"
+    ],
+    "sharePercent": 3.7,
+    "points": 408,
+    "event": "Louisville",
+    "author": "Paulo Mimoso",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30518",
+    "coverCardId": "TH-10694",
+    "coverImageUrl": "/PokeCountTracker/card-images/Sv8a/010-187_%E0%B8%84%E0%B8%B2%E0%B8%A1%E0%B8%B4%E0%B8%AA%E0%B8%B6%E0%B9%82%E0%B8%AD%E0%B9%82%E0%B8%A3%E0%B8%88%E0%B8%B4ex.webp",
+    "strategyDescription": "เด็ค Hydrapple ex อันดับ #7 (Setup) สถิติแข่งขันระดับโลก (3.7% Meta Share) เล่นโดย Paulo Mimoso (Louisville)",
+    "keyPokemon": [
+      "โอการ์ปอง หน้ากากสีทีลex",
+      "จิโคริตา",
+      "เบย์ลีฟ",
+      "เมกาเนียม"
+    ],
+    "cards": {
+      "TH-12927": {
+        "cardId": "TH-12927",
+        "count": 4
+      },
+      "TH-13217": {
+        "cardId": "TH-13217",
+        "count": 2
+      },
+      "TH-13218": {
+        "cardId": "TH-13218",
+        "count": 2
+      },
+      "TH-13219": {
+        "cardId": "TH-13219",
+        "count": 2
+      },
+      "TH-8193": {
+        "cardId": "TH-8193",
+        "count": 2
+      },
+      "TH-11100": {
+        "cardId": "TH-11100",
+        "count": 2
+      },
+      "TH-10694": {
+        "cardId": "TH-10694",
+        "count": 2
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 1
+      },
+      "TH-12097": {
+        "cardId": "TH-12097",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-11216": {
+        "cardId": "TH-11216",
+        "count": 1
+      },
+      "TH-14323": {
+        "cardId": "TH-14323",
+        "count": 1
+      },
+      "TH-10852": {
+        "cardId": "TH-10852",
+        "count": 1
+      },
+      "TH-10860": {
+        "cardId": "TH-10860",
+        "count": 1
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-13231": {
+        "cardId": "TH-13231",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 3
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-8169": {
+        "cardId": "TH-8169",
+        "count": 1
+      },
+      "TH-13092": {
+        "cardId": "TH-13092",
+        "count": 4
+      },
+      "TH-14911": {
+        "cardId": "TH-14911",
+        "count": 13
+      }
+    },
+    "exportText": "4 Teal Mask Ogerpon ex TWM 25\n2 Chikorita MEG 8\n2 Bayleef MEG 9\n2 Meganium MEG 10\n2 Applin TWM 17\n2 Dipplin TWM 18\n2 Hydrapple ex SCR 14\n1 Fezandipiti ex ASC 142\n1 Meowth ex POR 62\n1 Celebi MEG 12\n4 Lillie's Determination MEG 119\n2 Boss's Orders MEG 114\n1 Judge POR 76\n1 Dawn PFL 87\n1 Lana's Aid TWM 155\n1 Briar SCR 132\n4 Ultra Ball MEG 131\n4 Bug Catching Set TWM 143\n3 Poké Pad POR 81\n2 Night Stretcher ASC 196\n1 Unfair Stamp TWM 165\n4 Forest of Vitality MEG 117\n13 Grass Energy MEE 9",
+    "createdAt": 1792999533409,
+    "updatedAt": 1792999533409
+  },
+  {
+    "id": "meta-limitless-374",
+    "name": "Dhelmise Hide n' Sneak",
+    "tier": "Tier 2",
+    "playstyle": "Control",
+    "pros": [
+      "ซ่อนตัวหลบการโจมตีและดึงโปเกมอนคู่แข่งมาขัง",
+      "ทำให้ฝ่ายตรงข้ามติดสถานะผิดปกติ",
+      "สกัดแผนบุกของศัตรู"
+    ],
+    "cons": [
+      "พลังโจมตีต่ำ",
+      "แพ้การ์ดไอเทมประเภทสลับตัวจำนวนมาก"
+    ],
+    "sharePercent": 3.49,
+    "points": 384,
+    "event": "Louisville",
+    "author": "Maxime Launay",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30517",
+    "coverCardId": "TH-14039",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA5/079-164_%E0%B8%94%E0%B8%B2%E0%B8%94%E0%B8%B2%E0%B8%A3%E0%B8%B4%E0%B8%99.webp",
+    "strategyDescription": "เด็ค Dhelmise Hide n' Sneak อันดับ #8 (Control) สถิติแข่งขันระดับโลก (3.49% Meta Share) เล่นโดย Maxime Launay (Louisville)",
+    "keyPokemon": [
+      "คาเงะโบสึ",
+      "จุปเป็ตตะ",
+      "ฉะเดธ",
+      "ยาบาโซฉะ"
+    ],
+    "cards": {
+      "TH-14021": {
+        "cardId": "TH-14021",
+        "count": 4
+      },
+      "TH-14022": {
+        "cardId": "TH-14022",
+        "count": 4
+      },
+      "TH-13972": {
+        "cardId": "TH-13972",
+        "count": 4
+      },
+      "TH-13973": {
+        "cardId": "TH-13973",
+        "count": 4
+      },
+      "TH-14039": {
+        "cardId": "TH-14039",
+        "count": 4
+      },
+      "TH-14349": {
+        "cardId": "TH-14349",
+        "count": 2
+      },
+      "TH-14027": {
+        "cardId": "TH-14027",
+        "count": 1
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 1
+      },
+      "TH-8168": {
+        "cardId": "TH-8168",
+        "count": 1
+      },
+      "TH-10856": {
+        "cardId": "TH-10856",
+        "count": 4
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 3
+      },
+      "TH-14116": {
+        "cardId": "TH-14116",
+        "count": 3
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 3
+      },
+      "TH-13882": {
+        "cardId": "TH-13882",
+        "count": 2
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 3
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 3
+      },
+      "TH-14119": {
+        "cardId": "TH-14119",
+        "count": 2
+      },
+      "TH-13888": {
+        "cardId": "TH-13888",
+        "count": 4
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 3
+      },
+      "TH-10871": {
+        "cardId": "TH-10871",
+        "count": 1
+      }
+    },
+    "exportText": "4 Shuppet PBL 33\n4 Banette PBL 34\n4 Poltchageist PBL 5\n4 Sinistcha PBL 6\n4 Dhelmise PBL 39\n2 Lillie's Clefairy ex JTG 56\n1 Spiritomb PBL 35\n1 Latias ex SSP 76\n1 Bloodmoon Ursaluna ex TWM 141\n4 Explorer's Guidance TEF 147\n3 Lillie's Determination MEG 119\n3 Gwynn PBL 78\n3 Boss's Orders MEG 114\n2 Naveen POR 79\n4 Ultra Ball MEG 131\n3 Poké Pad POR 81\n3 Night Stretcher ASC 196\n2 Prism Tower CRI 80\n4 Telepathic Psychic Energy POR 88\n3 Psychic Energy MEE 13\n1 Legacy Energy TWM 167",
+    "createdAt": 1792999533637,
+    "updatedAt": 1792999533637
+  },
+  {
+    "id": "meta-limitless-353",
+    "name": "Mega Lopunny ex",
+    "tier": "Tier 3",
+    "playstyle": "Aggro",
+    "pros": [
+      "ความคล่องตัวสูง ถอยหนีและสลับตัวได้ฟรี",
+      "คอมโบโจมตีฉับพลัน",
+      "ใช้พลังงานน้อย"
+    ],
+    "cons": [
+      "พลังทำลายล้างสูงสุดยังไม่ทะลุโปเกมอน HP 330+",
+      "เปราะบางต่อการโจมตีสวนกลับ"
+    ],
+    "sharePercent": 3.03,
+    "points": 334,
+    "event": "Louisville",
+    "author": "Marc Torres Jimenez",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30323",
+    "coverCardId": "TH-12530",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA2/088-103_%E0%B9%80%E0%B8%A1%E0%B8%81%E0%B9%89%E0%B8%B2%E0%B8%A1%E0%B8%B4%E0%B8%A1%E0%B8%B4%E0%B8%A5%E0%B9%87%E0%B8%AD%E0%B8%9Bex.webp",
+    "strategyDescription": "เด็ค Mega Lopunny ex อันดับ #9 (Aggro) สถิติแข่งขันระดับโลก (3.03% Meta Share) เล่นโดย Marc Torres Jimenez (Louisville)",
+    "keyPokemon": [
+      "โยมาวารุ",
+      "ซามาโยรุ",
+      "โยนัวร์",
+      "เมก้าการูราex"
+    ],
+    "cards": {
+      "TH-12982": {
+        "cardId": "TH-12982",
+        "count": 4
+      },
+      "TH-10749": {
+        "cardId": "TH-10749",
+        "count": 2
+      },
+      "TH-12984": {
+        "cardId": "TH-12984",
+        "count": 4
+      },
+      "TH-14383": {
+        "cardId": "TH-14383",
+        "count": 4
+      },
+      "TH-7853": {
+        "cardId": "TH-7853",
+        "count": 2
+      },
+      "TH-7854": {
+        "cardId": "TH-7854",
+        "count": 2
+      },
+      "TH-12529": {
+        "cardId": "TH-12529",
+        "count": 2
+      },
+      "TH-12530": {
+        "cardId": "TH-12530",
+        "count": 1
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 2
+      },
+      "TH-8168": {
+        "cardId": "TH-8168",
+        "count": 1
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 1
+      },
+      "TH-12921": {
+        "cardId": "TH-12921",
+        "count": 1
+      },
+      "TH-12922": {
+        "cardId": "TH-12922",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-14368": {
+        "cardId": "TH-14368",
+        "count": 4
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-14387": {
+        "cardId": "TH-14387",
+        "count": 4
+      },
+      "TH-14319": {
+        "cardId": "TH-14319",
+        "count": 4
+      },
+      "TH-10865": {
+        "cardId": "TH-10865",
+        "count": 2
+      },
+      "TH-13888": {
+        "cardId": "TH-13888",
+        "count": 4
+      },
+      "TH-10318": {
+        "cardId": "TH-10318",
+        "count": 1
+      }
+    },
+    "exportText": "4 Duskull PRE 35\n2 Dusclops PRE 36\n4 Dusknoir PRE 37\n4 Mega Kangaskhan ex MEG 104\n2 Bronzor TEF 68\n2 Bronzong TEF 69\n2 Buneary PFL 83\n1 Mega Lopunny ex PFL 84\n2 Latias ex SSP 76\n1 Bloodmoon Ursaluna ex TWM 141\n1 Meowth ex POR 62\n1 Budew ASC 16\n1 Shaymin DRI 10\n4 Lillie's Determination MEG 119\n4 Hilda WHT 84\n2 Boss's Orders MEG 114\n4 Ultra Ball MEG 131\n4 Poké Pad POR 81\n4 Rare Candy MEG 125\n4 Switch MEG 130\n2 Jamming Tower TWM 153\n4 Telepathic Psychic Energy POR 88\n1 Enriching Energy SSP 191",
+    "createdAt": 1792999533848,
+    "updatedAt": 1792999533848
+  },
+  {
+    "id": "meta-limitless-341",
+    "name": "Crustle Mysterious Rock Inn",
+    "tier": "Tier 3",
+    "playstyle": "Control",
+    "pros": [
+      "อบิลิตี้บล็อกการโจมตีจากโปเกมอนที่มีอบิลิตี้หรือพลังงานพิเศษ",
+      "ทำให้คู่แข่งเล่นไม่ออกและทรัพยากรหมด",
+      "เกมยืดเยื้อได้เปรียบ"
+    ],
+    "cons": [
+      "จังหวะจบเกมช้า",
+      "แพ้การ์ดที่ยกเลิกอบิลิตี้ (เช่น Iron Thorns / Cologne)"
+    ],
+    "sharePercent": 2.62,
+    "points": 289,
+    "event": "Louisville",
+    "author": "Riccardo Maganza",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30572",
+    "coverCardId": "TH-12924",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA3/014-193_%E0%B8%AD%E0%B8%B4%E0%B8%A7%E0%B8%B2%E0%B8%9E%E0%B8%B2%E0%B9%80%E0%B8%A5%E0%B8%8B.webp",
+    "strategyDescription": "เด็ค Crustle Mysterious Rock Inn อันดับ #10 (Control) สถิติแข่งขันระดับโลก (2.62% Meta Share) เล่นโดย Riccardo Maganza (Louisville)",
+    "keyPokemon": [
+      "เมก้าการูราex",
+      "อิชิซึไม",
+      "อิวาพาเลซ",
+      "บัฟฟรอน"
+    ],
+    "cards": {
+      "TH-14383": {
+        "cardId": "TH-14383",
+        "count": 4
+      },
+      "TH-12923": {
+        "cardId": "TH-12923",
+        "count": 3
+      },
+      "TH-12924": {
+        "cardId": "TH-12924",
+        "count": 2
+      },
+      "TH-13050": {
+        "cardId": "TH-13050",
+        "count": 1
+      },
+      "TH-10283": {
+        "cardId": "TH-10283",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-13089": {
+        "cardId": "TH-13089",
+        "count": 4
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 4
+      },
+      "TH-14368": {
+        "cardId": "TH-14368",
+        "count": 2
+      },
+      "TH-7893": {
+        "cardId": "TH-7893",
+        "count": 2
+      },
+      "TH-11217": {
+        "cardId": "TH-11217",
+        "count": 1
+      },
+      "TH-9793": {
+        "cardId": "TH-9793",
+        "count": 1
+      },
+      "TH-11280": {
+        "cardId": "TH-11280",
+        "count": 1
+      },
+      "TH-12532": {
+        "cardId": "TH-12532",
+        "count": 4
+      },
+      "TH-11596": {
+        "cardId": "TH-11596",
+        "count": 3
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 2
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 1
+      },
+      "TH-14319": {
+        "cardId": "TH-14319",
+        "count": 1
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 1
+      },
+      "TH-14365": {
+        "cardId": "TH-14365",
+        "count": 1
+      },
+      "TH-10864": {
+        "cardId": "TH-10864",
+        "count": 1
+      },
+      "TH-13100": {
+        "cardId": "TH-13100",
+        "count": 1
+      },
+      "TH-10870": {
+        "cardId": "TH-10870",
+        "count": 4
+      },
+      "TH-11223": {
+        "cardId": "TH-11223",
+        "count": 4
+      },
+      "TH-13887": {
+        "cardId": "TH-13887",
+        "count": 4
+      },
+      "TH-14911": {
+        "cardId": "TH-14911",
+        "count": 1
+      }
+    },
+    "exportText": "4 Mega Kangaskhan ex MEG 104\n3 Dwebble DRI 11\n2 Crustle DRI 12\n1 Bouffalant SCR 119\n1 Bouffalant SSP 151\n4 Lillie's Determination MEG 119\n4 Team Rocket's Petrel DRI 176\n4 Boss's Orders MEG 114\n2 Hilda WHT 84\n2 Eri TEF 146\n1 Brock's Scouting JTG 146\n1 Xerosic's Machinations SFA 64\n1 Pokémon Center Lady MEG 123\n4 Jumbo Ice Cream PFL 91\n3 Pokégear 3.0 SVI 186\n2 Poké Pad POR 81\n2 Night Stretcher ASC 196\n1 Ultra Ball MEG 131\n1 Switch MEG 130\n1 Buddy-Buddy Poffin TEF 144\n1 Hero's Cape TEF 152\n1 Festival Grounds TWM 149\n1 Team Rocket's Factory DRI 173\n4 Mist Energy TEF 161\n4 Spiky Energy JTG 159\n4 Growing Grass Energy POR 86\n1 Grass Energy MEE 9",
+    "createdAt": 1792999534102,
+    "updatedAt": 1792999534102
+  },
+  {
+    "id": "meta-limitless-376",
+    "name": "Mega Excadrill ex",
+    "tier": "Tier 3",
+    "playstyle": "Setup",
+    "pros": [
+      "ขุดทรัพยากรและเร่งพลังงานโลหะได้อย่างรวดเร็ว",
+      "เมก้าวิวัฒนาการเพิ่มพลังบุกมหาศาล",
+      "ทนทานต่อการโจมตียอดนิยม"
+    ],
+    "cons": [
+      "แพ้ทางธาตุไฟหนักมาก",
+      "หากโดนขัดขวางจังหวะตั้งตัวจะชะงัก"
+    ],
+    "sharePercent": 2.37,
+    "points": 261,
+    "event": "Louisville",
+    "author": "David Walerian Rzepka",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30616",
+    "coverCardId": "TH-14082",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA5/122-164_%E0%B9%80%E0%B8%A1%E0%B8%81%E0%B9%89%E0%B8%B2%E0%B9%82%E0%B8%94%E0%B8%A3%E0%B8%B4%E0%B8%A7%E0%B8%8B%E0%B8%B6ex.webp",
+    "strategyDescription": "เด็ค Mega Excadrill ex อันดับ #11 (Setup) สถิติแข่งขันระดับโลก (2.37% Meta Share) เล่นโดย David Walerian Rzepka (Louisville)",
+    "keyPokemon": [
+      "ดันบัล",
+      "เมแทงก์",
+      "เมทากรอส",
+      "โมกุริว"
+    ],
+    "cards": {
+      "TH-10790": {
+        "cardId": "TH-10790",
+        "count": 4
+      },
+      "TH-8789": {
+        "cardId": "TH-8789",
+        "count": 4
+      },
+      "TH-14077": {
+        "cardId": "TH-14077",
+        "count": 1
+      },
+      "TH-14051": {
+        "cardId": "TH-14051",
+        "count": 3
+      },
+      "TH-14082": {
+        "cardId": "TH-14082",
+        "count": 2
+      },
+      "TH-13029": {
+        "cardId": "TH-13029",
+        "count": 2
+      },
+      "TH-13848": {
+        "cardId": "TH-13848",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-13089": {
+        "cardId": "TH-13089",
+        "count": 4
+      },
+      "TH-11216": {
+        "cardId": "TH-11216",
+        "count": 4
+      },
+      "TH-11600": {
+        "cardId": "TH-11600",
+        "count": 1
+      },
+      "TH-11596": {
+        "cardId": "TH-11596",
+        "count": 4
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 4
+      },
+      "TH-14317": {
+        "cardId": "TH-14317",
+        "count": 1
+      },
+      "TH-14313": {
+        "cardId": "TH-14313",
+        "count": 1
+      },
+      "TH-12532": {
+        "cardId": "TH-12532",
+        "count": 1
+      },
+      "TH-14319": {
+        "cardId": "TH-14319",
+        "count": 1
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 1
+      },
+      "TH-13099": {
+        "cardId": "TH-13099",
+        "count": 4
+      },
+      "TH-14918": {
+        "cardId": "TH-14918",
+        "count": 16
+      }
+    },
+    "exportText": "4 Beldum TEF 113\n4 Metang TEF 114\n1 Metagross CRI 61\n3 Drilbur PBL 46\n2 Mega Excadrill ex PBL 65\n2 Genesect ex BLK 67\n1 Mega Skarmory ex POR 55\n1 Fezandipiti ex ASC 142\n4 Team Rocket's Petrel DRI 176\n4 Judge POR 76\n1 Harlequin WHT 83\n4 Pokégear 3.0 SVI 186\n4 Buddy-Buddy Poffin TEF 144\n1 Precious Trolley SSP 185\n1 Energy Recycler DRI 164\n1 Jumbo Ice Cream PFL 91\n1 Switch MEG 130\n1 Ultra Ball MEG 131\n4 Team Rocket's Watchtower DRI 180\n16 Metal Energy MEE 16",
+    "createdAt": 1792999534309,
+    "updatedAt": 1792999534309
+  },
+  {
+    "id": "meta-limitless-345",
+    "name": "Mega Lucario ex",
+    "tier": "Tier 3",
+    "playstyle": "Aggro",
+    "pros": [
+      "ธาตุต่อสู้แก้ทางโปเกมอนไร้สีและสายฟ้าในเมต้า",
+      "แดเมจเพิ่มขึ้นตามโปเกมอนที่บาดเจ็บ",
+      "เร่งเครื่องได้เร็ว"
+    ],
+    "cons": [
+      "แพ้ทางธาตุพลังจิต",
+      "ต้องบริหารตัวเจ็บอย่างระมัดระวัง"
+    ],
+    "sharePercent": 2.14,
+    "points": 236,
+    "event": "Louisville",
+    "author": "Julian Patz",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30551",
+    "coverCardId": "TH-13195",
+    "coverImageUrl": "/PokeCountTracker/card-images/MAAL/004-021_%E0%B9%80%E0%B8%A1%E0%B8%81%E0%B9%89%E0%B8%B2%E0%B8%A5%E0%B8%B9%E0%B8%84%E0%B8%B2%E0%B8%A3%E0%B8%B4%E0%B9%82%E0%B8%ADex.webp",
+    "strategyDescription": "เด็ค Mega Lucario ex อันดับ #12 (Aggro) สถิติแข่งขันระดับโลก (2.14% Meta Share) เล่นโดย Julian Patz (Louisville)",
+    "keyPokemon": [
+      "ริโอลุ",
+      "เมก้าลูคาริโอex",
+      "โซลร็อก",
+      "มาคุโนชิตะ"
+    ],
+    "cards": {
+      "TH-13194": {
+        "cardId": "TH-13194",
+        "count": 3
+      },
+      "TH-13195": {
+        "cardId": "TH-13195",
+        "count": 3
+      },
+      "TH-12997": {
+        "cardId": "TH-12997",
+        "count": 3
+      },
+      "TH-12157": {
+        "cardId": "TH-12157",
+        "count": 2
+      },
+      "TH-12158": {
+        "cardId": "TH-12158",
+        "count": 2
+      },
+      "TH-12159": {
+        "cardId": "TH-12159",
+        "count": 2
+      },
+      "TH-12922": {
+        "cardId": "TH-12922",
+        "count": 1
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-11216": {
+        "cardId": "TH-11216",
+        "count": 2
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-11217": {
+        "cardId": "TH-11217",
+        "count": 1
+      },
+      "TH-12206": {
+        "cardId": "TH-12206",
+        "count": 1
+      },
+      "TH-13204": {
+        "cardId": "TH-13204",
+        "count": 4
+      },
+      "TH-13203": {
+        "cardId": "TH-13203",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 3
+      },
+      "TH-14319": {
+        "cardId": "TH-14319",
+        "count": 1
+      },
+      "TH-8274": {
+        "cardId": "TH-8274",
+        "count": 1
+      },
+      "TH-14389": {
+        "cardId": "TH-14389",
+        "count": 2
+      },
+      "TH-13093": {
+        "cardId": "TH-13093",
+        "count": 2
+      },
+      "TH-13099": {
+        "cardId": "TH-13099",
+        "count": 1
+      },
+      "TH-14916": {
+        "cardId": "TH-14916",
+        "count": 11
+      }
+    },
+    "exportText": "3 Riolu MEG 76\n3 Mega Lucario ex MEG 77\n3 Solrock MEG 75\n2 Makuhita MEG 72\n2 Hariyama MEG 73\n2 Lunatone MEG 74\n1 Shaymin DRI 10\n1 Meowth ex POR 62\n4 Lillie's Determination MEG 119\n2 Judge POR 76\n2 Boss's Orders MEG 114\n1 Brock's Scouting JTG 146\n1 Wally's Compassion MEG 132\n4 Fighting Gong MEG 116\n4 Premium Power Pro MEG 124\n4 Ultra Ball MEG 131\n3 Poké Pad POR 81\n1 Switch MEG 130\n1 Secret Box TWM 163\n2 Air Balloon ASC 181\n2 Gravity Mountain SSP 177\n1 Team Rocket's Watchtower DRI 180\n11 Fighting Energy MEE 14",
+    "createdAt": 1792999534513,
+    "updatedAt": 1792999534513
+  },
+  {
+    "id": "meta-limitless-354",
+    "name": "Mega Sharpedo ex",
+    "tier": "Tier 3",
+    "playstyle": "Aggro",
+    "pros": [
+      "ความเร็วสูง กัดกร่อนพลังชีวิตศัตรูแบบฉับไว",
+      "ใช้พลังงานน้อยมาก"
+    ],
+    "cons": [
+      "HP ไม่สูง โดนสวนกลับตายในทีเดียว"
+    ],
+    "sharePercent": 1.55,
+    "points": 171,
+    "event": "Louisville",
+    "author": "Tapio Ikonen",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30546",
+    "coverCardId": "TH-14330",
+    "coverImageUrl": "/PokeCountTracker/card-images/MATH/003-020_%E0%B9%80%E0%B8%A1%E0%B8%81%E0%B9%89%E0%B8%B2%E0%B8%8B%E0%B8%B2%E0%B9%80%E0%B8%A1%E0%B8%AE%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B9%8Cex.webp",
+    "strategyDescription": "เด็ค Mega Sharpedo ex อันดับ #13 (Aggro) สถิติแข่งขันระดับโลก (1.55% Meta Share) เล่นโดย Tapio Ikonen (Louisville)",
+    "keyPokemon": [
+      "คิบาเนีย",
+      "เมก้าซาเมฮาเดอร์ex",
+      "โมโมวาโร่ex",
+      "เอเลซัน"
+    ],
+    "cards": {
+      "TH-14329": {
+        "cardId": "TH-14329",
+        "count": 4
+      },
+      "TH-14330": {
+        "cardId": "TH-14330",
+        "count": 4
+      },
+      "TH-14335": {
+        "cardId": "TH-14335",
+        "count": 3
+      },
+      "TH-14332": {
+        "cardId": "TH-14332",
+        "count": 2
+      },
+      "TH-14333": {
+        "cardId": "TH-14333",
+        "count": 2
+      },
+      "TH-14328": {
+        "cardId": "TH-14328",
+        "count": 2
+      },
+      "TH-14381": {
+        "cardId": "TH-14381",
+        "count": 2
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 4
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-11600": {
+        "cardId": "TH-11600",
+        "count": 2
+      },
+      "TH-14391": {
+        "cardId": "TH-14391",
+        "count": 1
+      },
+      "TH-13089": {
+        "cardId": "TH-13089",
+        "count": 1
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-8169": {
+        "cardId": "TH-8169",
+        "count": 1
+      },
+      "TH-10838": {
+        "cardId": "TH-10838",
+        "count": 3
+      },
+      "TH-13099": {
+        "cardId": "TH-13099",
+        "count": 2
+      },
+      "TH-13093": {
+        "cardId": "TH-13093",
+        "count": 1
+      },
+      "TH-14917": {
+        "cardId": "TH-14917",
+        "count": 9
+      }
+    },
+    "exportText": "4 Carvanha PFL 60\n4 Mega Sharpedo ex PFL 61\n3 Pecharunt ex SFA 39\n2 Toxel PFL 67\n2 Toxtricity PFL 68\n2 Munkidori TWM 95\n2 Tatsugiri TWM 131\n1 Fezandipiti ex ASC 142\n4 Boss's Orders MEG 114\n4 Lillie's Determination MEG 119\n2 Harlequin WHT 83\n1 Iris's Fighting Spirit JTG 149\n1 Team Rocket's Petrel DRI 176\n4 Buddy-Buddy Poffin TEF 144\n4 Poké Pad POR 81\n4 Ultra Ball MEG 131\n1 Unfair Stamp TWM 165\n3 Binding Mochi PRE 95\n2 Team Rocket's Watchtower DRI 180\n1 Gravity Mountain SSP 177\n9 Darkness Energy MEE 15",
+    "createdAt": 1792999534738,
+    "updatedAt": 1792999534738
+  },
+  {
+    "id": "meta-limitless-332",
+    "name": "Cynthia's Garchomp ex",
+    "tier": "Rogue",
+    "playstyle": "Setup",
+    "pros": [
+      "ตีด้วยพลังงานน้ำ/ต่อสู้เพียง 1 ลูก และเร่งพลังงานให้เพื่อนบนเบนช์",
+      "HP 320 ถอยหนีฟรี 0 Energy",
+      "ยืดหยุ่นในการจัดทีม"
+    ],
+    "cons": [
+      "แดเมจจำกัดที่ 160-200 ต้องพึ่งพาการตีซ้ำ"
+    ],
+    "sharePercent": 1.17,
+    "points": 129,
+    "event": "Louisville",
+    "author": "Béla Balogh",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30568",
+    "coverCardId": "TH-13000",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA3/090-193_%E0%B8%81%E0%B8%B2%E0%B9%80%E0%B8%9A%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%AAex_%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%8A%E0%B8%B4%E0%B9%82%E0%B8%A3%E0%B8%99%E0%B8%B0.webp",
+    "strategyDescription": "เด็ค Cynthia's Garchomp ex อันดับ #15 (Setup) สถิติแข่งขันระดับโลก (1.17% Meta Share) เล่นโดย Béla Balogh (Louisville)",
+    "keyPokemon": [
+      "ฟุคามารุ <ของชิโรนะ>",
+      "กาไบต์ <ของชิโรนะ>",
+      "กาเบรียสex <ของชิโรนะ>",
+      "โรเซเลีย <ของชิโรนะ>"
+    ],
+    "cards": {
+      "TH-12998": {
+        "cardId": "TH-12998",
+        "count": 4
+      },
+      "TH-12999": {
+        "cardId": "TH-12999",
+        "count": 4
+      },
+      "TH-13000": {
+        "cardId": "TH-13000",
+        "count": 3
+      },
+      "TH-12919": {
+        "cardId": "TH-12919",
+        "count": 3
+      },
+      "TH-12920": {
+        "cardId": "TH-12920",
+        "count": 3
+      },
+      "TH-13018": {
+        "cardId": "TH-13018",
+        "count": 1
+      },
+      "TH-10763": {
+        "cardId": "TH-10763",
+        "count": 1
+      },
+      "TH-12922": {
+        "cardId": "TH-12922",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-10846": {
+        "cardId": "TH-10846",
+        "count": 2
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-13089": {
+        "cardId": "TH-13089",
+        "count": 1
+      },
+      "TH-11216": {
+        "cardId": "TH-11216",
+        "count": 1
+      },
+      "TH-13204": {
+        "cardId": "TH-13204",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 4
+      },
+      "TH-13203": {
+        "cardId": "TH-13203",
+        "count": 2
+      },
+      "TH-8169": {
+        "cardId": "TH-8169",
+        "count": 1
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 1
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 1
+      },
+      "TH-11596": {
+        "cardId": "TH-11596",
+        "count": 1
+      },
+      "TH-13072": {
+        "cardId": "TH-13072",
+        "count": 3
+      },
+      "TH-13099": {
+        "cardId": "TH-13099",
+        "count": 1
+      },
+      "TH-13889": {
+        "cardId": "TH-13889",
+        "count": 4
+      },
+      "TH-14916": {
+        "cardId": "TH-14916",
+        "count": 4
+      }
+    },
+    "exportText": "4 Cynthia's Gible DRI 102\n4 Cynthia's Gabite DRI 103\n3 Cynthia's Garchomp ex DRI 104\n3 Cynthia's Roselia DRI 7\n3 Cynthia's Roserade DRI 8\n1 Cynthia's Spiritomb DRI 129\n1 Relicanth TEF 84\n1 Shaymin DRI 10\n4 Lillie's Determination MEG 119\n2 Larry's Skill PRE 115\n2 Boss's Orders MEG 114\n1 Team Rocket's Petrel DRI 176\n1 Judge POR 76\n4 Fighting Gong MEG 116\n4 Poké Pad POR 81\n4 Buddy-Buddy Poffin TEF 144\n2 Premium Power Pro MEG 124\n1 Unfair Stamp TWM 165\n1 Special Red Card CRI 82\n1 Night Stretcher ASC 196\n1 Pokégear 3.0 SVI 186\n3 Cynthia's Power Weight DRI 162\n1 Team Rocket's Watchtower DRI 180\n4 Rocky Fighting Energy POR 87\n4 Fighting Energy MEE 14",
+    "createdAt": 1792999535165,
+    "updatedAt": 1792999535165
+  },
+  {
+    "id": "meta-limitless-351",
+    "name": "Ogerpon Meganium",
+    "tier": "Rogue",
+    "playstyle": "Toolbox",
+    "pros": [
+      "มีแนวทางการเล่นที่ปรับเปลี่ยนได้ตามสถานการณ์",
+      "ใช้การ์ดสนับสนุนที่หลากหลาย"
+    ],
+    "cons": [
+      "ต้องบริหารทรัพยากรการ์ดบนมืออย่างระมัดระวัง"
+    ],
+    "sharePercent": 0.81,
+    "points": 89,
+    "event": "Louisville",
+    "author": "Antoine Boulay",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30373",
+    "coverCardId": "TH-12927",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA3/017-193_%E0%B9%82%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%9B%E0%B8%AD%E0%B8%87_%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%81%E0%B8%AA%E0%B8%B5%E0%B8%97%E0%B8%B5%E0%B8%A5ex.webp",
+    "strategyDescription": "เด็ค Ogerpon Meganium อันดับ #16 (Toolbox) สถิติแข่งขันระดับโลก (0.81% Meta Share) เล่นโดย Antoine Boulay (Louisville)",
+    "keyPokemon": [
+      "โอการ์ปอง หน้ากากสีทีลex",
+      "จิโคริตา",
+      "เบย์ลีฟ",
+      "เมกาเนียม"
+    ],
+    "cards": {
+      "TH-12927": {
+        "cardId": "TH-12927",
+        "count": 4
+      },
+      "TH-13774": {
+        "cardId": "TH-13774",
+        "count": 2
+      },
+      "TH-13218": {
+        "cardId": "TH-13218",
+        "count": 2
+      },
+      "TH-13219": {
+        "cardId": "TH-13219",
+        "count": 2
+      },
+      "TH-11309": {
+        "cardId": "TH-11309",
+        "count": 2
+      },
+      "TH-11310": {
+        "cardId": "TH-11310",
+        "count": 2
+      },
+      "TH-11311": {
+        "cardId": "TH-11311",
+        "count": 2
+      },
+      "TH-13047": {
+        "cardId": "TH-13047",
+        "count": 1
+      },
+      "TH-13048": {
+        "cardId": "TH-13048",
+        "count": 1
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-12921": {
+        "cardId": "TH-12921",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-14323": {
+        "cardId": "TH-14323",
+        "count": 3
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-10852": {
+        "cardId": "TH-10852",
+        "count": 1
+      },
+      "TH-10860": {
+        "cardId": "TH-10860",
+        "count": 1
+      },
+      "TH-13231": {
+        "cardId": "TH-13231",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 3
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-12531": {
+        "cardId": "TH-12531",
+        "count": 2
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 2
+      },
+      "TH-8169": {
+        "cardId": "TH-8169",
+        "count": 1
+      },
+      "TH-13092": {
+        "cardId": "TH-13092",
+        "count": 3
+      },
+      "TH-14911": {
+        "cardId": "TH-14911",
+        "count": 11
+      }
+    },
+    "exportText": "4 Teal Mask Ogerpon ex TWM 25\n2 Chikorita ASC 8\n2 Bayleef MEG 9\n2 Meganium MEG 10\n2 Smoliv DRI 21\n2 Dolliv DRI 22\n2 Arboliva ex DRI 23\n1 Hoothoot SCR 114\n1 Noctowl SCR 115\n1 Meowth ex POR 62\n1 Fezandipiti ex ASC 142\n1 Budew ASC 16\n4 Lillie's Determination MEG 119\n3 Dawn PFL 87\n2 Boss's Orders MEG 114\n1 Lana's Aid TWM 155\n1 Briar SCR 132\n4 Bug Catching Set TWM 143\n3 Ultra Ball MEG 131\n2 Night Stretcher ASC 196\n2 Energy Switch MEG 115\n2 Poké Pad POR 81\n1 Unfair Stamp TWM 165\n3 Forest of Vitality MEG 117\n11 Grass Energy MEE 9",
+    "createdAt": 1792999535373,
+    "updatedAt": 1792999535373
+  },
+  {
+    "id": "meta-limitless-378",
+    "name": "Mew Box Memory Helix",
+    "tier": "Rogue",
+    "playstyle": "Toolbox",
+    "pros": [
+      "มีแนวทางการเล่นที่ปรับเปลี่ยนได้ตามสถานการณ์",
+      "ใช้การ์ดสนับสนุนที่หลากหลาย"
+    ],
+    "cons": [
+      "ต้องบริหารทรัพยากรการ์ดบนมืออย่างระมัดระวัง"
+    ],
+    "sharePercent": 0.75,
+    "points": 83,
+    "event": "Louisville",
+    "author": "Martin Hritz",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30651",
+    "coverCardId": "TH-14881",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA6/166-130_%E0%B8%A1%E0%B8%B4%E0%B8%A7ex.webp",
+    "strategyDescription": "เด็ค Mew Box Memory Helix อันดับ #17 (Toolbox) สถิติแข่งขันระดับโลก (0.75% Meta Share) เล่นโดย Martin Hritz (Louisville)",
+    "keyPokemon": [
+      "เนียสex",
+      "เมก้าการูราex",
+      "มิวex",
+      "ลาทิอาสex"
+    ],
+    "cards": {
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 3
+      },
+      "TH-14383": {
+        "cardId": "TH-14383",
+        "count": 3
+      },
+      "TH-14881": {
+        "cardId": "TH-14881",
+        "count": 3
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 2
+      },
+      "TH-14349": {
+        "cardId": "TH-14349",
+        "count": 2
+      },
+      "TH-11055": {
+        "cardId": "TH-11055",
+        "count": 2
+      },
+      "TH-7932": {
+        "cardId": "TH-7932",
+        "count": 1
+      },
+      "TH-14294": {
+        "cardId": "TH-14294",
+        "count": 1
+      },
+      "TH-14878": {
+        "cardId": "TH-14878",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-12456": {
+        "cardId": "TH-12456",
+        "count": 1
+      },
+      "TH-12942": {
+        "cardId": "TH-12942",
+        "count": 1
+      },
+      "TH-10190": {
+        "cardId": "TH-10190",
+        "count": 1
+      },
+      "TH-14793": {
+        "cardId": "TH-14793",
+        "count": 1
+      },
+      "TH-10101": {
+        "cardId": "TH-10101",
+        "count": 3
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-10311": {
+        "cardId": "TH-10311",
+        "count": 1
+      },
+      "TH-10849": {
+        "cardId": "TH-10849",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 1
+      },
+      "TH-11216": {
+        "cardId": "TH-11216",
+        "count": 1
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 3
+      },
+      "TH-14364": {
+        "cardId": "TH-14364",
+        "count": 3
+      },
+      "TH-10297": {
+        "cardId": "TH-10297",
+        "count": 3
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 1
+      },
+      "TH-14339": {
+        "cardId": "TH-14339",
+        "count": 1
+      },
+      "TH-13094": {
+        "cardId": "TH-13094",
+        "count": 4
+      },
+      "TH-13888": {
+        "cardId": "TH-13888",
+        "count": 4
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 4
+      },
+      "TH-14916": {
+        "cardId": "TH-14916",
+        "count": 2
+      },
+      "TH-14913": {
+        "cardId": "TH-14913",
+        "count": 2
+      },
+      "TH-14912": {
+        "cardId": "TH-14912",
+        "count": 1
+      }
+    },
+    "exportText": "3 Meowth ex POR 62\n3 Mega Kangaskhan ex MEG 104\n3 Mew ex 30C 66\n2 Latias ex SSP 76\n2 Lillie's Clefairy ex JTG 56\n2 Wellspring Mask Ogerpon ex TWM 64\n1 Iron Crown ex TEF 81\n1 Koraidon ex ASC 121\n1 Jirachi ex 30C 102\n1 Fezandipiti ex ASC 142\n1 Moltres PFL 14\n1 Psyduck ASC 39\n1 Chien-Pao SSP 56\n1 Unown 30C 72\n3 Crispin SCR 133\n2 Boss's Orders MEG 114\n1 Cyrano SSP 170\n1 Ciphermaniac's Codebreaking TEF 145\n1 Lillie's Determination MEG 119\n1 Judge POR 76\n3 Ultra Ball MEG 131\n3 Wondrous Patch PFL 94\n3 Dusk Ball SSP 175\n1 Night Stretcher ASC 196\n1 Prime Catcher TEF 157\n4 Area Zero Underdepths SCR 131\n4 Telepathic Psychic Energy POR 88\n4 Psychic Energy MEE 13\n2 Fighting Energy MEE 14\n2 Water Energy MEE 11\n1 Fire Energy MEE 10",
+    "createdAt": 1792999535588,
+    "updatedAt": 1792999535588
+  },
+  {
+    "id": "meta-limitless-329",
+    "name": "Marnie's Grimmsnarl ex",
+    "tier": "Rogue",
+    "playstyle": "Control",
+    "pros": [
+      "รบกวนพลังงานและตัวป่วนของฝ่ายตรงข้าม",
+      "ตัดโอกาสการโจมตีของคู่แข่งอย่างต่อเนื่อง",
+      "พลังป้องกันสูง"
+    ],
+    "cons": [
+      "แดเมจไม่สูงมาก ปิดเกมช้า",
+      "ต้องคำนวณการใช้ทรัพยากรอย่างละเอียด"
+    ],
+    "sharePercent": 0.52,
+    "points": 57,
+    "event": "Louisville",
+    "author": "Michele Esposito",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/29663",
+    "coverCardId": "TH-11175",
+    "coverImageUrl": "/PokeCountTracker/card-images/SV9s/091-139_%E0%B9%82%E0%B8%AD%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%81%E0%B8%B0ex_%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%A1%E0%B8%A3%E0%B8%B5.webp",
+    "strategyDescription": "เด็ค Marnie's Grimmsnarl ex อันดับ #18 (Control) สถิติแข่งขันระดับโลก (0.52% Meta Share) เล่นโดย Michele Esposito (Louisville)",
+    "keyPokemon": [
+      "เบโรบา <ของแมรี>",
+      "กิโม <ของแมรี>",
+      "โอลองเกะex <ของแมรี>",
+      "มาชิมาชิระ"
+    ],
+    "cards": {
+      "TH-11173": {
+        "cardId": "TH-11173",
+        "count": 4
+      },
+      "TH-11174": {
+        "cardId": "TH-11174",
+        "count": 3
+      },
+      "TH-11175": {
+        "cardId": "TH-11175",
+        "count": 2
+      },
+      "TH-14328": {
+        "cardId": "TH-14328",
+        "count": 4
+      },
+      "TH-12945": {
+        "cardId": "TH-12945",
+        "count": 3
+      },
+      "TH-8215": {
+        "cardId": "TH-8215",
+        "count": 3
+      },
+      "TH-12921": {
+        "cardId": "TH-12921",
+        "count": 1
+      },
+      "TH-12173": {
+        "cardId": "TH-12173",
+        "count": 1
+      },
+      "TH-14381": {
+        "cardId": "TH-14381",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 3
+      },
+      "TH-14116": {
+        "cardId": "TH-14116",
+        "count": 3
+      },
+      "TH-13089": {
+        "cardId": "TH-13089",
+        "count": 2
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 3
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 2
+      },
+      "TH-12531": {
+        "cardId": "TH-12531",
+        "count": 1
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 1
+      },
+      "TH-8169": {
+        "cardId": "TH-8169",
+        "count": 1
+      },
+      "TH-14387": {
+        "cardId": "TH-14387",
+        "count": 1
+      },
+      "TH-14389": {
+        "cardId": "TH-14389",
+        "count": 1
+      },
+      "TH-11220": {
+        "cardId": "TH-11220",
+        "count": 3
+      },
+      "TH-14917": {
+        "cardId": "TH-14917",
+        "count": 9
+      }
+    },
+    "exportText": "4 Marnie's Impidimp DRI 134\n3 Marnie's Morgrem DRI 135\n2 Marnie's Grimmsnarl ex DRI 136\n4 Munkidori TWM 95\n3 Snorunt ASC 46\n3 Froslass TWM 53\n1 Budew ASC 16\n1 Yveltal MEG 88\n1 Tatsugiri TWM 131\n4 Lillie's Determination MEG 119\n3 Boss's Orders MEG 114\n3 Gwynn PBL 78\n2 Team Rocket's Petrel DRI 176\n4 Poké Pad POR 81\n3 Night Stretcher ASC 196\n2 Buddy-Buddy Poffin TEF 144\n1 Energy Switch MEG 115\n1 Special Red Card CRI 82\n1 Unfair Stamp TWM 165\n1 Rare Candy MEG 125\n1 Air Balloon ASC 181\n3 Spikemuth Gym DRI 169\n9 Darkness Energy MEE 15",
+    "createdAt": 1792999535814,
+    "updatedAt": 1792999535814
+  },
+  {
+    "id": "meta-limitless-363",
+    "name": "Hop's Trevenant",
+    "tier": "Rogue",
+    "playstyle": "Toolbox",
+    "pros": [
+      "มีแนวทางการเล่นที่ปรับเปลี่ยนได้ตามสถานการณ์",
+      "ใช้การ์ดสนับสนุนที่หลากหลาย"
+    ],
+    "cons": [
+      "ต้องบริหารทรัพยากรการ์ดบนมืออย่างระมัดระวัง"
+    ],
+    "sharePercent": 0.4,
+    "points": 44,
+    "event": "Louisville",
+    "author": "Andrea Pipitone",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/29767",
+    "coverCardId": "TH-12988",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA3/078-193_%E0%B9%82%E0%B8%AD%E0%B8%A3%E0%B9%87%E0%B8%AD%E0%B8%95_%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%AE%E0%B9%87%E0%B8%AD%E0%B8%9B.webp",
+    "strategyDescription": "เด็ค Hop's Trevenant อันดับ #19 (Toolbox) สถิติแข่งขันระดับโลก (0.4% Meta Share) เล่นโดย Andrea Pipitone (Louisville)",
+    "keyPokemon": [
+      "โบคุเร <ของฮ็อป>",
+      "โอร็อต <ของฮ็อป>",
+      "คาบิกอน <ของฮ็อป>",
+      "วูลู <ของฮ็อป>"
+    ],
+    "cards": {
+      "TH-12987": {
+        "cardId": "TH-12987",
+        "count": 4
+      },
+      "TH-12988": {
+        "cardId": "TH-12988",
+        "count": 3
+      },
+      "TH-11193": {
+        "cardId": "TH-11193",
+        "count": 2
+      },
+      "TH-13051": {
+        "cardId": "TH-13051",
+        "count": 1
+      },
+      "TH-13052": {
+        "cardId": "TH-13052",
+        "count": 1
+      },
+      "TH-9743": {
+        "cardId": "TH-9743",
+        "count": 1
+      },
+      "TH-12922": {
+        "cardId": "TH-12922",
+        "count": 1
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 1
+      },
+      "TH-14349": {
+        "cardId": "TH-14349",
+        "count": 1
+      },
+      "TH-11187": {
+        "cardId": "TH-11187",
+        "count": 1
+      },
+      "TH-11205": {
+        "cardId": "TH-11205",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-13089": {
+        "cardId": "TH-13089",
+        "count": 4
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 3
+      },
+      "TH-8280": {
+        "cardId": "TH-8280",
+        "count": 2
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 4
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 3
+      },
+      "TH-13066": {
+        "cardId": "TH-13066",
+        "count": 2
+      },
+      "TH-11596": {
+        "cardId": "TH-11596",
+        "count": 2
+      },
+      "TH-14319": {
+        "cardId": "TH-14319",
+        "count": 1
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 1
+      },
+      "TH-8274": {
+        "cardId": "TH-8274",
+        "count": 1
+      },
+      "TH-13077": {
+        "cardId": "TH-13077",
+        "count": 4
+      },
+      "TH-14389": {
+        "cardId": "TH-14389",
+        "count": 1
+      },
+      "TH-13096": {
+        "cardId": "TH-13096",
+        "count": 4
+      },
+      "TH-13888": {
+        "cardId": "TH-13888",
+        "count": 4
+      },
+      "TH-10870": {
+        "cardId": "TH-10870",
+        "count": 3
+      }
+    },
+    "exportText": "4 Hop's Phantump ASC 95\n3 Hop's Trevenant ASC 96\n2 Hop's Snorlax JTG 117\n1 Hop's Wooloo JTG 135\n1 Hop's Dubwool JTG 136\n1 Genesect SFA 40\n1 Shaymin DRI 10\n1 Latias ex SSP 76\n1 Lillie's Clefairy ex JTG 56\n1 Hop's Zacian ex JTG 111\n1 Hop's Cramorant JTG 138\n4 Lillie's Determination MEG 119\n4 Team Rocket's Petrel DRI 176\n3 Boss's Orders MEG 114\n2 Hassel TWM 151\n4 Poké Pad POR 81\n3 Night Stretcher ASC 196\n2 Hop's Bag JTG 147\n2 Pokégear 3.0 SVI 186\n1 Switch MEG 130\n1 Special Red Card CRI 82\n1 Secret Box TWM 163\n4 Hop's Choice Band JTG 148\n1 Air Balloon ASC 181\n4 Postwick JTG 154\n4 Telepathic Psychic Energy POR 88\n3 Mist Energy TEF 161",
+    "createdAt": 1792999536042,
+    "updatedAt": 1792999536042
+  },
+  {
+    "id": "meta-limitless-280",
+    "name": "Raging Bolt ex",
+    "tier": "Rogue",
+    "playstyle": "Aggro",
+    "pros": [
+      "ทิ้งพลังงานทำแดเมจแบบไร้ขีดจำกัด One-Hit KO โปเกมอนตัวใหญ่ได้ทุกตัว",
+      "จับคู่ Ogerpon เร่งพลังงานเร็วที่สุดในเมต้า"
+    ],
+    "cons": [
+      "แจก 2 Prize ทุกตัว เสียจังหวะแล้วกู้ยาก",
+      "ทิ้งพลังงานบ่อย ต้องบริหารการ์ดกู้พลังงาน"
+    ],
+    "sharePercent": 0.38,
+    "points": 42,
+    "event": "Louisville",
+    "author": "Flavien Pointeau",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30666",
+    "coverCardId": "TH-14383",
+    "coverImageUrl": "/PokeCountTracker/card-images/MATK/011-023_%E0%B9%80%E0%B8%A1%E0%B8%81%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%B9%E0%B8%A3%E0%B8%B2ex.webp",
+    "strategyDescription": "เด็ค Raging Bolt ex อันดับ #20 (Aggro) สถิติแข่งขันระดับโลก (0.38% Meta Share) เล่นโดย Flavien Pointeau (Louisville)",
+    "keyPokemon": [
+      "เมก้าการูราex",
+      "โอการ์ปอง หน้ากากสีทีลex",
+      "เนียสex",
+      "ปิปปีex <ของลิเลีย>"
+    ],
+    "cards": {
+      "TH-14383": {
+        "cardId": "TH-14383",
+        "count": 4
+      },
+      "TH-12927": {
+        "cardId": "TH-12927",
+        "count": 3
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 3
+      },
+      "TH-14349": {
+        "cardId": "TH-14349",
+        "count": 2
+      },
+      "TH-7878": {
+        "cardId": "TH-7878",
+        "count": 2
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 2
+      },
+      "TH-11055": {
+        "cardId": "TH-11055",
+        "count": 1
+      },
+      "TH-8155": {
+        "cardId": "TH-8155",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-10190": {
+        "cardId": "TH-10190",
+        "count": 1
+      },
+      "TH-7912": {
+        "cardId": "TH-7912",
+        "count": 1
+      },
+      "TH-10101": {
+        "cardId": "TH-10101",
+        "count": 4
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-10311": {
+        "cardId": "TH-10311",
+        "count": 2
+      },
+      "TH-10849": {
+        "cardId": "TH-10849",
+        "count": 1
+      },
+      "TH-12531": {
+        "cardId": "TH-12531",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-14339": {
+        "cardId": "TH-14339",
+        "count": 1
+      },
+      "TH-13059": {
+        "cardId": "TH-13059",
+        "count": 1
+      },
+      "TH-13094": {
+        "cardId": "TH-13094",
+        "count": 4
+      },
+      "TH-14911": {
+        "cardId": "TH-14911",
+        "count": 6
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 3
+      },
+      "TH-14916": {
+        "cardId": "TH-14916",
+        "count": 2
+      },
+      "TH-14914": {
+        "cardId": "TH-14914",
+        "count": 2
+      },
+      "TH-14913": {
+        "cardId": "TH-14913",
+        "count": 1
+      }
+    },
+    "exportText": "4 Mega Kangaskhan ex MEG 104\n3 Teal Mask Ogerpon ex TWM 25\n3 Meowth ex POR 62\n2 Lillie's Clefairy ex JTG 56\n2 Raging Bolt ex TEF 123\n2 Latias ex SSP 76\n1 Wellspring Mask Ogerpon ex TWM 64\n1 Enamorus TWM 93\n1 Fezandipiti ex ASC 142\n1 Chien-Pao SSP 56\n1 Iron Leaves ex TEF 25\n4 Crispin SCR 133\n2 Boss's Orders MEG 114\n2 Cyrano SSP 170\n1 Ciphermaniac's Codebreaking TEF 145\n4 Energy Switch MEG 115\n4 Ultra Ball MEG 131\n2 Night Stretcher ASC 196\n1 Prime Catcher TEF 157\n1 Glass Trumpet SCR 135\n4 Area Zero Underdepths SCR 131\n6 Grass Energy MEE 9\n3 Psychic Energy MEE 13\n2 Fighting Energy MEE 14\n2 Lightning Energy MEE 12\n1 Water Energy MEE 11",
+    "createdAt": 1792999536308,
+    "updatedAt": 1792999536308
+  },
+  {
+    "id": "meta-limitless-326",
+    "name": "Lillie's Clefairy ex",
+    "tier": "Rogue",
+    "playstyle": "Aggro",
+    "pros": [
+      "เร่งพลังงานพลังจิตได้ไวติดสปีด",
+      "แดเมจพุ่งทะลุตามจำนวนพลังงานบนบอร์ด",
+      "เริ่มเกมเร็ว บดขยี้ไว"
+    ],
+    "cons": [
+      "ตัวบาง โดน One-Hit KO ได้ง่าย",
+      "หากเสียกระดานพลังงานจะกู้คืนลำบาก"
+    ],
+    "sharePercent": 0.31,
+    "points": 34,
+    "event": "Louisville",
+    "author": "Anderson George",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30306",
+    "coverCardId": "TH-14349",
+    "coverImageUrl": "/PokeCountTracker/card-images/MATS/001-023_%E0%B8%9B%E0%B8%B4%E0%B8%9B%E0%B8%9B%E0%B8%B5ex_%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B8%A2.webp",
+    "strategyDescription": "เด็ค Lillie's Clefairy ex อันดับ #22 (Aggro) สถิติแข่งขันระดับโลก (0.31% Meta Share) เล่นโดย Anderson George (Louisville)",
+    "keyPokemon": [
+      "ปิปปีex <ของลิเลีย>",
+      "เมก้าการูราex",
+      "ลาทิอาสex",
+      "เนียสex"
+    ],
+    "cards": {
+      "TH-14349": {
+        "cardId": "TH-14349",
+        "count": 3
+      },
+      "TH-14383": {
+        "cardId": "TH-14383",
+        "count": 3
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 2
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 2
+      },
+      "TH-12927": {
+        "cardId": "TH-12927",
+        "count": 2
+      },
+      "TH-11055": {
+        "cardId": "TH-11055",
+        "count": 1
+      },
+      "TH-7912": {
+        "cardId": "TH-7912",
+        "count": 1
+      },
+      "TH-10190": {
+        "cardId": "TH-10190",
+        "count": 1
+      },
+      "TH-10244": {
+        "cardId": "TH-10244",
+        "count": 1
+      },
+      "TH-12456": {
+        "cardId": "TH-12456",
+        "count": 1
+      },
+      "TH-7932": {
+        "cardId": "TH-7932",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-10101": {
+        "cardId": "TH-10101",
+        "count": 3
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 3
+      },
+      "TH-10311": {
+        "cardId": "TH-10311",
+        "count": 2
+      },
+      "TH-10849": {
+        "cardId": "TH-10849",
+        "count": 1
+      },
+      "TH-11216": {
+        "cardId": "TH-11216",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 1
+      },
+      "TH-12531": {
+        "cardId": "TH-12531",
+        "count": 4
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-8169": {
+        "cardId": "TH-8169",
+        "count": 1
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 1
+      },
+      "TH-11212": {
+        "cardId": "TH-11212",
+        "count": 2
+      },
+      "TH-13094": {
+        "cardId": "TH-13094",
+        "count": 3
+      },
+      "TH-14911": {
+        "cardId": "TH-14911",
+        "count": 5
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 3
+      },
+      "TH-13888": {
+        "cardId": "TH-13888",
+        "count": 2
+      },
+      "TH-14913": {
+        "cardId": "TH-14913",
+        "count": 1
+      },
+      "TH-14912": {
+        "cardId": "TH-14912",
+        "count": 1
+      },
+      "TH-14916": {
+        "cardId": "TH-14916",
+        "count": 1
+      }
+    },
+    "exportText": "3 Lillie's Clefairy ex JTG 56\n3 Mega Kangaskhan ex MEG 104\n2 Latias ex SSP 76\n2 Meowth ex POR 62\n2 Teal Mask Ogerpon ex TWM 25\n1 Wellspring Mask Ogerpon ex TWM 64\n1 Iron Leaves ex TEF 25\n1 Chien-Pao SSP 56\n1 Passimian SSP 111\n1 Moltres PFL 14\n1 Iron Crown ex TEF 81\n1 Fezandipiti ex ASC 142\n3 Crispin SCR 133\n3 Boss's Orders MEG 114\n2 Cyrano SSP 170\n1 Ciphermaniac's Codebreaking TEF 145\n1 Judge POR 76\n1 Lillie's Determination MEG 119\n4 Energy Switch MEG 115\n4 Ultra Ball MEG 131\n2 Night Stretcher ASC 196\n1 Unfair Stamp TWM 165\n1 Special Red Card CRI 82\n2 Lillie's Pearl JTG 151\n3 Area Zero Underdepths SCR 131\n5 Grass Energy MEE 9\n3 Psychic Energy MEE 13\n2 Telepathic Psychic Energy POR 88\n1 Water Energy MEE 11\n1 Fire Energy MEE 10\n1 Fighting Energy MEE 14",
+    "createdAt": 1792999536745,
+    "updatedAt": 1792999536745
+  },
+  {
+    "id": "meta-limitless-344",
+    "name": "Mega Absol Box",
+    "tier": "Rogue",
+    "playstyle": "Toolbox",
+    "pros": [
+      "ย้ายเคาน์เตอร์แดเมจ ป่วนบอร์ดอย่างชาญฉลาด",
+      "ใช้การ์ดตัดจังหวะสไตล์ความมืด",
+      "มีคำตอบให้กับบอร์ดคู่แข่ง"
+    ],
+    "cons": [
+      "แดเมจพื้นฐานไม่สูงมาก ต้องใช้ทักษะการเล่นสูง"
+    ],
+    "sharePercent": 0.31,
+    "points": 34,
+    "event": "Louisville",
+    "author": "Rob van de Vijver",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/30521",
+    "coverCardId": "TH-12171",
+    "coverImageUrl": "/PokeCountTracker/card-images/MA1/086-126_%E0%B9%80%E0%B8%A1%E0%B8%81%E0%B9%89%E0%B8%B2%E0%B9%81%E0%B8%AD%E0%B8%9A%E0%B9%82%E0%B8%8B%E0%B8%A5ex.webp",
+    "strategyDescription": "เด็ค Mega Absol Box อันดับ #22 (Toolbox) สถิติแข่งขันระดับโลก (0.31% Meta Share) เล่นโดย Rob van de Vijver (Louisville)",
+    "keyPokemon": [
+      "มาชิมาชิระ",
+      "เมก้าทาบุนเนะex",
+      "เมก้าแอบโซลex",
+      "โคดัก"
+    ],
+    "cards": {
+      "TH-14328": {
+        "cardId": "TH-14328",
+        "count": 4
+      },
+      "TH-13865": {
+        "cardId": "TH-13865",
+        "count": 2
+      },
+      "TH-12171": {
+        "cardId": "TH-12171",
+        "count": 2
+      },
+      "TH-12942": {
+        "cardId": "TH-12942",
+        "count": 1
+      },
+      "TH-11063": {
+        "cardId": "TH-11063",
+        "count": 1
+      },
+      "TH-14335": {
+        "cardId": "TH-14335",
+        "count": 1
+      },
+      "TH-12173": {
+        "cardId": "TH-12173",
+        "count": 1
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 1
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 4
+      },
+      "TH-13089": {
+        "cardId": "TH-13089",
+        "count": 4
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 3
+      },
+      "TH-10311": {
+        "cardId": "TH-10311",
+        "count": 1
+      },
+      "TH-10315": {
+        "cardId": "TH-10315",
+        "count": 1
+      },
+      "TH-9793": {
+        "cardId": "TH-9793",
+        "count": 1
+      },
+      "TH-13070": {
+        "cardId": "TH-13070",
+        "count": 4
+      },
+      "TH-11596": {
+        "cardId": "TH-11596",
+        "count": 4
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 3
+      },
+      "TH-12531": {
+        "cardId": "TH-12531",
+        "count": 3
+      },
+      "TH-12532": {
+        "cardId": "TH-12532",
+        "count": 2
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 2
+      },
+      "TH-14317": {
+        "cardId": "TH-14317",
+        "count": 1
+      },
+      "TH-13899": {
+        "cardId": "TH-13899",
+        "count": 1
+      },
+      "TH-13099": {
+        "cardId": "TH-13099",
+        "count": 2
+      },
+      "TH-14917": {
+        "cardId": "TH-14917",
+        "count": 8
+      },
+      "TH-14915": {
+        "cardId": "TH-14915",
+        "count": 2
+      },
+      "TH-14916": {
+        "cardId": "TH-14916",
+        "count": 1
+      }
+    },
+    "exportText": "4 Munkidori TWM 95\n2 Mega Audino ex ASC 172\n2 Mega Absol ex MEG 86\n1 Psyduck ASC 39\n1 Cornerstone Mask Ogerpon ex TWM 112\n1 Pecharunt ex SFA 39\n1 Yveltal MEG 88\n1 Latias ex SSP 76\n4 Boss's Orders MEG 114\n4 Team Rocket's Petrel DRI 176\n3 Lillie's Determination MEG 119\n1 Cyrano SSP 170\n1 Lisia's Appeal SSP 179\n1 Xerosic's Machinations SFA 64\n4 Team Rocket's Transceiver DRI 178\n4 Pokégear 3.0 SVI 186\n3 Special Red Card CRI 82\n3 Energy Switch MEG 115\n2 Jumbo Ice Cream PFL 91\n2 Night Stretcher ASC 196\n1 Precious Trolley SSP 185\n1 Energy Search POR 72\n2 Team Rocket's Watchtower DRI 180\n8 Darkness Energy MEE 15\n2 Psychic Energy MEE 13\n1 Fighting Energy MEE 14",
+    "createdAt": 1792999536967,
+    "updatedAt": 1792999536967
+  },
+  {
+    "id": "meta-limitless-287",
+    "name": "Greninja ex",
+    "tier": "Rogue",
+    "playstyle": "Setup",
+    "pros": [
+      "สไนเปอร์เบนช์เจาะจงเป้าหมายได้อย่างแม่นยำ",
+      "มีท่าปั่นการ์ดและความคล่องตัวสูงสุด",
+      "เล่นได้หลากหลายสไตล์"
+    ],
+    "cons": [
+      "ต้องใช้ชิ้นส่วนคอมโบหลายใบในการตั้งตัว"
+    ],
+    "sharePercent": 0.25,
+    "points": 28,
+    "event": "Louisville",
+    "author": "Nathan Bonavia Zammit",
+    "tournamentDate": "2026",
+    "sourceUrl": "https://limitlesstcg.com/decks/list/29638",
+    "coverCardId": "TH-8161",
+    "coverImageUrl": "/PokeCountTracker/card-images/SV5a/045-066_%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%84%E0%B9%82%E0%B8%84%E0%B8%81%E0%B8%B0ex.webp",
+    "strategyDescription": "เด็ค Greninja ex อันดับ #24 (Setup) สถิติแข่งขันระดับโลก (0.25% Meta Share) เล่นโดย Nathan Bonavia Zammit (Louisville)",
+    "keyPokemon": [
+      "เคโรมัตซึ",
+      "เกโคกาชิระ",
+      "เก็คโคกะex",
+      "ยูกิวาราชิ"
+    ],
+    "cards": {
+      "TH-13996": {
+        "cardId": "TH-13996",
+        "count": 3
+      },
+      "TH-13997": {
+        "cardId": "TH-13997",
+        "count": 2
+      },
+      "TH-8161": {
+        "cardId": "TH-8161",
+        "count": 2
+      },
+      "TH-12945": {
+        "cardId": "TH-12945",
+        "count": 2
+      },
+      "TH-12946": {
+        "cardId": "TH-12946",
+        "count": 1
+      },
+      "TH-12982": {
+        "cardId": "TH-12982",
+        "count": 2
+      },
+      "TH-10749": {
+        "cardId": "TH-10749",
+        "count": 2
+      },
+      "TH-12984": {
+        "cardId": "TH-12984",
+        "count": 2
+      },
+      "TH-13856": {
+        "cardId": "TH-13856",
+        "count": 2
+      },
+      "TH-13802": {
+        "cardId": "TH-13802",
+        "count": 1
+      },
+      "TH-13803": {
+        "cardId": "TH-13803",
+        "count": 1
+      },
+      "TH-13024": {
+        "cardId": "TH-13024",
+        "count": 1
+      },
+      "TH-14353": {
+        "cardId": "TH-14353",
+        "count": 1
+      },
+      "TH-12921": {
+        "cardId": "TH-12921",
+        "count": 1
+      },
+      "TH-14395": {
+        "cardId": "TH-14395",
+        "count": 4
+      },
+      "TH-14368": {
+        "cardId": "TH-14368",
+        "count": 2
+      },
+      "TH-10848": {
+        "cardId": "TH-10848",
+        "count": 2
+      },
+      "TH-12543": {
+        "cardId": "TH-12543",
+        "count": 2
+      },
+      "TH-14847": {
+        "cardId": "TH-14847",
+        "count": 4
+      },
+      "TH-12375": {
+        "cardId": "TH-12375",
+        "count": 4
+      },
+      "TH-13877": {
+        "cardId": "TH-13877",
+        "count": 3
+      },
+      "TH-14387": {
+        "cardId": "TH-14387",
+        "count": 2
+      },
+      "TH-14319": {
+        "cardId": "TH-14319",
+        "count": 1
+      },
+      "TH-12380": {
+        "cardId": "TH-12380",
+        "count": 1
+      },
+      "TH-14101": {
+        "cardId": "TH-14101",
+        "count": 1
+      },
+      "TH-9797": {
+        "cardId": "TH-9797",
+        "count": 1
+      },
+      "TH-13093": {
+        "cardId": "TH-13093",
+        "count": 1
+      },
+      "TH-14913": {
+        "cardId": "TH-14913",
+        "count": 5
+      },
+      "TH-13101": {
+        "cardId": "TH-13101",
+        "count": 3
+      },
+      "TH-14121": {
+        "cardId": "TH-14121",
+        "count": 1
+      }
+    },
+    "exportText": "3 Froakie CRI 20\n2 Frogadier CRI 21\n2 Greninja ex TWM 106\n2 Snorunt ASC 46\n1 Mega Froslass ex ASC 47\n2 Duskull PRE 35\n2 Dusclops PRE 36\n2 Dusknoir PRE 37\n2 Meowth ex POR 62\n1 Staryu POR 20\n1 Mega Starmie ex POR 21\n1 Fezandipiti ex ASC 142\n1 Latias ex SSP 76\n1 Budew ASC 16\n4 Lillie's Determination MEG 119\n2 Hilda WHT 84\n2 Colress's Tenacity SFA 57\n2 Boss's Orders MEG 114\n4 Ultra Ball MEG 131\n4 Buddy-Buddy Poffin TEF 144\n3 Poké Pad POR 81\n2 Rare Candy MEG 125\n1 Switch MEG 130\n1 Night Stretcher ASC 196\n1 Special Red Card CRI 82\n1 Grand Tree SCR 136\n1 Gravity Mountain SSP 177\n5 Water Energy MEE 11\n3 Ignition Energy WHT 86\n1 Bubbly Water Energy CRI 84",
+    "createdAt": 1792999537180,
+    "updatedAt": 1792999537180
+  }
+]

@@ -1,0 +1,146 @@
+rules_version = '2';
+
+// PokéCount Tracker — Firestore security rules.
+//
+// Replaces the previous catch-all:
+//   match /{document=**} { allow read, write: if request.auth != null; }
+// which let ANY signed-in user read and write ANY document, including other
+// users' binders, and blocked signed-out visitors from reading public data.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email in ['wingae911@gmail.com'];
+    }
+
+    // ---------------------------------------------------------------------
+    // users/{uid}/binders/{profileId} — a user's own binders. Private.
+    //
+    // Every read/write in the app derives the uid from the signed-in user
+    // (collectionStore, customMappingStore), so scoping to the owner does not
+    // break any existing path. Admins can view user profiles in directory.
+    // ---------------------------------------------------------------------
+    match /users/{userId} {
+      allow read: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow write: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+
+      match /{document=**} {
+        allow read, write: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      }
+    }
+
+    // ---------------------------------------------------------------------
+    // shared_collections/{shareId} — public read-only binder showcases.
+    // ---------------------------------------------------------------------
+    match /shared_collections/{shareId} {
+
+      // Anyone with the link can open it, signed in or not. This is the rule
+      // the Share feature needs; without it every share link fails to load.
+      allow read: if true;
+
+      // Only the owner may publish, re-publish or revoke their own share.
+      allow create: if isSignedIn()
+                    && request.resource.data.ownerUid == request.auth.uid;
+      allow update, delete: if isSignedIn()
+                            && resource.data.ownerUid == request.auth.uid;
+
+      // A visitor may bump the view counter and change nothing else (F6).
+      // Firestore ORs the allow rules, so this sits alongside the owner rules.
+      allow update: if request.resource.data
+                      .diff(resource.data)
+                      .affectedKeys()
+                      .hasOnly(['viewCount'])
+                    && request.resource.data.viewCount is int
+                    && request.resource.data.viewCount == resource.data.viewCount + 1;
+    }
+
+    // ---------------------------------------------------------------------
+    // Shared reference data. Readable by signed-out visitors, because a
+    // shared binder renders prices and community counts for people who do
+    // not have an account.
+    // ---------------------------------------------------------------------
+    match /market_prices/{cardId} {
+      allow read: if true;
+      // Admins can manage all market price data.
+      // Signed-in users can record sale transactions (both initial creation and updates of sale fields) (R4)
+      allow create: if isAdmin()
+                    || (isSignedIn()
+                        && request.resource.data.keys().hasOnly(['cardId', 'lastSold', 'lastSoldDate', 'recentSales', 'updatedAt']));
+      allow update: if isAdmin()
+                    || (isSignedIn()
+                        && request.resource.data.diff(resource.data)
+                           .affectedKeys()
+                           .hasOnly(['lastSold', 'lastSoldDate', 'recentSales', 'updatedAt']));
+      allow delete: if isAdmin();
+    }
+
+    match /community_stats/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /community_card_suggestions/{docId} {
+      allow read: if true;
+      // Users can submit suggestions tagged with their uid; admins manage (F5)
+      allow create: if isSignedIn() && request.resource.data.submittedBy == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /community_card_pairings/{cardId} {
+      allow read: if true;
+      // Users can submit pending pairing suggestions; admins approve & curate (F5)
+      allow create: if isAdmin()
+                    || (isSignedIn() && request.resource.data.status == 'pending');
+      allow update, delete: if isAdmin();
+    }
+
+    // ---------------------------------------------------------------------
+    // system_config/playmat_access — Closed Beta allowlist for Digital Playmat.
+    // Publicly readable so authorized players and testers can be verified;
+    // only Admin can update or modify the allowlist.
+    // ---------------------------------------------------------------------
+    match /system_config/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---------------------------------------------------------------------
+    // Digital Playmat rooms: real-time playmat sync between tablet and phones
+    // Supports guests / mobile phone controllers without Google auth barrier,
+    // but validates room integrity and restricts destructive operations (R1/R2)
+    // ---------------------------------------------------------------------
+    match /playmat_rooms/{roomCode} {
+      allow read: if true;
+      // Verify actual schema keys produced by createInitialRoomState
+      allow create: if request.resource.data.keys().hasAll(['roomCode', 'createdAt', 'p1', 'p2'])
+                    && request.resource.data.roomCode == roomCode
+                    && request.resource.data.createdAt is int;
+      // Ensure roomCode cannot be altered, createdAt and hostUid remain immutable, and updates require auth
+      allow update: if request.resource.data.roomCode == roomCode
+                    && (!('createdAt' in resource.data) || request.resource.data.createdAt == resource.data.createdAt)
+                    && (!('hostUid' in resource.data) || request.resource.data.hostUid == resource.data.hostUid)
+                    && (
+                      (request.auth != null && 'participants' in resource.data && (request.auth.uid in resource.data.participants || ('hostUid' in resource.data && request.auth.uid == resource.data.hostUid)))
+                      || (request.auth != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['participants', 'p1', 'p2', 'updatedAt', 'serverUpdatedAt', 'recentActionText']))
+                      || (!('participants' in resource.data))
+                    );
+      allow delete: if isAdmin() || (isSignedIn() && 'hostUid' in resource.data && request.auth.uid == resource.data.hostUid);
+    }
+
+    match /v3_tabletop_rooms/{roomCode} {
+      allow read, write: if true;
+    }
+
+    // WebRTC P2P DataChannel signaling (SDP offer/answer and ICE candidates exchange)
+    match /playmat_signals/{roomCode} {
+      allow read, write: if true;
+    }
+
+    // Anything not matched above is denied.
+  }
+}

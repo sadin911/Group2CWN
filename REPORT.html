@@ -1,212 +1,293 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>บท 04 · PokéCount Tracker (Sabai Spa Methodology Edition) — Multi-Source Interview to Test Plan & Bug Hunt</title>
-  <style>
-    :root {
-      --bg: #0b1120;
-      --card: #1e293b;
-      --card-alt: #0f172a;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --gold: #facc15;
-      --blue: #38bdf8;
-      --green: #4ade80;
-      --red: #f87171;
-      --purple: #c084fc;
-      --border: #334155;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Thai", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      padding: 2rem 1rem 4rem;
-    }
-    .container { max-width: 1200px; margin: 0 auto; }
-    header {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      border: 1px solid var(--border);
-      border-left: 6px solid var(--gold);
-      border-radius: 14px;
-      padding: 1.75rem 2rem;
-      margin-bottom: 1.75rem;
-    }
-    h1 { margin: 0 0 0.5rem; font-size: 1.75rem; color: var(--gold); }
-    h2 { color: var(--blue); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; margin-top: 2rem; }
-    h3 { color: #e2e8f0; margin-top: 1.25rem; }
-    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
-    .badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-    .badge.gold { background: rgba(250, 204, 21, 0.16); color: var(--gold); border: 1px solid rgba(250, 204, 21, 0.4); }
-    .badge.green { background: rgba(74, 222, 128, 0.16); color: var(--green); border: 1px solid rgba(74, 222, 128, 0.4); }
-    .badge.blue { background: rgba(56, 189, 248, 0.16); color: var(--blue); border: 1px solid rgba(56, 189, 248, 0.4); }
-    .badge.purple { background: rgba(192, 132, 252, 0.16); color: var(--purple); border: 1px solid rgba(192, 132, 252, 0.4); }
-    .section-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem 1.75rem;
-      margin-bottom: 1.75rem;
-    }
-    .source-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .source-box {
-      background: var(--card-alt);
-      border: 1px solid var(--border);
-      border-top: 3px solid var(--gold);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-    }
-    .source-box h4 { margin: 0 0 0.4rem; color: var(--gold); font-size: 1rem; }
-    .source-box p { margin: 0.3rem 0 0; font-size: 0.88rem; color: var(--muted); }
-    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.91rem; }
-    th, td { border: 1px solid var(--border); padding: 0.65rem 0.8rem; text-align: left; vertical-align: top; }
-    th { background: #090d16; color: var(--gold); }
-    tr:nth-child(even) td { background: rgba(15, 23, 42, 0.45); }
-    code { background: #090d16; color: var(--blue); padding: 0.15rem 0.4rem; border-radius: 5px; font-size: 0.86em; }
-    a { color: var(--blue); }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PokeCountTracker — Code Review Report v2.58.0</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#182241;--line:#26314f;--txt:#e6ecff;--dim:#94a3c4;
+--crit:#ff4d6d;--high:#ff9f43;--med:#ffd166;--low:#7bdcb5;--ok:#4ade80;--acc:#6ea8ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.5px}
+h2{font-size:21px;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--dim);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card .n{font-size:26px;font-weight:800}
+.card .l{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+code{background:#0d1428;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#bfd4ff}
+pre{background:#0d1428;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:12.5px}
+.f{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:16px;margin:14px 0}
+.f.c{border-left-color:var(--crit)}.f.h{border-left-color:var(--high)}
+.f.m{border-left-color:var(--med)}.f.l{border-left-color:var(--low)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:.5px;margin-right:8px;vertical-align:2px}
+.tag.c{background:rgba(255,77,109,.15);color:var(--crit)}
+.tag.h{background:rgba(255,159,67,.15);color:var(--high)}
+.tag.m{background:rgba(255,209,102,.13);color:var(--med)}
+.tag.l{background:rgba(123,220,181,.13);color:var(--low)}
+.tag.ok{background:rgba(74,222,128,.13);color:var(--ok)}
+.f p{margin:8px 0}
+.f .why{color:var(--dim)}
+.fix{background:var(--panel2);border-radius:8px;padding:10px 12px;margin-top:10px}
+.fix b{color:var(--acc)}
+ul{margin:8px 0 8px 20px;padding:0}li{margin:4px 0}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;color:var(--dim)}
+.ok{color:var(--ok)}.dim{color:var(--dim)}
+footer{margin-top:50px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+</style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <h1>บท 04 · PokéCount Tracker: จากการฟังพหุแหล่งข้อมูล (Multi-Source Interview) สู่แผนทดสอบและการล่าบั๊กครบ LAB 1–13</h1>
-      <p style="margin:0.35rem 0 0; color:var(--muted);">
-        ยึดโครงสร้างและระเบียบวิธีตาม <code>04_sabai-spa-web-and-testplan-from-interview</code> ทุกขั้นตอน โดยใช้ <strong>PokéCount Tracker (v2.44.0)</strong> เป็นระบบหลัก และยกระดับต้นทางบทสัมภาษณ์เป็น <strong>Multi-Source Evidence 6 รูปแบบ</strong>
-      </p>
-      <div class="badge-row">
-        <span class="badge gold">Repo: /Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition</span>
-        <span class="badge blue">Multi-Source Interview: 6 รูปแบบ + 7 Personas</span>
-        <span class="badge green">LAB 1–4: 24 US · 24 FR · 20 BR · 45 แถวค่าขอบ</span>
-        <span class="badge purple">LAB 7–13: 6 Charters · 30 TC · จับบั๊กปริศนา 3/3 ตัว</span>
-      </div>
-    </header>
+<body><div class="wrap">
 
-    <!-- MULTI-SOURCE INTERVIEW SHOWCASE -->
-    <section class="section-card">
-      <h2>🌟 ไฮไลต์คะแนนพิเศษ: ข้อมูลต้นทางการสัมภาษณ์แบบพหุแหล่งข้อมูล (6 Multi-Source Interview Artifacts)</h2>
-      <p>
-        แทนที่จะใช้บันทึกสัมภาษณ์แผ่นเดียว เราจัดเตรียมหลักฐานชั้นต้น <strong>6 รูปแบบไฟล์ที่แตกต่างกัน</strong> ในโฟลเดอร์ <code>interview/sources/</code>
-        เพื่อให้เห็นกระบวนการสกัดความต้องการจากหลายแหล่งและการตรวจจับข้อมูลที่ขัดแย้งกันข้ามแหล่ง (<code>CONF-01..04</code>) ก่อนให้เจ้าของระบบยืนยันในรอบที่ 2:
-      </p>
+<h1>PokeCountTracker — Code Review Report</h1>
+<p class="sub">Reviewer: Claude (Opus 5) · Date: 2026-09-10 · Version <code>2.58.0</code> · Commit <code>7bee448</code> · Branch <code>main</code><br>
+Scope: full repository — <code>src/</code>, <code>e2e/</code>, <code>scripts/</code>, <code>firestore.rules</code>, <code>vite.config.ts</code>, build output.</p>
 
-      <div class="source-grid">
-        <div class="source-box">
-          <h4>1. 🎙️ ถอดเทปเสียงสัมภาษณ์ภาคสนาม (Audio Transcript)</h4>
-          <div><a href="interview/sources/01-field-interview-transcript.md"><code>01-field-interview-transcript.md</code></a></div>
-          <p>บันทึกคำต่อคำพร้อม Timestamp จากงานแข่ง Regional Mega Bangna ครบ 7 Personas (คุณซาดิน, คุณอาร์ต, คุณภูมิ, น้องมีน, Mr. Kenji, น้องข้าวปั้น, เฮียหมง)</p>
-        </div>
-        <div class="source-box">
-          <h4>2. 💬 แชตกลุ่ม LINE OpenChat & Discord Bug Log</h4>
-          <div><a href="interview/sources/02-line-discord-bug-thread.md"><code>02-line-discord-bug-thread.md</code></a></div>
-          <p>ข้อความแจ้งปัญหาจริงจากผู้เล่นเรื่องสมุดสะสมที่ลบแล้วฟื้นคืนชีพ (Zombie Binder), ข้อมูลโหมด Guest ไหลปนตอน Logout, และการปิดบังเลขผู้เสียภาษี PDPA</p>
-        </div>
-        <div class="source-box">
-          <h4>3. 📊 ตาราง CSV ราคาตลาดและตัวคูณความหายาก</h4>
-          <div><a href="interview/sources/03-partner-pricing-sheet.csv"><code>03-partner-pricing-sheet.csv</code></a></div>
-          <p>สเปรดชีตจริงจากร้านเฮียหมง ระบุราคา USD, อัตราแลกเปลี่ยน 34.00, ตัวคูณ <code>thaiPriceRatio</code> (0.60 / 0.85 / 1.10) และตัวอย่างปัดเศษ <code>.50</code> ของการ์ด SAR</p>
-        </div>
-        <div class="source-box">
-          <h4>4. 📜 ระเบียบกรรมการตรวจเด็คงานแข่ง Regional</h4>
-          <div><a href="interview/sources/04-tournament-deckcheck-rules.md"><code>04-tournament-deckcheck-rules.md</code></a></div>
-          <p>เอกสารทางการของคุณอาร์ต (Head Judge) ระบุกฎเหล็ก 60 ใบ, Basic ≥ 1, ชื่อไทยซ้ำ ≤ 4 ยกเว้นพลังงานพื้นฐาน, ACE SPEC ≤ 1, Radiant ≤ 1 และสูตรดาเมจ Active vs Bench</p>
-        </div>
-        <div class="source-box">
-          <h4>5. 🚨 รายงาน Incident Post-Mortem (v2.33.0 & v2.42.1)</h4>
-          <div><a href="interview/sources/05-incident-postmortems-v2.md"><code>05-incident-postmortems-v2.md</code></a></div>
-          <p>บันทึกวิศวกรรมจากบั๊กจริงใน Production เรื่อง <code>costPrice</code> รั่วในลิงก์แชร์สาธารณะ <code>pk_xxxxxxxx</code> และกลไก <code>deletedBinderIds</code> Tombstone</p>
-        </div>
-        <div class="source-box">
-          <h4>6. 📈 ผลสำรวจนักสะสมไทย 120 คน (JSON Telemetry)</h4>
-          <div><a href="interview/sources/06-user-survey-analytics.json"><code>06-user-survey-analytics.json</code></a></div>
-          <p>ข้อมูล JSON สำรวจ Pain Points อันดับ 1–4 และสถิติการใช้งานผ่านหน้าจอมือถือ <code>375px</code> สูงถึง 88.5% ที่นำไปสู่ข้อกำหนด NFR-01 และ NFR-02</p>
-        </div>
-      </div>
+<h2>1. Executive Summary</h2>
+<p>The project is <b>functionally healthy and well tested</b>: 232 unit tests and 172 Playwright E2E tests pass, the linter reports 0 errors, and the production build succeeds. Domain logic (parsers, matchers, hypergeometric deck math, playmat reducer) is genuinely well factored and covered.</p>
+<p>The problems are <b>not in feature correctness — they are in the delivery and trust boundaries</b>. Three issues stand out and should be treated as release blockers for any public deployment:</p>
+<ul>
+<li>Digital Playmat rooms are <b>completely unauthenticated in Firestore rules</b> (<code>allow read, write: if true</code>).</li>
+<li>The service worker <b>precaches 436 MB across 9,258 entries</b> because card images land in <code>dist/</code>.</li>
+<li>The main JS chunk is <b>13.2 MB</b> with <b>zero code-splitting</b> anywhere in the app.</li>
+</ul>
 
-      <p style="margin-top:1.1rem;">
-        👉 เอกสารสังเคราะห์รอบแรก: <a href="interview/INTERVIEW.md"><strong><code>interview/INTERVIEW.md</code></strong></a> ·
-        เอกสารเจ้าของระบบตอบกลับรอบที่ 2: <a href="interview/OWNER-ANSWERS.md"><strong><code>interview/OWNER-ANSWERS.md</code></strong></a>
-      </p>
-    </section>
+<div class="grid">
+<div class="card"><div class="n ok">0</div><div class="l">Lint errors</div></div>
+<div class="card"><div class="n" style="color:var(--med)">111</div><div class="l">Lint warnings</div></div>
+<div class="card"><div class="n ok">232</div><div class="l">Unit tests passing</div></div>
+<div class="card"><div class="n ok">172</div><div class="l">E2E passing (4 skipped)</div></div>
+<div class="card"><div class="n" style="color:var(--crit)">13.2 MB</div><div class="l">Main JS chunk</div></div>
+<div class="card"><div class="n" style="color:var(--crit)">436 MB</div><div class="l">SW precache</div></div>
+</div>
 
-    <!-- LAB WALKTHROUGH TABLE -->
-    <section class="section-card">
-      <h2>🗺️ สรุปผลงานครบทุกช่วง (LAB 1 ถึง LAB 13 ตามแนวทางบทเรียนที่ 04)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ช่วง</th>
-            <th>LAB</th>
-            <th>ไฟล์ส่งอาจารย์</th>
-            <th>สรุปผลลัพธ์สำคัญ</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>🟢 <strong>ฟังร้าน</strong></td>
-            <td><strong>LAB 1</strong></td>
-            <td><a href="USER-STORIES.md"><code>USER-STORIES.md</code></a></td>
-            <td>สกัด User Stories ครบ <strong>24 ข้อ</strong> (<code>Must 18 / Should 3 / Could 3</code>), คำถามกลับ <code>Q1–Q10</code>, และเรื่องที่ข้อมูลขัดกันเอง <code>CONF-01..04</code></td>
-          </tr>
-          <tr>
-            <td>🟢 <strong>ฟังร้าน</strong></td>
-            <td><strong>LAB 2</strong></td>
-            <td><a href="REQUIREMENTS.md"><code>REQUIREMENTS.md</code></a></td>
-            <td>หลังเจ้าของตอบกลับ ได้ <code>FR-01..24</code>, กฎธุรกิจ <code>BR-01..20</code> พร้อมค่าขอบครบ 3 ค่าทุกข้อ, สมมติฐาน <code>⚠️A-01..03</code>, และ <code>NFR-01..06</code></td>
-          </tr>
-          <tr>
-            <td>🟢 <strong>ฟังร้าน</strong></td>
-            <td><strong>LAB 3</strong></td>
-            <td><a href="DESIGN.md"><code>DESIGN.md</code></a></td>
-            <td>ครบทั้ง 5 แผนภาพ Mermaid: <strong>Architecture · Use Case · Pricing Flowchart · ERD · Tombstone Sync Sequence Diagram</strong></td>
-          </tr>
-          <tr>
-            <td>🟢 <strong>ฟังร้าน</strong></td>
-            <td><strong>LAB 4</strong></td>
-            <td><a href="TEST-DATA.md"><code>TEST-DATA.md</code></a></td>
-            <td>บัญชีตั้งต้น <code>U01–U07</code>, ตารางค่าขอบ <code>E01–E45</code>, ตารางคำนวณใบเสนอราคา <code>M01–M08</code>, และผลตรวจคำนวณซ้ำโดย Subagent อิสระตรงกัน 100%</td>
-          </tr>
-          <tr>
-            <td>🟡 <strong>เชื่อมเว็บ</strong></td>
-            <td><strong>LAB 5–6</strong></td>
-            <td><a href="BUILD-PROMPT.md"><code>BUILD-PROMPT.md</code></a></td>
-            <td>ใบสั่งงานเชื่อมระบบจริง <code>PokéCount Tracker</code>, สัญญา API ทั้ง 8 จุด, และสวิตช์จำลองบั๊กปริศนา <code>BUG_MODE=1</code></td>
-          </tr>
-          <tr>
-            <td>🔵 <strong>สำรวจ</strong></td>
-            <td><strong>LAB 7–9</strong></td>
-            <td><a href="CHARTERS.md"><code>CHARTERS.md</code></a>, <a href="exploration/c1.md"><code>exploration/c1..c6.md</code></a>, <a href="EXPLORATION.md"><code>EXPLORATION.md</code></a></td>
-            <td>เทียบ 3 ทาง (<code>[D]</code> vs <code>[A]</code> vs <code>[O]</code>), แบ่ง 6 Charters สำรวจขนานครบทุกกฎ, และให้ผู้ตัดสินความเสี่ยงอิสระจัดลำดับ <code>P1 / P2</code></td>
-          </tr>
-          <tr>
-            <td>🟠 <strong>เขียนแผน</strong></td>
-            <td><strong>LAB 10–11</strong></td>
-            <td><a href="TEST-PLAN.md"><code>TEST-PLAN.md</code></a>, <a href="PLAN-REVIEW.md"><code>PLAN-REVIEW.md</code></a></td>
-            <td>แผนการทดสอบ <strong>30 ข้อ</strong> แบ่งตาม 6 สาย Writer (<code>5.1–5.6</code>) พร้อมป้าย <code>[D]</code>, <code>[D][R]</code>, <code>[R] ⚠️A-xx</code> และผ่านการรีวิวโดยผู้รีวิวอิสระ</td>
-          </tr>
-          <tr>
-            <td>🟣 <strong>พิสูจน์</strong></td>
-            <td><strong>LAB 12–13</strong></td>
-            <td><a href="e2e/index.html"><code>e2e/index.html</code></a>, <a href="BUG-HUNT.md"><code>BUG-HUNT.md</code></a></td>
-            <td>รันผ่านรอบปกติ <code>30/30 (100%)</code> และในรอบฝังบั๊ก <code>BUG_MODE=1</code> จับบั๊กปริศนาได้ครบ <strong>3 จาก 3 ตัว (100%)</strong> พร้อมตารางพิสูจน์ว่าถ้าลอกหน้าจอ <code>[O]</code> จะจับบั๊กไม่ได้เลย (`0/3`)</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </div>
-</body>
-</html>
+<h3>Verification commands actually run for this report</h3>
+<pre>npm run lint      → 0 errors, 111 warnings
+npm run build     → ✓ built in 12.65s (tsc -b + vite build)
+npm test          → Test Files 31 passed | Tests 232 passed
+npx playwright test → 172 passed, 4 skipped (3.7m)</pre>
+
+<h2>2. Findings by Severity</h2>
+<table>
+<tr><th>#</th><th>Severity</th><th>Area</th><th>Finding</th></tr>
+<tr><td>F1</td><td><span class="tag c">CRITICAL</span></td><td>Security</td><td>Playmat rooms world-readable and world-writable</td></tr>
+<tr><td>F2</td><td><span class="tag c">CRITICAL</span></td><td>PWA / Perf</td><td>Service worker precaches 436 MB of card images</td></tr>
+<tr><td>F3</td><td><span class="tag c">CRITICAL</span></td><td>Performance</td><td>13.2 MB monolithic bundle, no lazy loading at all</td></tr>
+<tr><td>F4</td><td><span class="tag h">HIGH</span></td><td>Security</td><td>Hardcoded admin passkey fallback shipped in the client bundle</td></tr>
+<tr><td>F5</td><td><span class="tag h">HIGH</span></td><td>Security</td><td>Any signed-in user can overwrite market prices and community data</td></tr>
+<tr><td>F6</td><td><span class="tag h">HIGH</span></td><td>Security</td><td><code>viewCount</code> rule allows anonymous writes of arbitrary values</td></tr>
+<tr><td>F7</td><td><span class="tag h">HIGH</span></td><td>Reliability</td><td>62 swallowed exceptions — sync failures are invisible to the user</td></tr>
+<tr><td>F8</td><td><span class="tag m">MEDIUM</span></td><td>Correctness</td><td>18 <code>exhaustive-deps</code> warnings, 4 in the realtime playmat sync path</td></tr>
+<tr><td>F9</td><td><span class="tag m">MEDIUM</span></td><td>Performance</td><td>Broken <code>useMemo</code> — deps that change identity every render</td></tr>
+<tr><td>F10</td><td><span class="tag m">MEDIUM</span></td><td>Routing</td><td>Substring-based mode routing (<code>rawSearch.includes('admin')</code>)</td></tr>
+<tr><td>F11</td><td><span class="tag m">MEDIUM</span></td><td>Maintainability</td><td>Five files above 1,200 lines; largest is 2,838</td></tr>
+<tr><td>F12</td><td><span class="tag m">MEDIUM</span></td><td>Types</td><td>227 occurrences of <code>any</code> / <code>as any</code></td></tr>
+<tr><td>F13</td><td><span class="tag l">LOW</span></td><td>Build</td><td>Two <code>INEFFECTIVE_DYNAMIC_IMPORT</code> warnings — split intent defeated</td></tr>
+<tr><td>F14</td><td><span class="tag l">LOW</span></td><td>Data</td><td><code>no-dupe-keys</code> in translation generator — silent data loss</td></tr>
+<tr><td>F15</td><td><span class="tag l">LOW</span></td><td>Hygiene</td><td>93 <code>console.*</code> calls ship to production; 25 bogus regex escapes</td></tr>
+</table>
+
+<h2>3. Critical Findings</h2>
+
+<div class="f c">
+<h3><span class="tag c">CRITICAL</span> F1 — Playmat rooms have no access control</h3>
+<pre>// firestore.rules
+match /playmat_rooms/{roomCode} {
+  allow read, write: if true;
+}</pre>
+<p class="why"><b>Why it matters:</b> every other collection in this ruleset was carefully scoped (the file's own header comment celebrates replacing a catch-all), but the playmat path reintroduces exactly that hole. Any unauthenticated person on the internet can read, overwrite, or delete <em>any</em> live match state. Room codes are short and enumerable, so the attack does not even require the link.</p>
+<p>The room <code>pin</code> exists in <code>createInitialRoomState</code> (<code>src/services/playmatSyncService.ts:36</code>) but is only ever checked client-side — it is stored in the same document the attacker can read.</p>
+<div class="fix"><b>Recommended fix:</b> require <code>request.auth != null</code> for writes at minimum; better, store <code>hostUid</code> plus a hashed PIN on create and gate <code>update</code>/<code>delete</code> on the room's participant list. Add a <code>createdAt</code>-based TTL rule or a scheduled cleanup so abandoned rooms are not permanently writable. Validate that a write only touches the writer's own side (<code>p1</code>/<code>p2</code>).</div>
+</div>
+
+<div class="f c">
+<h3><span class="tag c">CRITICAL</span> F2 — The service worker precaches 436 MB</h3>
+<pre>PWA v1.3.0 — precache 9258 entries (436740.54 KiB)
+dist/card-images       440M
+dist/card-images-hd    1.8G
+dist/sw.js             1.0M</pre>
+<p class="why"><b>Why it matters:</b> <code>globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,json}']</code> in <code>vite.config.ts</code> sweeps <code>public/card-images/</code> and <code>public/card-images-hd/</code> into the precache manifest. On first load the SW attempts to download ~436 MB before it can activate. On mobile this exhausts the browser's storage quota, fails install, burns the user's data plan, and produces a 1 MB <code>sw.js</code> (Babel already warns it exceeds 500 KB). This directly contradicts the "PWA Excellence" goal in the project guidelines.</p>
+<p>Note the app already has a correct <code>CacheFirst</code> runtime rule for the R2 image CDN — so precaching local copies is redundant work on top of being harmful.</p>
+<div class="fix"><b>Recommended fix:</b> add <code>globIgnores: ['card-images/**', 'card-images-hd/**', 'set-boosters/**', 'data/**']</code> to the <code>workbox</code> block, and lower <code>maximumFileSizeToCacheInBytes</code> back toward the 2–5 MB range. Target a precache under 10 MB. Serve card images exclusively through the existing R2 runtime cache.</div>
+</div>
+
+<div class="f c">
+<h3><span class="tag c">CRITICAL</span> F3 — 13.2 MB main chunk, zero code-splitting</h3>
+<pre>13,161,516  dist/assets/index-*.js
+ 7,969,904  dist/assets/pokemonCardsEn-*.js
+ 6,580,101  dist/assets/market_prices-*.js
+   424,114  dist/assets/xlsx-*.js
+   295,150  dist/assets/index-*.css
+
+grep -rn "lazy(|Suspense" src  →  no matches</pre>
+<p class="why"><b>Why it matters:</b> <code>src/App.tsx</code> statically imports every top-level view — <code>GameBoard</code>, <code>CollectionTracker</code>, <code>DeckManager</code>, <code>AdminPage</code>, <code>CardMappingPage</code>, <code>SharedCollectionViewer</code>, <code>PlaymatHub</code>. A visitor opening a public share link therefore downloads the admin panel, the mapping studio, the OCR scanner (<code>tesseract.js</code>), the spreadsheet parser (<code>xlsx</code>), and the whole playmat engine. There is not a single <code>React.lazy</code> in the codebase.</p>
+<p>The two multi-megabyte JSON payloads (<code>pokemonCardsEn.json</code> at 336k lines, <code>market_prices.json</code> at 320k lines) are compiled into JS chunks rather than fetched on demand.</p>
+<div class="fix"><b>Recommended fix:</b> (1) wrap the six routed views in <code>React.lazy</code> + <code>Suspense</code> — this is the single highest-leverage change in the repo; (2) lazy-import <code>tesseract.js</code> and <code>xlsx</code> at the point of use, not at module scope; (3) move the large JSON datasets to <code>public/data/</code> and <code>fetch()</code> them, so they are cacheable and versionable independently of the bundle.</div>
+</div>
+
+<h2>4. High-Severity Findings</h2>
+
+<div class="f h">
+<h3><span class="tag h">HIGH</span> F4 — Admin passkey hardcoded in the client</h3>
+<pre>// src/utils/adminAuth.ts
+export function verifyAdminPasskey(passkey: string): boolean {
+  const envPasskey = (import.meta.env.VITE_ADMIN_PASSKEY as string | undefined)?.trim();
+  const defaultKey = 'poke911admin';        // ← ships in the bundle
+  if (envPasskey) return passkey.trim() === envPasskey;
+  return passkey.trim() === defaultKey;
+}</pre>
+<p class="why"><b>Why it matters:</b> the fallback string is a literal in the shipped JS, findable with one search of the bundle. Note that <code>VITE_</code> variables are <em>also</em> inlined at build time, so setting <code>VITE_ADMIN_PASSKEY</code> does not fix this — it just replaces one public string with another. Client-side passkey verification is decorative by construction.</p>
+<p class="dim"><b>Mitigating factor (for the record):</b> Firestore rules gate real admin data on <code>request.auth.token.email</code>, so the passkey unlocks the admin <em>UI</em> rather than the data. Any admin-only behaviour that is enforced purely in the client is nonetheless exposed.</p>
+<div class="fix"><b>Recommended fix:</b> delete the passkey path entirely and rely on the Google email allowlist, or move admin identity to a Firebase custom claim (<code>request.auth.token.admin == true</code>) verified server-side. An allowlist compiled into the client is acceptable for UI hints only.</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">HIGH</span> F5 — Any signed-in user can rewrite shared market data</h3>
+<pre>match /market_prices/{cardId}      { allow read: if true; allow write: if isSignedIn(); }
+match /community_stats/{docId}     { allow read: if true; allow write: if isSignedIn(); }
+match /community_card_suggestions/ { allow read: if true; allow write: if isSignedIn(); }
+match /community_card_pairings/    { allow read: if true; allow write: if isSignedIn(); }</pre>
+<p class="why"><b>Why it matters:</b> a single account (Google sign-up is free) can overwrite or delete the price of every card that every user sees, or poison the community pairing data that <code>setCloudApprovedMappings</code> feeds straight into the Thai↔English matcher at app boot (<code>src/App.tsx:19</code>). The in-code comment already flags this as a known gap — it deserves a fix, not a note.</p>
+<div class="fix"><b>Recommended fix:</b> make these collections read-only from the client. Route price updates and pairing approval through the admin path (<code>isAdmin()</code>) or a Cloud Function. If community submissions must stay open, split them: users write to a <code>*_pending</code> collection with per-document <code>ownerUid</code> and field-shape validation, and only an admin promotes to the canonical collection.</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">HIGH</span> F6 — <code>viewCount</code> rule is unauthenticated and unbounded</h3>
+<pre>allow update: if request.resource.data.diff(resource.data)
+                .affectedKeys().hasOnly(['viewCount']);</pre>
+<p class="why"><b>Why it matters:</b> there is no <code>isSignedIn()</code> guard and no value constraint, so any anonymous client can set <code>viewCount</code> to any number — including negative, a string, or a value that breaks the viewer's rendering. Because Firestore ORs allow rules, this sits beside the owner rules and widens them.</p>
+<div class="fix"><b>Recommended fix:</b> constrain the value — <code>request.resource.data.viewCount == resource.data.viewCount + 1 &amp;&amp; request.resource.data.viewCount is int</code> — or move counting to a Cloud Function / analytics event and drop the client write entirely.</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">HIGH</span> F7 — 62 swallowed exceptions hide sync failures</h3>
+<p>Unused catch bindings by file: <code>collectionStore.ts</code> ×17, <code>deckStore.ts</code> ×6, <code>communityStore.ts</code> ×3, <code>HPPresetPicker.tsx</code> ×3, plus the <code>scripts/</code> tree.</p>
+<p class="why"><b>Why it matters:</b> these sit on the cloud-sync paths. When <code>syncProfileToCloud</code> or <code>loadUserFromCloud</code> fails — permissions, quota, offline — the error is discarded and the app carries on as if the write succeeded. The store has a <code>SyncStatus</code> type including <code>'error'</code>, so the UI is ready to show this; the catch blocks simply never set it. Silent data-loss on a collection tracker is the worst possible failure mode for this product.</p>
+<div class="fix"><b>Recommended fix:</b> in every cloud-write catch, set <code>syncStatus: 'error'</code>, keep the message for a retry affordance, and log through a single reporting helper. The existing E2E suite already exercises these flows and would catch regressions. The <code>cloudLoadedUid</code> write guard shows the right instinct — extend it to failure reporting.</div>
+</div>
+
+<h2>5. Medium &amp; Low Findings</h2>
+
+<div class="f m">
+<h3><span class="tag m">MEDIUM</span> F8 — Stale-closure risk in the realtime playmat effects</h3>
+<pre>PlaymatDuelBoard.tsx:143   missing dep 'roomState'
+PlaymatDuelBoard.tsx:180   missing dep 'roomState.matchId'
+PlaymatMobileController.tsx:279  missing dep 'roomState.matchId'
+PlaymatMobileController.tsx:355  missing dep 'roomState'</pre>
+<p class="why">Of the 18 <code>exhaustive-deps</code> warnings, these four are the dangerous ones: they are on effects that own the Firestore subscription and match lifecycle. A stale <code>roomState</code> captured in a subscription callback produces exactly the intermittent "board didn't update / wrong match" bugs that are hardest to reproduce. The remaining 14 are ordinary mount-once effects and can be silenced with a justifying comment.</p>
+<div class="fix"><b>Recommended fix:</b> hold the live state in a ref for callback reads, or split the effect so the subscription depends only on <code>roomCode</code> and the handler reads through <code>useRef</code>. Add an E2E spec covering rematch (<code>matchId</code> increment) while both clients are connected.</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">MEDIUM</span> F9 — <code>useMemo</code> calls that never memoize</h3>
+<pre>CardCollectionModal.tsx:166,340  depends on `variants` — new identity every render
+DeckEditor.tsx:65 · DeckViewModal.tsx:39 · CardSwapModal.tsx:48 · MissingCardsModal.tsx:29
+                                 depend on `userCollectionCards` — same problem</pre>
+<p class="why">The dependency array changes identity on every render, so the memo recomputes every time — pure overhead plus the illusion of caching. These recomputations run over the user's full collection inside modal render paths, which is precisely where mobile jank shows up.</p>
+<div class="fix"><b>Recommended fix:</b> derive <code>userCollectionCards</code> and <code>variants</code> from the Zustand store with a stable selector (or memoize them one level up) rather than rebuilding the array inline in each consumer. One shared selector would fix all five sites at once.</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">MEDIUM</span> F10 — Substring routing is too permissive</h3>
+<pre>// src/App.tsx — getModeFromURL()
+if (path.includes('/admin') || hash.includes('admin') ||
+    modeParam === 'admin' || rawSearch.includes('admin')) return 'admin';</pre>
+<p class="why"><code>rawSearch.includes('admin')</code> matches <em>any</em> query string containing the substring — <code>?ref=badminton</code>, <code>?utm_campaign=admin-newsletter</code>, a share link with those characters. The same pattern repeats for <code>deck</code>, <code>playmat</code>, <code>mapping</code>, <code>battle</code>. It is a correctness and UX bug rather than a breach (the auth gate still holds), but it makes routing unpredictable and hard to test.</p>
+<div class="fix"><b>Recommended fix:</b> match on <code>modeParam</code> exact equality and on path segments (<code>path.split('/')</code>), and drop the <code>rawSearch.includes</code> branches. Consider adopting a real router — the hand-rolled logic here is already ~70 lines.</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">MEDIUM</span> F11 — God files</h3>
+<pre>2838  PlaymatMobileController.tsx      1287  DeckEditor.tsx
+2522  PlaymatDuelBoard.tsx             1214  PlaymatHostBoard.tsx
+1448  collectionStore.ts               1043  CardCollectionModal.tsx</pre>
+<p class="why">The playmat trio alone is ~6,500 lines of component code, and the two boards duplicate substantial board-rendering and QR/share logic. <code>collectionStore.ts</code> mixes profile CRUD, filters, import parsing, and four distinct cloud-sync strategies (<code>load</code>, <code>sync</code>, <code>upload</code>, <code>reconcile</code>, <code>forceSync</code>) in one store.</p>
+<div class="fix"><b>Recommended fix:</b> extract the shared board rendering into <code>components/playmat/board/</code> primitives, and split <code>collectionStore</code> into a state slice plus a <code>collectionCloudSync</code> service. The pure-reducer style already used in <code>playmatSyncService.applyPlaymatAction</code> is the right model — it is testable and already has 540 lines of tests behind it.</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">MEDIUM</span> F12 — 227 <code>any</code> escapes</h3>
+<p class="why">TypeScript 6 with <code>tsc -b</code> in the build is being undercut by 227 <code>any</code> / <code>as any</code> sites. Firebase error handling (<code>catch (error: any)</code> in <code>firebase.ts:47</code>) is a common one and is now unnecessary — <code>unknown</code> plus a narrow helper is both safer and shorter.</p>
+<div class="fix"><b>Recommended fix:</b> enable <code>useUnknownInCatchVariables</code>, add a <code>isFirebaseError(e)</code> type guard, and burn down <code>any</code> starting with the store and service layers where the payload shapes are already declared in <code>src/types/</code>.</div>
+</div>
+
+<div class="f l">
+<h3><span class="tag l">LOW</span> F13 — Dynamic imports defeated by static ones</h3>
+<pre>[INEFFECTIVE_DYNAMIC_IMPORT] src/store/collectionStore.ts is dynamically imported by
+  sharedCollectionService.ts but also statically imported by 6+ components
+[INEFFECTIVE_DYNAMIC_IMPORT] src/data/thaiEnglishCardMap.json is dynamically imported by
+  pricingStore.ts but also statically imported by MissingPricePanel, deckMapAssist,
+  thaiEnglishCardMatcher</pre>
+<p class="why">Someone deliberately wrote <code>await import(...)</code> to split these out, and a static import elsewhere silently cancels the benefit. The 178k-line <code>thaiEnglishCardMap.json</code> is the payload at stake.</p>
+<div class="fix"><b>Recommended fix:</b> make the map accessible only through an async accessor in <code>thaiEnglishCardMatcher</code> so no module can statically import the JSON, then keep the dynamic import in <code>pricingStore</code>.</div>
+</div>
+
+<div class="f l">
+<h3><span class="tag l">LOW</span> F14 — Duplicate key in the translation generator</h3>
+<pre>scripts/generate-translations.mjs:264  no-dupe-keys: Duplicate key 'prime catcher'</pre>
+<p class="why">The second definition silently wins and the first is dropped — a data-correctness bug in generated translations, not just style noise. It is the only <code>no-dupe-keys</code> hit in the repo, so it is almost certainly an unintentional paste.</p>
+<div class="fix"><b>Recommended fix:</b> reconcile the two entries by hand and promote <code>no-dupe-keys</code> to <code>error</code> in the oxlint config so this cannot recur.</div>
+</div>
+
+<div class="f l">
+<h3><span class="tag l">LOW</span> F15 — Production hygiene</h3>
+<ul>
+<li><b>93 <code>console.*</code> calls</b> reach the production bundle; several log Firestore errors and user state. Strip with <code>esbuild.drop</code> / <code>build.minify</code> options, or route through a level-aware logger.</li>
+<li><b>25 <code>no-useless-escape</code> warnings</b> in <code>cardOcrMatcher.ts</code>, <code>rarity.ts</code>, <code>ptcglDeckParser.ts</code>, <code>voiceCardParser.ts</code>. Harmless today, but they signal regexes assembled by trial and error — worth a review pass given how much parsing accuracy this app depends on.</li>
+<li><b><code>dangerouslySetInnerHTML</code></b> at <code>PlaymatHostBoard.tsx:1056</code> and <code>PlaymatDuelBoard.tsx:2297</code> injects <code>generateQrSvg()</code> output. The generator interpolates a URL into an SVG template (<code>qrCode.ts:331</code>) without escaping. Currently safe because the URL is app-constructed, but a user-controlled room code or player name reaching that URL would become SVG/XML injection. Escape <code>&amp; &lt; &gt; "</code> in the interpolated values.</li>
+</ul>
+</div>
+
+<h2>6. What Is Genuinely Good</h2>
+<div class="note" style="color:var(--txt)">
+<ul>
+<li><span class="tag ok">STRONG</span> <b>Test culture.</b> 31 unit test files / 232 tests and 22 E2E specs / 172 tests, including a dedicated <code>collectionStore.cloudGuard.test.ts</code> and a 540-line <code>playmatSyncService.test.ts</code>. The pure-reducer design of <code>applyPlaymatAction</code> is what makes that possible — it is the best-architected part of the codebase.</li>
+<li><span class="tag ok">STRONG</span> <b>The <code>cloudLoadedUid</code> guard.</b> The comment in <code>collectionStore.ts:22-29</code> explains a real, subtle boot-window data-loss bug and the guard that prevents it. This is exactly the standard the rest of the sync code should meet.</li>
+<li><span class="tag ok">STRONG</span> <b>Secret hygiene in <code>.gitignore</code>.</b> Service-account patterns, <code>*-adminsdk-*.json</code>, <code>*.secret.*</code>, and env files are all covered. No secrets found committed.</li>
+<li><span class="tag ok">GOOD</span> <b>Per-user Firestore scoping.</b> The <code>users/{userId}</code> rules are correct and the header comment documents what catch-all they replaced. The playmat gap (F1) is an omission from this same good work, not an absence of thought.</li>
+<li><span class="tag ok">GOOD</span> <b>Single-source versioning.</b> <code>__APP_VERSION__</code> is defined from <code>package.json</code> in <code>vite.config.ts</code>, so the release tag, manifest icons, and in-app version cannot drift.</li>
+<li><span class="tag ok">GOOD</span> <b>Offline-first instincts.</b> R2 and Pokémon CDN runtime caches are configured correctly; the QR generator is dependency-free and works offline. The precache misconfiguration (F2) is the one thing undermining an otherwise deliberate PWA design.</li>
+</ul>
+</div>
+
+<h2>7. Explicitly NOT a Vulnerability</h2>
+<div class="note">
+<p>To save the next reviewer time: the Firebase <code>apiKey</code> hardcoded in <code>src/utils/firebase.ts:14</code> is <b>not</b> a leaked secret. Firebase Web API keys are public identifiers by design; access control lives in Firestore rules. Please do not file this as a finding — the real rule-level issues are F1, F5 and F6 above.</p>
+<p>Likewise, <code>VITE_*</code> variables are compile-time inlined and visible in the bundle by design; the issue in F4 is that a <em>secret</em> was placed in one, not that the mechanism is broken.</p>
+</div>
+
+<h2>8. Suggested Remediation Order</h2>
+<table>
+<tr><th>Priority</th><th>Action</th><th>Effort</th><th>Impact</th></tr>
+<tr><td>1</td><td>F2 — add <code>globIgnores</code> for image directories in <code>vite.config.ts</code></td><td>~10 min</td><td>436 MB → &lt;10 MB precache; fixes PWA install on mobile</td></tr>
+<tr><td>2</td><td>F1 — lock down <code>playmat_rooms</code> rules + deploy</td><td>~1 h</td><td>Closes the only fully open collection</td></tr>
+<tr><td>3</td><td>F5 / F6 — make shared collections admin-write; constrain <code>viewCount</code></td><td>~2 h</td><td>Stops price &amp; community data poisoning</td></tr>
+<tr><td>4</td><td>F3 — <code>React.lazy</code> for the six routed views; lazy <code>tesseract.js</code> / <code>xlsx</code></td><td>~half day</td><td>Largest single win on load time</td></tr>
+<tr><td>5</td><td>F4 — remove the client-side passkey path</td><td>~30 min</td><td>Removes a false sense of admin security</td></tr>
+<tr><td>6</td><td>F7 — surface <code>syncStatus: 'error'</code> from every cloud catch block</td><td>~half day</td><td>Makes silent sync failures visible</td></tr>
+<tr><td>7</td><td>F8 — fix the four playmat effect dependency bugs + rematch E2E spec</td><td>~half day</td><td>Removes a class of intermittent sync bugs</td></tr>
+<tr><td>8</td><td>F9–F15 — memo selectors, routing, <code>any</code> burn-down, console strip</td><td>ongoing</td><td>Maintainability</td></tr>
+</table>
+
+<h2>9. Note for the Second Reviewer (Gemini)</h2>
+<div class="note">
+<p>Areas this review did <b>not</b> cover in depth, and which would be a useful complement:</p>
+<ul>
+<li><b>Domain-logic correctness</b> of the parsers — <code>voiceCardParser</code> (591 lines), <code>cardOcrMatcher</code>, <code>thaiEnglishCardMatcher</code>, <code>collectionExcelParser</code>. They are well tested, but the tests were not audited for whether they cover the right Thai-language edge cases.</li>
+<li><b>Pokémon TCG rules fidelity</b> in <code>applyPlaymatAction</code> and <code>gameStore</code> — prize counts, status-condition interactions, mulligan handling. That requires game-rules knowledge rather than code reading.</li>
+<li><b>Accessibility</b> — no ARIA/keyboard-navigation audit was performed on the ~90 components.</li>
+<li><b>The <code>scripts/</code> tree</b> (~20 Node scripts touching R2 and Firebase Admin) was only lint-scanned, not reviewed for correctness or credential handling.</li>
+</ul>
+<p>Everything asserted in this report was verified by running the command shown; no finding is inferred from reading alone.</p>
+</div>
+
+<footer>
+Generated by Claude (Opus 5) for PokeCountTracker v2.58.0 · 2026-09-10 · Baseline: lint 0 errors / 111 warnings · 232 unit tests · 172 E2E tests · build OK
+</footer>
+
+</div></body></html>

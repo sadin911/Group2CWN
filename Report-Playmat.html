@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Playmat — Handoff Brief for Gemini</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#182241;--line:#26314f;--txt:#e6ecff;--dim:#94a3c4;
+--crit:#ff4d6d;--high:#ff9f43;--med:#ffd166;--low:#7bdcb5;--ok:#4ade80;--acc:#6ea8ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.5px}
+h2{font-size:21px;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--dim);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card .n{font-size:22px;font-weight:800}
+.card .l{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+code{background:#0d1428;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#bfd4ff}
+pre{background:#0d1428;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:12.5px}
+.f{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:16px;margin:14px 0}
+.f.c{border-left-color:var(--crit)}.f.h{border-left-color:var(--high)}
+.f.m{border-left-color:var(--med)}.f.l{border-left-color:var(--low)}.f.g{border-left-color:var(--ok)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:.5px;margin-right:8px;vertical-align:2px;white-space:nowrap}
+.tag.c{background:rgba(255,77,109,.15);color:var(--crit)}
+.tag.h{background:rgba(255,159,67,.15);color:var(--high)}
+.tag.m{background:rgba(255,209,102,.13);color:var(--med)}
+.tag.l{background:rgba(123,220,181,.13);color:var(--low)}
+.tag.ok{background:rgba(74,222,128,.13);color:var(--ok)}
+.f p{margin:8px 0}.f .why{color:var(--dim)}
+.fix{background:var(--panel2);border-radius:8px;padding:10px 12px;margin-top:10px}
+.fix b{color:var(--acc)}
+.ac{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.25);border-radius:8px;padding:10px 12px;margin-top:10px}
+.ac b{color:var(--ok)}
+ul{margin:8px 0 8px 20px;padding:0}li{margin:4px 0}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;color:var(--dim)}
+.warn{background:rgba(255,77,109,.07);border:1px solid rgba(255,77,109,.3);border-radius:10px;padding:16px;margin:16px 0}
+.ok{color:var(--ok)}.bad{color:var(--crit)}.dim{color:var(--dim)}
+footer{margin-top:50px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+.del{color:var(--crit)}.add{color:var(--ok)}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>Digital Playmat — Handoff Brief</h1>
+<p class="sub">From: Claude (Opus 5) → To: Gemini · 2026-09-10 · Branch <code>fix/report-audit-issues</code> @ <code>1903c3d</code> (v2.59.0)<br>
+Scope: <code>src/components/playmat/</code>, <code>src/services/playmatSyncService.ts</code>, <code>src/types/playmat.ts</code>, and the <code>playmat_rooms</code> block of <code>firestore.rules</code> — 9,168 lines total.</p>
+
+<div class="warn">
+<h3 style="margin-top:0">⛔ อ่านก่อนเริ่ม — งานนี้มี 2 blocker ค้างจากรอบที่แล้ว อยู่ในไฟล์เดียวกัน</h3>
+<p>รอบก่อนแก้ <code>firestore.rules</code> แล้ว <b>ยังไม่ได้ deploy</b> และ rules ปัจจุบันจะทำให้สร้างห้อง Playmat ไม่ได้เลย (B1) แถมยังเปิดให้ใครก็ได้เขียนทับห้อง (B2) — รายละเอียดใน §1</p>
+<p style="margin-bottom:0"><b>อย่ารัน <code>npm run rules:deploy</code> จนกว่า B1 จะแก้เสร็จ</b> และเนื่องจากงานในเอกสารนี้แตะ <code>PlaymatRoomState</code> โดยตรง กรุณาแก้ B1+B2 ให้จบก่อน แล้วค่อยทำ P1–P5</p>
+</div>
+
+<h2>1. Blockers ค้างอยู่ (ต้องแก้ก่อน)</h2>
+
+<div class="f c">
+<h3><span class="tag c">B1</span> rules ปัจจุบันจะ deny การสร้างห้องทุกครั้ง</h3>
+<pre>// firestore.rules — เพิ่มมาในรอบที่แล้ว
+allow create: if request.resource.data.keys().hasAll(['roomCode', <span class="del">'mode'</span>])
+              && request.resource.data.roomCode == roomCode;</pre>
+<pre>$ grep -n "mode" src/types/playmat.ts
+(ไม่เจอ)</pre>
+<p class="why"><code>PlaymatRoomState</code> ไม่มี field <code>mode</code> เลย <code>hasAll</code> จึงเป็น false เสมอ และ <code>setDoc</code> บน doc ที่ยังไม่มีอยู่ = <code>create</code> ในสายตา rules → ถูก deny ทุกครั้ง</p>
+<p>อาการจะไม่โผล่ตอน dev เพราะ <code>createPlaymatRoom()</code> (<code>playmatSyncService.ts:693-702</code>) ใช้ <code>Promise.race</code> timeout 2 วิ + <code>catch</code> ที่แค่ <code>console.warn</code> และห้องยังอยู่ใน <code>memoryRooms</code> + BroadcastChannel → จอ host ทำงานปกติ แต่มือถือคนละเครื่องจะไม่เห็นห้องเลย</p>
+<div class="fix"><b>ทำ:</b> เพิ่ม <code>mode: 'solo' | 'duel' | 'host'</code> เข้า <code>PlaymatRoomState</code> และ set ใน <code>createInitialRoomState()</code> (<code>:33-54</code>) — ทางนี้ดีกว่าเพราะทำให้ rule มีความหมายจริง และ P5 ก็ต้องใช้ field นี้อยู่แล้ว <span class="dim">(ทางเลือกที่เร็วกว่า: ลบ <code>'mode'</code> ออกจาก <code>hasAll</code>)</span></div>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> emulator test ยืนยันว่า <code>createPlaymatRoom()</code> เขียนสำเร็จ (ดู §4)</div>
+</div>
+
+<div class="f c">
+<h3><span class="tag c">B2</span> ห้อง Playmat ยังเขียนทับได้จากทุกคนแบบไม่ต้องล็อกอิน</h3>
+<pre>allow read:   if true;
+allow update: if request.resource.data.roomCode == roomCode;</pre>
+<p class="why">เช็คแค่ว่า field <code>roomCode</code> ยังตรงกับ document ID — ซึ่ง<b>ไม่มี client ไหนเปลี่ยนค่านี้</b> และ <code>setDoc(..., {merge:true})</code> ก็พก field นี้ไปด้วยเสมอ → <b>เงื่อนไขเป็นจริงทุกกรณี</b> เท่ากับ <code>allow write: if true</code> เดิม room code สั้นและเดาได้ ใครก็แก้ HP / prize / <code>isTerminated</code> ของห้องคนอื่นได้</p>
+<div class="fix"><b>ทำ:</b> ใช้ <b>Firebase anonymous auth</b> — ได้ <code>request.auth.uid</code> จริงโดยไม่ต้องบังคับ Google sign-in ซึ่งตรงกับเจตนาเดิมที่อยากให้มือถือ guest เข้าได้ จากนั้นเก็บ <code>hostUid</code> + <code>participants[]</code> ตอน create แล้ว gate update ด้วย <code>request.auth.uid in resource.data.participants</code> และห้ามแก้ <code>roomCode</code> / <code>pin</code> / <code>createdAt</code> ผ่าน <code>affectedKeys()</code></div>
+</div>
+
+<h2>2. งานหลัก — เรียงตามลำดับที่ควรทำ</h2>
+
+<div class="f c">
+<h3><span class="tag c">P1</span> ย้าย <code>history</code> ออกจาก room document <span class="dim">— ผลตอบแทนสูงสุด</span></h3>
+<pre>// src/types/playmat.ts:75
+history?: Omit&lt;PlaymatRoomState, 'history'&gt;[];      // เก็บ snapshot เต็ม 15 ชุด
+
+// src/services/playmatSyncService.ts:88-95 — ทุก action push snapshot ใหม่
+const { history: _ignored, ...snapshotBase } = state;
+const historyStack = Array.isArray(state.history) ? [...state.history] : [];
+if (historyStack.length >= 15) historyStack.shift();
+historyStack.push(JSON.parse(JSON.stringify(snapshotBase)));
+next.history = historyStack;
+
+// :856-866 — แล้วเขียนทั้งก้อนกลับ Firestore ทุกครั้ง
+await setDoc(roomRef, sanitizeForFirestore({ ...nextState, serverUpdatedAt: serverTimestamp() }),
+             { merge: true });</pre>
+<p class="why"><b>ทุกการแตะ 1 ครั้ง = อัปโหลด board state × 16 ชุด</b> และ client ทุกเครื่องที่ subscribe ก็ดาวน์โหลดกลับทั้งก้อน</p>
+<p><b>ประมาณการขนาด</b> (คำนวณจาก <code>PlaymatCard</code> ที่มี <code>images.small</code> + <code>images.large</code> เป็น URL เต็ม ≈ 350 bytes/ใบ):</p>
+<pre>ช่วงท้ายเกม ต่อผู้เล่น: prizes 6 + active(+attached ~3) + bench 5(+attached ~10)
+                        + discard ~25 + lostZone ~5  ≈ 55 ใบ  ≈ 20 KB
+สองฝั่ง                                                        ≈ 40 KB
+× history 15 ชุด                                              ≈ 600 KB
+รวมต่อ 1 write                                                ≈ 640 KB   ← เพดาน Firestore = 1 MiB</pre>
+<p>เกมยาวๆ จะชนเพดาน 1 MiB แล้วเขียนไม่ได้อีกเลย โดย error ถูก <code>console.warn</code> กลืน ผู้เล่นจะเห็นกระดาน "ค้าง" โดยไม่มีข้อความอะไรบอก</p>
+<div class="fix"><b>ทำ:</b> undo ไม่จำเป็นต้อง sync ข้ามเครื่อง — เก็บ <code>history</code> ไว้ใน <code>memoryRooms</code> ฝั่ง host เท่านั้น (ทางที่ง่ายและถูกที่สุด) หรือถ้าต้องการให้ข้ามเครื่องจริงๆ ให้ย้ายไป subcollection <code>playmat_rooms/{code}/history/{seq}</code> แล้วเก็บแค่ <code>historyDepth: number</code> ไว้ใน doc หลัก<br>
+สำคัญ: <code>applyPlaymatAction</code> เป็น pure reducer อยู่แล้วและมี test 540 บรรทัด — แก้ตรงนี้แล้วรัน <code>npm test</code> จะเห็นทันทีว่า UNDO ยังทำงานไหม</div>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> ขนาด payload ต่อ action ลดลง ≥90% · <code>playmatSyncService.test.ts</code> ผ่านครบ 232 tests · UNDO ยังใช้ได้บนเครื่อง host</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">P2</span> เขียนเฉพาะ delta แทน <code>setDoc</code> ทั้งก้อน</h3>
+<p class="why">แม้ตัด history ออกแล้ว ทุก action ยังส่ง board ทั้งกระดาน (~40 KB) ทั้งที่การวางแดเมจเปลี่ยนแค่ตัวเลขเดียว Firestore คิดเงินต่อ document write และ latency ผูกกับขนาด payload</p>
+<div class="fix"><b>ทำ:</b> ใช้ <code>updateDoc()</code> กับ field path เจาะจง เช่น <code>updateDoc(ref, { 'p1.active.damageCounters': 30, updatedAt: ... })</code> โดย map จาก <code>PlaymatActionType</code> → field path ที่ action นั้นแตะจริง<br>
+<b>ทางเลือกที่ดีกว่าถ้ายอมเปลี่ยน transport:</b> <b>Firebase Realtime Database</b> เหมาะกับงานนี้มากกว่า Firestore — คิดเงินตาม bandwidth ไม่ใช่ต่อ write, เขียนแบบ path-level ได้โดยธรรมชาติ (<code>rooms/ABC/p1/active/damageCounters</code>) และมี <code>onDisconnect()</code> ให้ทำ presence ฟรี ส่วน Firestore เด่นเรื่อง query ซับซ้อน ซึ่ง playmat ไม่ใช้เลย <span class="dim">— เป็นข้อเสนอ ไม่ใช่ข้อบังคับ ถ้าเลือกทางนี้ควรคุยกับเจ้าของโปรเจกต์ก่อน</span></div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">P3</span> เพิ่ม Wake Lock + Haptics <span class="dim">— แรงน้อยสุด ผลต่อ UX มากสุด</span></h3>
+<pre>$ grep -rc "wakeLock\|vibrate\|screen.orientation" src/components/playmat/
+0   0   0        ← ไม่มีสักตัว</pre>
+<p class="why">คอนเซปต์ของฟีเจอร์คือผู้เล่นวางการ์ดจริงบนโต๊ะ แล้วใช้จอเป็นตัวช่วย — <b>จอมือถือจะดับกลางเกม</b> ทุก 30 วินาที ผู้เล่นต้องปลดล็อกใหม่ทุกตา นี่คือ UX killer อันดับหนึ่งของฟีเจอร์นี้ และแก้ได้ด้วยโค้ดสิบกว่าบรรทัด</p>
+<pre>// hooks/useWakeLock.ts — เรียกใน PlaymatDuelBoard / PlaymatMobileController / PlaymatHostBoard
+const sentinel = await navigator.wakeLock?.request('screen');
+// อย่าลืม re-acquire ตอน visibilitychange กลับมา visible — sentinel จะหลุดเมื่อสลับแอป</pre>
+<p><b>Haptics:</b> <code>navigator.vibrate()</code> ตอนวางการ์ด / จบเทิร์น / หยิบ prize — เพราะสายตาผู้เล่นอยู่ที่การ์ดจริงบนโต๊ะ ไม่ได้จ้องจอ feedback ทางสัมผัสจึงสำคัญกว่าปกติ</p>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> จอไม่ดับระหว่างอยู่ในหน้า playmat · re-acquire ได้หลังสลับแอปกลับมา · เพิ่ม E2E ที่ assert ว่า hook ถูกเรียก (Playwright mock <code>navigator.wakeLock</code> ได้)</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">P4</span> เปลี่ยน HTML5 drag-and-drop เป็น Pointer Events</h3>
+<pre>PlaymatDuelBoard.tsx:1674       draggable + onDragStart      ← HTML5 DnD
+PlaymatDuelBoard.tsx:1280,1386,1512,1552   onDragOver/onDrop
+PlaymatMobileController.tsx:1767  onPointerDown               ← คนละระบบกัน</pre>
+<p class="why"><b>HTML5 drag-and-drop ไม่ยิง event บนจอสัมผัสเลย</b> — แต่คอนเซปต์ของฟีเจอร์คือ "แท็บเล็ตเป็นกระดาน" ซึ่งเป็นอุปกรณ์ touch ล้วน แปลว่าบอร์ดหลักลากการ์ดไม่ได้บนอุปกรณ์เป้าหมายของตัวเอง แล้วยังมีระบบ input สองแบบที่ไม่ตรงกันระหว่างสองไฟล์</p>
+<div class="fix"><b>ทำ:</b> รวมเป็น Pointer Events ทั้งระบบ (<code>onPointerDown/Move/Up</code> + <code>setPointerCapture</code>) ซึ่งครอบคลุมทั้ง mouse / touch / stylus ในโค้ดชุดเดียว แล้วเอา logic นี้ไปไว้ในฮุกกลางที่ทั้งสามบอร์ดใช้ร่วมกัน (ต่อยอด <code>src/hooks/useDragSwap.ts</code> ที่มีอยู่แล้วแต่ playmat ไม่ได้ใช้)<br>
+เพิ่ม <code>touch-action: none</code> บนโซนที่ลากได้ ไม่งั้น browser จะแย่ง gesture ไปทำ scroll</div>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> E2E ใน project <code>[mobile]</code> ลากการ์ดจากมือขึ้น active ได้จริง (ตอนนี้ยังไม่มีเทสต์ที่ครอบคลุมการลาก)</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">P5</span> ยุบบอร์ดสามตัวที่ซ้ำกัน + ย้าย state ไปใช้ reducer ที่มีอยู่</h3>
+<pre>PlaymatDuelBoard.tsx        2,523 บรรทัด   30 useState
+PlaymatMobileController.tsx 2,839 บรรทัด   34 useState
+PlaymatHostBoard.tsx        1,214 บรรทัด   11 useState
+                            ─────────────
+                            6,576 บรรทัด   75 useState</pre>
+<p class="why">ทั้งสามวาดกระดาน TCG เดียวกัน ต่างกันแค่ input surface และมุมมอง ที่น่าเสียดายคือ <b>โปรเจกต์มี pure reducer ที่ออกแบบดีอยู่แล้ว</b> — <code>applyPlaymatAction()</code> พร้อม test 540 บรรทัด — แต่ชั้น UI ไม่ได้ใช้ กลับกระจายเป็น <code>useState</code> 75 ตัวแทน นี่คือต้นตอของบั๊ก stale-closure ที่เพิ่งแก้ไปในรอบก่อน (F8) และจะกลับมาอีกถ้าไม่จัดโครงสร้าง</p>
+<div class="fix"><b>ทำ:</b> แยก <code>components/playmat/board/</code> เป็น primitive ที่ใช้ร่วมกัน (<code>ActiveSlot</code>, <code>BenchRow</code>, <code>PrizeStack</code>, <code>DiscardPile</code>, <code>CardSprite</code>) แล้วให้สามบอร์ดเหลือแค่ layout + input ที่ต่างกัน ส่วน state ให้ยิงผ่าน <code>applyPlaymatAction</code> ทางเดียว<br>
+<b>ทำเป็นขั้นๆ</b> — อย่า rewrite ทีเดียวทั้ง 6,576 บรรทัด แนะนำเริ่มจาก <code>CardSprite</code> + <code>BenchRow</code> ซึ่งซ้ำชัดที่สุด แล้วรัน E2E คั่นทุกขั้น</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">P6</span> เพิ่มชั้น motion และ accessibility</h3>
+<pre>$ grep -rc "framer-motion" src/components/playmat/     → 0
+$ grep -rho "animate-[a-z]*" src/components/playmat/ | sort | uniq -c
+     16 animate-fade      12 animate-pulse      7 animate-in
+$ grep -rc "aria-" src/components/playmat/             → 0</pre>
+<p class="why"><code>framer-motion@13</code> อยู่ใน dependencies และ CLAUDE.md ระบุให้ใช้ แต่ทั้งฟีเจอร์ playmat ไม่มีสักที่ — ใช้แค่ utility class ของ Tailwind การ์ดจึง "กระโดด" ระหว่างโซนแทนที่จะเคลื่อนที่ ซึ่งในเกมการ์ดคือสิ่งที่ทำให้ผู้เล่นตามไม่ทันว่าอะไรเพิ่งเกิดขึ้น</p>
+<div class="fix"><b>ทำ:</b> ใช้ <code>&lt;motion.div layoutId={card.instanceId}&gt;</code> — framer-motion จะ animate การย้ายโซน (มือ→active→discard) ให้อัตโนมัติจาก <code>layoutId</code> ตัวเดียว ซึ่ง <code>PlaymatCard.instanceId</code> มีอยู่แล้วพอดี<br>
+เคารพ <code>prefers-reduced-motion</code> ด้วย · และเพิ่ม <code>aria-label</code> บนปุ่ม action กับ <code>role="status"</code> + <code>aria-live="polite"</code> บน <code>recentActionText</code> เพื่อประกาศสิ่งที่เพิ่งเกิดขึ้น</div>
+</div>
+
+<h2>3. สรุปลำดับงาน</h2>
+<table>
+<tr><th>#</th><th>งาน</th><th>ไฟล์หลัก</th><th>แรง</th><th>Blocking?</th></tr>
+<tr><td>B1</td><td>แก้ rule <code>create</code> ให้สร้างห้องได้</td><td><code>firestore.rules</code>, <code>types/playmat.ts</code></td><td>~15 น.</td><td class="bad">ใช่</td></tr>
+<tr><td>B2</td><td>ผูก write เข้ากับ identity (anonymous auth)</td><td><code>firestore.rules</code>, <code>playmatSyncService.ts</code></td><td>~2 ชม.</td><td class="bad">ใช่</td></tr>
+<tr><td>P1</td><td>ย้าย <code>history</code> ออกจาก room doc</td><td><code>playmatSyncService.ts:88-95</code></td><td>~2 ชม.</td><td>ควรทำก่อน P2</td></tr>
+<tr><td>P2</td><td>เขียน delta แทนทั้งก้อน</td><td><code>playmatSyncService.ts:856-866</code></td><td>~1 วัน</td><td>ไม่</td></tr>
+<tr><td>P3</td><td>Wake Lock + Haptics</td><td><code>hooks/</code> + 3 บอร์ด</td><td>~1 ชม.</td><td>ไม่</td></tr>
+<tr><td>P4</td><td>Pointer Events แทน HTML5 DnD</td><td><code>PlaymatDuelBoard.tsx</code></td><td>~1 วัน</td><td>ไม่</td></tr>
+<tr><td>P5</td><td>ยุบ 3 บอร์ด + ใช้ reducer</td><td><code>components/playmat/</code></td><td>~2-3 วัน</td><td>ไม่</td></tr>
+<tr><td>P6</td><td>framer-motion + a11y</td><td><code>components/playmat/</code></td><td>~1 วัน</td><td>ไม่</td></tr>
+</table>
+
+<h2>4. ข้อควรระวังเรื่องการตรวจสอบ <span class="dim">— สำคัญมากสำหรับงานชุดนี้</span></h2>
+<div class="note">
+<p><b>Quality gate ทั้ง 4 ตัวของโปรเจกต์นี้ไม่ครอบคลุม <code>firestore.rules</code> เลย</b> รอบที่แล้ว lint / build / vitest / playwright ผ่านหมด <b>ทั้งที่ rule ตัวใหม่จะทำให้สร้างห้องไม่ได้ใน production</b></p>
+<p>สาเหตุอยู่ใน log ของ Playwright เอง:</p>
+<pre>[console.warn] Firestore fetchPlaymatAllowedUsers skipped/failed: FirebaseError: Missing or insufficient permissions.
+[console.error] @firebase/firestore: Could not reach Cloud Firestore backend.
+              The client will operate in offline mode until it is able to successfully connect.</pre>
+<p>E2E รันโดยที่ Firestore ต่อไม่ได้ แล้วแอปก็ <code>catch</code> แล้ว fallback ไป <code>memoryRooms</code> + BroadcastChannel ทุกอย่างเลยเขียว โดยไม่ได้พิสูจน์อะไรเกี่ยวกับ rules เลยแม้แต่นิดเดียว</p>
+<p style="color:var(--txt)"><b>ดังนั้นสำหรับงานชุดนี้ ขอให้เพิ่ม emulator test ด้วย</b> — <code>firebase.json</code> ตอนนี้มีแค่ <code>firestore.rules</code> + <code>indexes</code> ยังไม่มี block <code>emulators</code> เลย:</p>
+<pre>npm i -D @firebase/rules-unit-testing</pre>
+<p>เคสที่ต้องมีอย่างน้อย 4 ข้อ:</p>
+<ul>
+<li><b>สร้างห้องสำเร็จ</b> — เคสนี้จะจับ B1 ได้ทันที</li>
+<li>คนที่ไม่ได้อยู่ในห้อง แก้ห้องคนอื่นไม่ได้ (B2)</li>
+<li>non-admin แก้ <code>market_prices.regular</code> ไม่ได้</li>
+<li><code>viewCount</code> เพิ่มได้ทีละ 1 เท่านั้น</li>
+</ul>
+<p>นี่คือสิ่งที่ทำให้ round นี้ต่างจาก round ที่แล้ว: <b>ถ้าไม่มี test ตัวนี้ เราจะไม่มีทางรู้ว่า rules ที่แก้ไปถูกหรือผิด จนกว่าจะมีผู้เล่นจริงเจอปัญหา</b></p>
+</div>
+
+<h2>5. หมายเหตุกระบวนการ</h2>
+<div class="note">
+<ul>
+<li><b>อย่าแก้ warning ด้วยการลบข้อมูล</b> — รอบที่แล้ว <code>no-dupe-keys</code> ถูกแก้โดยลบ <code>"prime catcher"</code> ทิ้งที่บรรทัด 360 ของ <code>scripts/generate-translations.mjs</code> บังเอิญค่าทั้งสองตรงกันเลยไม่เสียหาย แต่ถ้าค่าต่างกันคือข้อมูลหายเงียบ กรุณา diff ค่าก่อนตัดสินใจเสมอ</li>
+<li><b>ยังมี 4 finding ค้างจากรอบก่อน</b> ที่ไม่ได้อยู่ใน scope เอกสารนี้: F7 (catch block กลืน error 62 จุด — <span class="bad">อันนี้เกี่ยวกับ playmat โดยตรง</span> เพราะ <code>setDoc</code> ที่ล้มเหลวทั้งหมดในไฟล์นี้เงียบสนิท), F11 god files, F12 <code>any</code> 227 จุด, F15 <code>console.*</code> 93 จุด</li>
+<li><b>Baseline ก่อนเริ่มงาน</b> (ผมรันยืนยันเองแล้ว): lint 0 errors / 102 warnings · vitest 31 files 232 tests ผ่าน · playwright 172 ผ่าน 4 skipped · build OK · precache 28.2 MB / 46 entries</li>
+<li><b>E2E ที่ครอบคลุม playmat มี 12 เทสต์</b> ต่อโค้ด 9,168 บรรทัด — เมื่อทำ P4/P5 กรุณาเพิ่ม spec ใหม่ตามที่ CLAUDE.md กำหนด โดยเฉพาะเคสลากการ์ดบน touch และเคส rematch (<code>matchId</code> เพิ่ม) ขณะที่สองเครื่องเชื่อมต่ออยู่</li>
+<li><b>ยังไม่มี tag <code>v2.59.0</code></b> และ branch <code>fix/report-audit-issues</code> ยังไม่ merge — ตาม deploy guardrail ใน CLAUDE.md ควรกัน tag ไว้จนกว่า B1/B2 จะจบ เพราะ tag ควรชี้ไปยัง state ที่ deploy ได้จริง</li>
+</ul>
+</div>
+
+<footer>
+Handoff brief by Claude (Opus 5) · 2026-09-10 · v2.59.0 (<code>1903c3d</code>) · ทุกข้อมูลในเอกสารนี้มาจากการรันคำสั่งที่แสดงไว้จริง ไม่ได้อนุมานจากการอ่านโค้ดอย่างเดียว · ขนาด payload ใน P1 เป็นการประมาณการ พร้อมวิธีคำนวณกำกับไว้แล้ว
+</footer>
+
+</div></body></html>

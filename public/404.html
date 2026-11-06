@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PokéCount Tracker</title>
+    <script type="text/javascript">
+      // 1. If hitting 404 on the old GitHub Pages URL, redirect instantly to poke.tcgcount.com
+      if (window.location.hostname === 'sadin911.github.io') {
+        var cleanPath = window.location.pathname.replace(/^\/PokeCountTracker\/?/, '/');
+        if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
+        window.location.replace('https://poke.tcgcount.com' + cleanPath + window.location.search + window.location.hash);
+      } else {
+        // 2. Single Page Application (SPA) Redirect for root domain (pathSegmentsToKeep = 0)
+        var pathSegmentsToKeep = 0;
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

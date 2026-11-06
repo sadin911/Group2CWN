@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PokeCountTracker — Remediation Re-Review v2.59.0</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#182241;--line:#26314f;--txt:#e6ecff;--dim:#94a3c4;
+--crit:#ff4d6d;--high:#ff9f43;--med:#ffd166;--low:#7bdcb5;--ok:#4ade80;--acc:#6ea8ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.5px}
+h2{font-size:21px;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--dim);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card .n{font-size:22px;font-weight:800}
+.card .l{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+.card .d{font-size:12px;color:var(--dim);margin-top:2px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+code{background:#0d1428;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#bfd4ff}
+pre{background:#0d1428;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:12.5px}
+.f{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:16px;margin:14px 0}
+.f.c{border-left-color:var(--crit)}.f.h{border-left-color:var(--high)}
+.f.m{border-left-color:var(--med)}.f.l{border-left-color:var(--low)}.f.g{border-left-color:var(--ok)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:.5px;margin-right:8px;vertical-align:2px;white-space:nowrap}
+.tag.c{background:rgba(255,77,109,.15);color:var(--crit)}
+.tag.h{background:rgba(255,159,67,.15);color:var(--high)}
+.tag.m{background:rgba(255,209,102,.13);color:var(--med)}
+.tag.l{background:rgba(123,220,181,.13);color:var(--low)}
+.tag.ok{background:rgba(74,222,128,.13);color:var(--ok)}
+.f p{margin:8px 0}.f .why{color:var(--dim)}
+.fix{background:var(--panel2);border-radius:8px;padding:10px 12px;margin-top:10px}
+.fix b{color:var(--acc)}
+ul{margin:8px 0 8px 20px;padding:0}li{margin:4px 0}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;color:var(--dim)}
+.ok{color:var(--ok)}.bad{color:var(--crit)}.dim{color:var(--dim)}
+footer{margin-top:50px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+.del{color:var(--crit)}.add{color:var(--ok)}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>Remediation Re-Review — v2.59.0</h1>
+<p class="sub">Reviewer: Claude (Opus 5) · Date: 2026-09-10 · Reviewing commits <code>e11cb82</code>, <code>664a584</code>, <code>1903c3d</code> against the 15 findings in <code>Report.html</code> (v2.58.0 baseline <code>7bee448</code>).</p>
+
+<h2>1. Verdict</h2>
+<p><b>Good remediation work on the performance side — the two biggest wins landed cleanly.</b> The precache went from 436 MB to 28.2 MB and the main chunk from 13.2 MB to 4.8 MB. F4, F6, F8 and F10 are properly fixed.</p>
+<p><b>But this must not ship as-is.</b> Three problems in the diff:</p>
+<ul>
+<li class="bad"><b>F1 is not fixed and the new rule introduces a production-breaking regression</b> — the <code>create</code> rule requires a <code>mode</code> field that <code>PlaymatRoomState</code> does not have, so deploying these rules will make <em>every playmat room creation fail</em>. Meanwhile the <code>update</code> rule still lets anonymous users overwrite any room.</li>
+<li class="bad"><b>F14 was "fixed" by deleting data</b> — the duplicate key was resolved by removing the translation entry rather than reconciling it.</li>
+<li><b>F5 tightening will silently break sale logging</b> for any card whose Firestore price document does not already exist.</li>
+</ul>
+<p>All quality gates pass, but note that they <em>cannot</em> catch the rules regression: the E2E suite runs against an unreachable Firestore (the log is full of <code>Missing or insufficient permissions</code> and <code>Could not reach Cloud Firestore backend</code>), so the app silently falls back to local state and the tests go green regardless of what the rules say.</p>
+
+<div class="grid">
+<div class="card"><div class="n ok">6 fixed</div><div class="l">F4 F6 F8 F10 + F2 F3</div></div>
+<div class="card"><div class="n" style="color:var(--med)">3 partial</div><div class="l">F5 F9 F13</div></div>
+<div class="card"><div class="n" style="color:var(--crit)">2 regressed</div><div class="l">F1 F14</div></div>
+<div class="card"><div class="n dim">4 untouched</div><div class="l">F7 F11 F12 F15</div></div>
+</div>
+
+<h3>Gates re-run independently for this review</h3>
+<pre>npm run lint        → 0 errors, 102 warnings (was 111)
+npm run build       → ✓ built in 11.37s
+npm test            → 31 files / 232 tests passed
+npx playwright test → 172 passed, 4 skipped (3.7m)</pre>
+
+<h2>2. Blocking Issues</h2>
+
+<div class="f c">
+<h3><span class="tag c">REGRESSION</span> R1 — The new playmat <code>create</code> rule will reject every room</h3>
+<pre>// firestore.rules (new)
+allow create: if request.resource.data.keys().hasAll(['roomCode', 'mode'])
+              && request.resource.data.roomCode == roomCode;</pre>
+<pre>$ grep -n "mode" src/types/playmat.ts
+(no matches)</pre>
+<p class="why"><b>Why it matters:</b> <code>createInitialRoomState()</code> (<code>playmatSyncService.ts:33-54</code>) builds the document from <code>PlaymatRoomState</code>, which has <code>roomCode</code>, <code>pin</code>, <code>matchId</code>, <code>currentTurn</code>, <code>setupPhase</code>… but <b>no <code>mode</code> key</b>. <code>hasAll(['roomCode','mode'])</code> is therefore always false, and <code>createPlaymatRoom()</code>'s <code>setDoc</code> on a non-existent document — which Firestore evaluates as a <code>create</code> — is denied.</p>
+<p>The failure will be invisible during development because <code>createPlaymatRoom</code> wraps the write in <code>Promise.race</code> with a 2-second timeout and a <code>catch</code> that only logs, and the room still exists in <code>memoryRooms</code> and BroadcastChannel. Locally the host's own screen works fine; the phone controller on a different device simply never sees the room.</p>
+<div class="fix"><b>Fix (choose one):</b> either add a real <code>mode: 'solo' | 'duel'</code> field to <code>PlaymatRoomState</code> and set it in <code>createInitialRoomState</code> — which is genuinely useful and makes the rule meaningful — or drop <code>'mode'</code> from the <code>hasAll</code> list. Do not deploy the rules until this is resolved.</div>
+</div>
+
+<div class="f c">
+<h3><span class="tag c">NOT FIXED</span> R2 — Playmat rooms are still world-writable (original F1)</h3>
+<pre>allow read:   if true;
+allow update: if request.resource.data.roomCode == roomCode;</pre>
+<p class="why"><b>Why it matters:</b> the <code>update</code> rule checks only that the document's own <code>roomCode</code> field still equals its document ID. That field is never changed by any client, and with <code>setDoc(..., {merge:true})</code> the merged <code>request.resource.data</code> always carries it — so the condition is <b>true for every possible write, from every unauthenticated client</b>. An anonymous attacker can still overwrite HP, prizes, hands, and <code>isTerminated</code> on any room, and room codes remain short and enumerable. This is functionally the same hole as <code>allow write: if true</code>, just harder to notice.</p>
+<p>The <code>delete: if isAdmin()</code> and the read-integrity intent are good; the write path is where the control has to be.</p>
+<div class="fix"><b>Fix:</b> bind writes to identity. Add <code>hostUid</code> (and a joined-player list) on create, then gate <code>update</code> on <code>request.auth.uid in resource.data.participants</code>. If guest phones must work without Google sign-in, use Firebase <b>anonymous auth</b> — it gives every controller a real <code>request.auth.uid</code> with no sign-in UI, which is exactly the case this rule was trying to serve. At minimum require <code>request.auth != null</code> and forbid changing <code>roomCode</code>, <code>pin</code> and <code>createdAt</code> via <code>affectedKeys()</code>.</div>
+</div>
+
+<div class="f c">
+<h3><span class="tag c">REGRESSION</span> R3 — F14 was resolved by deleting a translation</h3>
+<pre>// scripts/generate-translations.mjs
+-    "prime catcher": "ไพรม์แคชเชอร์",     <span class="del">← line 360 deleted</span>
+
+$ grep -n "prime catcher" scripts/generate-translations.mjs
+264:    "prime catcher": "ไพรม์แคชเชอร์",   <span class="dim">← the survivor</span></pre>
+<p class="why"><b>Why it matters:</b> the lint warning is gone, but the fix removed the second entry without checking whether the two values differed. In this instance both happen to be the identical Thai string, so <em>no data was actually lost</em> — but the method was to delete until the linter went quiet, not to reconcile. Applied to any of the other duplicate-prone data files, the same approach silently drops the correct translation and keeps the wrong one.</p>
+<div class="fix"><b>Fix:</b> no code change needed here — the outcome is accidentally correct. But please verify by diffing the two values before deleting next time, and promote <code>no-dupe-keys</code> to <code>error</code> in the oxlint config so the generator cannot regress silently.</div>
+</div>
+
+<h2>3. Partially Addressed</h2>
+
+<div class="f h">
+<h3><span class="tag h">PARTIAL</span> R4 — The <code>market_prices</code> rule will deny sale logging on new cards (F5)</h3>
+<pre>allow write: if isAdmin()
+             || (isSignedIn()
+                 && request.resource.data.diff(resource.data)
+                    .affectedKeys()
+                    .hasOnly(['lastSold','lastSoldDate','recentSales','updatedAt']));</pre>
+<p class="why">The direction is right and the admin split is exactly what was asked for. Two gaps:</p>
+<ul>
+<li><b>Creates fail.</b> When the document does not exist yet, <code>resource</code> is <code>null</code> and <code>resource.data</code> throws, so the rule denies. Firestore's <code>market_prices</code> collection is sparse — the app's primary source is the static <code>public/data/market_prices.json</code> (<code>pricingStore.ts:218</code>) — so the <em>first</em> sale logged for any card hits this path.</li>
+<li><b>Full-document merges fail.</b> <code>logCardSaleTransaction</code> (<code>pricingStore.ts:463-467</code>) writes the entire <code>updated</code> object — <code>cardId</code>, <code>regular</code>, <code>foil</code>, <code>psa10</code> included. Whenever the local values (from the static JSON) differ from what is in Firestore, those keys land in <code>affectedKeys()</code> and the write is denied.</li>
+</ul>
+<p>Both failures are swallowed by <code>catch (err) { console.warn(...) }</code> — the user records a sale, sees it in the UI, and it never persists. This is F7 (unfixed) turning a rules tightening into silent data loss.</p>
+<div class="fix"><b>Fix:</b> guard the create case with <code>(!exists(/databases/$(database)/documents/market_prices/$(cardId)) &amp;&amp; request.resource.data.keys().hasOnly([...]))</code>, and change <code>logCardSaleTransaction</code> to write only the four sale fields via <code>updateDoc</code> instead of merging the whole record. Then surface the failure in the UI rather than <code>console.warn</code>.</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">PARTIAL</span> R5 — Two of the five broken <code>useMemo</code> sites remain (F9)</h3>
+<pre>Fixed:     CardCollectionModal (DEFAULT_CARD_VARIANTS), DeckEditor, DeckViewModal (EMPTY_CARDS)
+Remaining: src/components/deck/CardSwapModal.tsx:48
+           src/components/deck/MissingCardsModal.tsx:29</pre>
+<p class="why">The module-level-constant pattern is the correct fix and works. It was just not applied to the last two files, which still allocate <code>activeProfile?.cards || {}</code> inline. Note also that <code>EMPTY_CARDS: Record&lt;string, any&gt;</code> adds two new <code>any</code>s (F12) — <code>CollectionCardEntry</code> is already declared in <code>src/types/collection.ts</code> and should be used.</p>
+<div class="fix"><b>Fix:</b> apply the same constant in the two remaining files. Better still, add a shared selector — <code>useCollectionStore(s =&gt; s.profiles[s.activeProfileId]?.cards ?? EMPTY_CARDS)</code> exported once — so all five consumers share one stable reference.</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">PARTIAL</span> R6 — One of two ineffective dynamic imports remains (F13)</h3>
+<pre>[INEFFECTIVE_DYNAMIC_IMPORT] src/data/thaiEnglishCardMap.json is dynamically imported by
+  pricingStore.ts but also statically imported by MissingPricePanel, deckMapAssist,
+  thaiEnglishCardMatcher</pre>
+<p class="why">The <code>collectionStore</code> warning is gone (it is now its own 7 MB chunk, correctly shared). The 178k-line <code>thaiEnglishCardMap.json</code> is still pulled in statically by three modules, defeating the deliberate <code>await import()</code> in <code>pricingStore</code>.</p>
+<div class="fix"><b>Fix:</b> make the JSON reachable only through an async accessor inside <code>thaiEnglishCardMatcher</code>, so no module can import it statically.</div>
+</div>
+
+<h2>4. Confirmed Fixed</h2>
+
+<div class="f g">
+<h3><span class="tag ok">FIXED</span> F2 — Precache 436 MB → 28.2 MB</h3>
+<pre>Before:  precache  9258 entries (436740.54 KiB)
+After:   precache    46 entries ( 28864.20 KiB)</pre>
+<p><code>globIgnores</code> for <code>card-images/**</code>, <code>card-images-hd/**</code>, <code>set-boosters/**</code>, <code>data/**</code> and <code>**/*.map</code>, plus <code>maximumFileSizeToCacheInBytes</code> lowered to 15 MB. A 93.4% reduction and the single most valuable change in the release.</p>
+<p class="dim"><b>Follow-up (not blocking):</b> 28 MB is still large for a first install, and it is now dominated by the two data chunks — <code>pokemonCardsEn</code> (8.0 MB) and <code>market_prices</code> (6.6 MB). Moving those to <code>public/data/</code> and fetching them at runtime would take the precache under 10 MB.</p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">FIXED</span> F3 — Main chunk 13.2 MB → 4.8 MB, real route splitting</h3>
+<pre>index.js       13,161,516  →  4,825,323   (-63%)
+new chunks:  PlaymatHub 218 KB · DeckManager 151 KB · CollectionTracker 106 KB
+             AdminPage 78 KB · CardCollectionModal 112 KB · collectionStore 7.0 MB (shared)</pre>
+<p>All seven routed views are now <code>React.lazy</code> with a shared <code>Suspense</code> boundary and a themed Thai loading fallback. Correctly implemented, including the <code>.then(m =&gt; ({default: m.X}))</code> shim for named exports.</p>
+<p class="dim"><b>Follow-up:</b> <code>tesseract.js</code> and <code>xlsx</code> were part of the original recommendation and are still imported at module scope. The 7 MB <code>collectionStore</code> chunk is now the largest single dependency — worth checking whether the <code>pokemonNames.json</code> import inside it can be deferred.</p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">FIXED</span> F4 — Hardcoded passkey no longer ships</h3>
+<pre>if (import.meta.env.DEV || import.meta.env.MODE === 'test') {
+  return passkey.trim() === 'poke911admin';
+}
+return false;</pre>
+<p>Correct: the literal is dead-code-eliminated from the production bundle, and production now genuinely requires <code>VITE_ADMIN_PASSKEY</code> or the Google email allowlist. The comment explains the intent well.</p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">FIXED</span> F6 — <code>viewCount</code> is now increment-only and typed</h3>
+<pre>&& request.resource.data.viewCount is int
+&& request.resource.data.viewCount == resource.data.viewCount + 1;</pre>
+<p>Exactly the recommended shape. Anonymous writes remain allowed, which is intentional for public share links, and the value can no longer be forged. Also confirm the client uses a real increment; if it writes a locally-computed value from a stale read, concurrent viewers will get denied writes — harmless, but it means the counter under-counts.</p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">FIXED</span> F8 — The four playmat effect-dependency bugs</h3>
+<pre>const matchId = roomState?.matchId;
+useEffect(() => { ... }, [matchId, roomCode, role]);        // was [roomState?.matchId, ...]
+useEffect(() => { ... }, [roomCode, role, cardDataMap, roomState?.matchId]);  // session restore</pre>
+<p>Hoisting <code>matchId</code> to a primitive and adding it to the session-restore deps is the right pattern, and the <code>exhaustive-deps</code> count dropped from 18 to 10 with all four playmat warnings cleared.</p>
+<p class="dim"><b>One behavioural note (low):</b> the guard changed from <code>if (!roomState) return</code> to <code>if (!matchId) return</code>. Any legacy room document written before <code>matchId</code> existed now skips the rematch handler entirely, where before it defaulted to <code>1</code>. Use <code>if (matchId === undefined) return</code>, or default at read time, if old rooms may still be live.</p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">FIXED</span> F10 — Routing is now segment-exact</h3>
+<pre>const isMode = (name, aliases = []) => {
+  const names = [name, ...aliases];
+  return (modeParam && names.includes(modeParam)) ||
+         names.some(n => pathSegments.includes(n) || hash === n || hash.startsWith(`${n}/`));
+};</pre>
+<p>The <code>rawSearch.includes()</code> branches are gone and ~70 lines collapsed into six readable calls. <code>?ref=badminton</code> no longer opens the admin panel. This is a genuine improvement in both correctness and readability.</p>
+</div>
+
+<div class="f g">
+<h3><span class="tag ok">ADEQUATE</span> F15 (QR) — <code>generateQrSvg</code> hardening</h3>
+<p>The fix coerces and floors <code>size</code> and <code>margin</code> before interpolation. On re-reading the code, the <code>text</code> argument never reaches the SVG string — it only feeds <code>generateQrMatrix()</code>, whose boolean output becomes path coordinates — so the injection concern I raised was overstated. The numeric hardening is still a reasonable defensive addition. <b>No further action needed.</b></p>
+</div>
+
+<h2>5. Not Addressed (carried forward)</h2>
+<table>
+<tr><th>ID</th><th>Finding</th><th>Status</th><th>Note</th></tr>
+<tr><td>F7</td><td><span class="tag h">HIGH</span> 62 swallowed exceptions</td><td class="bad">Untouched</td><td>Now actively harmful — the F5 rules tightening (R4) produces exactly the silent-failure scenario this finding warned about. This should be the <b>top priority after the blockers</b>.</td></tr>
+<tr><td>F11</td><td><span class="tag m">MED</span> Five files over 1,200 lines</td><td class="dim">Untouched</td><td>Reasonable to defer; not a release risk.</td></tr>
+<tr><td>F12</td><td><span class="tag m">MED</span> 227 <code>any</code></td><td class="dim">+2 added</td><td>The two <code>EMPTY_CARDS: Record&lt;string, any&gt;</code> constants should use <code>CollectionCardEntry</code>.</td></tr>
+<tr><td>F15</td><td><span class="tag l">LOW</span> 93 <code>console.*</code>, 25 regex escapes</td><td class="dim">Untouched</td><td>Warning counts unchanged: 62 <code>no-unused-vars</code>, 25 <code>no-useless-escape</code>.</td></tr>
+</table>
+
+<h2>6. A Note on the Test Gates</h2>
+<div class="note">
+<p>All four gates passed both before and after this change set — <b>including with the broken <code>create</code> rule in place</b>. That is worth understanding rather than trusting.</p>
+<p>The Playwright run's own output shows why:</p>
+<pre>[console.warn] Firestore fetchPlaymatAllowedUsers skipped/failed: FirebaseError: Missing or insufficient permissions.
+[console.error] @firebase/firestore: Could not reach Cloud Firestore backend.
+              The client will operate in offline mode until it is able to successfully connect.</pre>
+<p>The E2E suite exercises the app against an unreachable Firestore, and the app's <code>catch</code>-and-fall-back-to-local design (F7) means everything renders correctly anyway. So the suite validates UI behaviour but provides <b>zero coverage of <code>firestore.rules</code></b>. Any rules change is currently unverified until it reaches production.</p>
+<p><b>Recommendation:</b> add <code>@firebase/rules-unit-testing</code> with the Firestore emulator and write assertions for the cases that matter — an anonymous user cannot overwrite another host's room, a non-admin cannot change <code>market_prices.regular</code>, <code>viewCount</code> can only be incremented by one, and <b>a legitimate room creation succeeds</b>. That last one would have caught R1 immediately. This is a small, high-leverage addition given the security surface this app now has.</p>
+</div>
+
+<h2>7. Recommended Next Steps</h2>
+<table>
+<tr><th>#</th><th>Action</th><th>Effort</th><th>Blocking?</th></tr>
+<tr><td>1</td><td><b>Do not run <code>npm run rules:deploy</code> yet.</b> Fix R1 — add <code>mode</code> to <code>PlaymatRoomState</code> or remove it from <code>hasAll</code>.</td><td>~15 min</td><td class="bad">Yes</td></tr>
+<tr><td>2</td><td>R2 — bind playmat writes to an identity (Firebase anonymous auth + <code>hostUid</code>/participants)</td><td>~2 h</td><td class="bad">Yes</td></tr>
+<tr><td>3</td><td>R4 — allow the create case for <code>market_prices</code> and narrow <code>logCardSaleTransaction</code> to the four sale fields</td><td>~1 h</td><td>Yes</td></tr>
+<tr><td>4</td><td>Add Firestore emulator rules tests (see §6)</td><td>~half day</td><td>Strongly advised</td></tr>
+<tr><td>5</td><td>F7 — surface <code>syncStatus: 'error'</code> from every cloud catch block</td><td>~half day</td><td>No</td></tr>
+<tr><td>6</td><td>R5 / R6 — finish the last two <code>useMemo</code> sites and the <code>thaiEnglishCardMap</code> import</td><td>~1 h</td><td>No</td></tr>
+<tr><td>7</td><td>Push the precache under 10 MB by fetching the two large JSON datasets at runtime</td><td>~half day</td><td>No</td></tr>
+</table>
+
+<p class="dim" style="margin-top:20px">On process: <code>package.json</code> was bumped to 2.59.0 and logged as a release in <code>AI_LOG.md</code>, but the version is still on the <code>fix/report-audit-issues</code> branch and no <code>v2.59.0</code> annotated tag was created. Per the project's deploy guardrails, hold the tag and the merge until the three blocking items above are resolved — the tag should mark a state that is actually safe to deploy.</p>
+
+<footer>
+Re-review by Claude (Opus 5) · 2026-09-10 · v2.59.0 (<code>1903c3d</code>) vs v2.58.0 (<code>7bee448</code>) · Gates verified independently: lint 0 errors / 102 warnings · 232 unit tests · 172 E2E tests · build OK · precache 28.2 MB / 46 entries
+</footer>
+
+</div></body></html>

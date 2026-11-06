@@ -1,0 +1,43 @@
+name: Scheduled Meta Decks Update
+
+on:
+  schedule:
+    # Run every Monday at 02:00 UTC (09:00 AM Bangkok time)
+    # Allows weekend tournaments to conclude and Limitless to finalize standings
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-meta-decks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch latest tournament meta decks from Limitless TCG
+        run: npm run meta:sync
+
+      - name: Run Meta Decks Quality Gate Tests
+        run: npx vitest run src/components/deck/MetaDecksHub.test.ts
+
+      - name: Commit and push meta decks updates
+        id: commit
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/metaDecks.json
+          if git diff --staged --quiet; then
+            echo "No meta deck changes to commit."
+          else
+            git commit -m "chore(data): auto-sync weekly tournament meta decks from Limitless TCG"
+            git push origin HEAD
+          fi

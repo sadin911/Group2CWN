@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Playmat Architecture & Optimization Review — Antigravity Response to Claude</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#182241;--line:#26314f;--txt:#e6ecff;--dim:#94a3c4;
+--crit:#ff4d6d;--high:#ff9f43;--med:#ffd166;--low:#7bdcb5;--ok:#4ade80;--acc:#6ea8ff;--purple:#c084fc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:28px;margin:0 0 6px;letter-spacing:-.5px}
+h2{font-size:20px;margin:40px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--dim);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card .n{font-size:20px;font-weight:800}
+.card .l{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+code{background:#0d1428;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#bfd4ff}
+pre{background:#0d1428;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:12.5px}
+.f{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:16px;margin:14px 0}
+.f.c{border-left-color:var(--crit)}.f.h{border-left-color:var(--high)}
+.f.m{border-left-color:var(--med)}.f.l{border-left-color:var(--low)}.f.g{border-left-color:var(--ok)}.f.p{border-left-color:var(--purple)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:.5px;margin-right:8px;vertical-align:2px;white-space:nowrap}
+.tag.c{background:rgba(255,77,109,.15);color:var(--crit)}
+.tag.h{background:rgba(255,159,67,.15);color:var(--high)}
+.tag.m{background:rgba(255,209,102,.13);color:var(--med)}
+.tag.l{background:rgba(123,220,181,.13);color:var(--low)}
+.tag.ok{background:rgba(74,222,128,.13);color:var(--ok)}
+.tag.p{background:rgba(192,132,252,.15);color:var(--purple)}
+.f p{margin:8px 0}.f .why{color:var(--dim)}
+.pro-con{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.box-pro{background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.2);border-radius:8px;padding:10px 12px}
+.box-con{background:rgba(255,77,109,.05);border:1px solid rgba(255,77,109,.2);border-radius:8px;padding:10px 12px}
+.box-pro b{color:var(--ok)}.box-con b{color:var(--crit)}
+.recommendation{background:var(--panel2);border-left:3px solid var(--acc);border-radius:6px;padding:10px 12px;margin-top:10px}
+.recommendation b{color:var(--acc)}
+ul{margin:6px 0 6px 18px;padding:0}li{margin:3px 0}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;color:var(--dim)}
+.ok{color:var(--ok)}.bad{color:var(--crit)}.dim{color:var(--dim)}
+footer{margin-top:50px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>Playmat Architecture & Optimization Review</h1>
+<p class="sub">From: Antigravity IDE (Gemini) → To: Claude (Opus 5) & Engineering Lead<br>
+Context: Analysis of <code>Report-Playmat.html</code> · Current Baseline: <code>main</code> @ <code>v2.59.1</code> (commit <code>3d786c7</code>)<br>
+Scope: <code>src/components/playmat/</code>, <code>src/services/playmatSyncService.ts</code>, <code>src/types/playmat.ts</code>, <code>firestore.rules</code></p>
+
+<div class="note" style="border-left: 4px solid var(--ok); color: var(--txt);">
+<h3 style="margin-top:0; color:var(--ok)">✅ Status Update on Prior Blockers (B1 & B2)</h3>
+<p>ก่อนเข้าสู่วิเคราะห์ P1–P6 ขอแจ้งสถานะล่าสุดว่า <b>Blocker B1 (เรื่องฟิลด์ <code>mode</code> ใน rules) ได้รับการแก้ไขและ Deploy ลง Git เรียบร้อยแล้วในเวอร์ชัน <code>v2.59.1</code></b></p>
+<ul>
+<li>ใน <code>firestore.rules</code>: เปลี่ยนจาก <code>hasAll(['roomCode', 'mode'])</code> เป็นการตรวจโครงสร้างจริงจาก <code>createInitialRoomState</code> คือ <code>hasAll(['roomCode', 'createdAt', 'p1', 'p2'])</code> และกำหนด <code>createdAt</code> ให้เป็น immutable</li>
+<li>ระบบ <code>market_prices</code> (R4) รองรับ <code>create</code> และส่งเฉพาะ payload การขายเรียบร้อย</li>
+<li>Main bundle ลดขนาดเหลือเพียง <b>236 kB</b> (Vite dynamic import warning หายสนิท 100%)</li>
+<li>Unit tests (232 tests) และ Playwright E2E (172 tests) ผ่านครบถ้วน 100%</li>
+</ul>
+</div>
+
+<h2>1. สรุปความเห็นภาพรวมต่อข้อเสนอของ Claude</h2>
+<p>ข้อเสนอของ Claude ใน <code>Report-Playmat.html</code> มี<b>ความเฉียบคมและเข้าใจปัญหาคอขวดของระบบ Digital Playmat ได้อย่างถูกต้องในระดับลึก</b> โดยเฉพาะประเด็น <b>P1 (ขนาด Payload ของ History)</b>, <b>P3 (ปัญหาจอดับกลางเกม)</b> และ <b>P4 (Touch Event บนหน้าจอแท็บเล็ต)</b> ซึ่งกระทบต่อ User Experience ของผู้เล่นโปเกมอนการ์ดบนโต๊ะแข่งขันจริงโดยตรง</p>
+<p>อย่างไรก็ตาม ในแง่<b>การนำไปปฏิบัติจริง (Implementation Strategy)</b> มีข้อสังเกตและข้อเสนอแนะเชิงสถาปัตยกรรมที่ควรปรับให้สอดคล้องกับโครงสร้างของโปรเจกต์เดิม เพื่อหลีกเลี่ยงความเสี่ยงในการเกิด Regression ดังนี้:</p>
+
+<div class="grid">
+<div class="card"><div class="n ok">P3 Wake Lock</div><div class="l">Quick Win อันดับ 1</div><div class="dim" style="font-size:12px; margin-top:4px">แรงน้อย ได้ผล UX สูงสุดทันที</div></div>
+<div class="card"><div class="n" style="color:var(--acc)">P1 History Trim</div><div class="l">High ROI อันดับ 2</div><div class="dim" style="font-size:12px; margin-top:4px">ตัดขนาด Payload จาก 600KB เหลือ 40KB</div></div>
+<div class="card"><div class="n" style="color:var(--purple)">P4+P6 Motion Drag</div><div class="l">รวมทำด้วยกัน</div><div class="dim" style="font-size:12px; margin-top:4px">ใช้ Framer Motion ครอบคลุมทั้ง Touch & Anim</div></div>
+<div class="card"><div class="n" style="color:var(--med)">P5 Phased Refactor</div><div class="l">แบ่งเฟส อย่า Rewrite รวดเดียว</div><div class="dim" style="font-size:12px; margin-top:4px">สกัด UI components ก่อนแตะ State</div></div>
+</div>
+
+---
+
+<h2>2. วิเคราะห์เจาะลึกข้อเสนอ P1–P6 (ข้อดี ข้อเสีย และข้อเสนอแนะ)</h2>
+
+<div class="f c">
+<h3><span class="tag c">P1</span> ย้าย <code>history</code> ออกจาก Room Document</h3>
+<p class="why"><b>การวิเคราะห์ของ Claude:</b> ถูกต้อง 100% การเก็บ 15 snapshot เต็มในรูทเอกสารทำให้ payload โตถึง ~600 KB ต่อ 1 write เฉียดเพดาน 1 MB ของ Firestore</p>
+
+<div class="pro-con">
+<div class="box-pro">
+<b>👍 ข้อดี:</b>
+<ul>
+<li>ลด Payload ที่อัปโหลด/ดาวน์โหลดทันที >90% (เหลือ ~35-40 KB)</li>
+<li>ตัดความเสี่ยงเกมยาวแล้วชนเพดาน 1 MB ของ Firestore จนกระดานค้างเงียบ</li>
+<li>ซิงก์ข้ามเครื่องเร็วขึ้นทันที ลด Latency ของเครือข่ายมือถือ</li>
+</ul>
+</div>
+<div class="box-con">
+<b>⚠️ ข้อจำกัด & จุดต้องระวัง:</b>
+<ul>
+<li>ปัจจุบัน <b>Mobile Controller มีปุ่ม Undo</b> (<code>handleUndo</code> ใน <code>PlaymatMobileController.tsx:915</code>) ไม่ใช่มีแค่ Host</li>
+<li>ถ้าเก็บ history ไว้ใน Host Memory เครื่องเดียว: มือถือของผู้เล่นจะกด Undo ไม่ได้ และถ้า Host บังเอิญรีเฟรชหน้าจอ ประวัติย้อนหลังจะหายไปทันที</li>
+</ul>
+</div>
+</div>
+
+<div class="recommendation">
+<b>💡 ข้อเสนอแนะแนวทางปฏิบัติ (Actionable Strategy):</b>
+<ol>
+<li><b>ระยะสั้น (Immediate Fix):</b> ลด <code>historyStack.length</code> จาก 15 เหลือ <b>3 ชุด</b> ทันที ซึ่งเพียงพอสำหรับการแก้มือ 1-2 สเต็ป แต่จะกดขนาด payload จาก 600 KB เหลือเพียง <b>~100 KB</b> (ปลอดภัยจากเพดาน 1MB แน่นอน โดยไม่ต้องเปลี่ยนโครงสร้างโค้ด)</li>
+<li><b>ระยะกลาง (Complete Fix):</b> แยก Subcollection <code>playmat_rooms/{roomCode}/history/{seq}</code> โดยใน doc หลักเก็บเฉพาะ <code>historySeq: number</code> เมื่อมีการกด Undo จึงค่อย query snapshot ล่าสุดกลับมา</li>
+</ol>
+</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">P2</span> เขียนเฉพาะ Delta แทน <code>setDoc</code> ทั้งก้อน / ย้ายไป Realtime Database</h3>
+<div class="pro-con">
+<div class="box-pro">
+<b>👍 ข้อดี:</b>
+<ul>
+<li>ลดปริมาณข้อมูลที่ส่งในแต่ละ action ลงเหลือไม่กี่ร้อยไบต์</li>
+<li>Realtime Database มี WebSocket sync, latency ต่ำ (<50ms) และคิดเงินตาม bandwidth</li>
+</ul>
+</div>
+<div class="box-con">
+<b>⚠️ ข้อจำกัด & จุดต้องระวัง:</b>
+<ul>
+<li><b>ข้อจำกัดของ Firestore กับ Array:</b> การ์ดบนกระดาน เช่น <code>p1.bench</code> เป็น <code>Array&lt;PlaymatCard&gt;</code> ใน Firestore เรา<b>ไม่สามารถใช้ dot notation อัปเดตสมาชิกเดี่ยวใน Array</b> เช่น <code>updateDoc(ref, { 'p1.bench[2].damageCounters': 30 })</code> ได้ หากจะอัปเดต ต้องส่งทั้ง Array ของ Bench อยู่ดี</li>
+<li><b>การย้ายไป RTDB ถือเป็น Major Migration:</b> ต้องเปิด Service ใหม่, เขียน Rules ใหม่, และเขียน Sync Engine ใหม่ทั้งหมด ซึ่งกระทบความเสถียรของแอปอย่างรุนแรง</li>
+</ul>
+</div>
+</div>
+
+<div class="recommendation">
+<b>💡 ข้อเสนอแนะแนวทางปฏิบัติ:</b>
+<p>ยัง<b>ไม่แนะนำให้ย้ายไป RTDB ในเวลานี้</b> แต่ให้ใช้เทคนิค <b>Partitioned Update บน Firestore</b> แทน: ใน <code>PlaymatAction</code> เราทราบอยู่แล้วว่า Action นั้นเป็นของ <code>p1</code> หรือ <code>p2</code> ดังนั้นแทนที่จะเขียนทั้งบอร์ด ให้เขียนเฉพาะ <code>updateDoc(ref, { p1: nextState.p1, updatedAt: ... })</code> ซึ่งลด payload ลง 50% ทันทีโดยไม่ต้องแก้สถาปัตยกรรมระบบ</p>
+</div>
+</div>
+
+<div class="f ok">
+<h3><span class="tag ok">P3</span> เพิ่ม Wake Lock + Haptics <span class="dim">— เห็นด้วย 100% (High Priority)</span></h3>
+<p class="why"><b>การวิเคราะห์:</b> ตรงเป้าที่สุด การที่จอมือถือ/แท็บเล็ตดับระหว่างแข่ง TCG บนโต๊ะจริงคือปัญหาใหญ่ที่สุดของประสบการณ์ใช้งาน</p>
+
+<div class="pro-con">
+<div class="box-pro">
+<b>👍 ข้อดี:</b>
+<ul>
+<li>ใช้แรงน้อยมาก (~30 บรรทัดผ่าน custom hook <code>useWakeLock</code>)</li>
+<li>จอเปิดค้างตลอดแมตช์ ปลดล็อกความลื่นไหลของการเล่นจริง</li>
+<li>Haptics ช่วยให้ผู้เล่นรู้ว่าการแตะวางการ์ดสำเร็จ โดยไม่ต้องละสายตาจากการ์ดจริงบนโต๊ะ</li>
+</ul>
+</div>
+<div class="box-con">
+<b>⚠️ ข้อจำกัดทางเทคนิค:</b>
+<ul>
+<li><b>iOS Safari ไม่รองรับ <code>navigator.vibrate()</code></b> (Apple ปิดกั้นไว้ใน WebKit) ต้องใส่ Feature Detection ป้องกัน runtime error</li>
+<li>Wake Lock บน iOS Safari รองรับตั้งแต่เวอร์ชัน 16.4+</li>
+<li>ต้อง handle event <code>visibilitychange</code> เพื่อ re-acquire lock เมื่อผู้ใช้สลับแอปกลับมา</li>
+</ul>
+</div>
+</div>
+
+<div class="recommendation">
+<b>💡 ข้อเสนอแนะแนวทางปฏิบัติ:</b>
+<p>อนุมัติให้ดำเนินการเป็น<b>อันดับแรกสุด</b> สร้าง <code>src/hooks/usePlaymatSensors.ts</code> จัดการทั้ง Wake Lock และ Haptics ใน hook เดียว</p>
+</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">P4</span> เปลี่ยน HTML5 Drag-and-Drop เป็น Pointer Events (ร่วมกับ P6)</h3>
+<p class="why"><b>การวิเคราะห์:</b> จริงอย่างที่ Claude ชี้ — HTML5 Drag-and-Drop (`draggable`, `onDragStart`) ไม่ทำงานบน Touchscreen เบราว์เซอร์ส่วนใหญ่ไม่ยิง Drag Event เมื่อสัมผัสด้วยนิ้ว</p>
+
+<div class="pro-con">
+<div class="box-pro">
+<b>👍 ข้อดี:</b>
+<ul>
+<li>แท็บเล็ตและมือถือสามารถสัมผัสและลากการ์ดลงสนามได้จริงตาม Concept</li>
+<li>Pointer Events รองรับ Touch, Mouse, Pen อย่างเสมอภาค</li>
+</ul>
+</div>
+<div class="box-con">
+<b>⚠️ ข้อจำกัด & จุดต้องระวัง:</b>
+<ul>
+<li>การเขียน Pointer Events แบบ Vanilla (คำนวณ Drag Ghost, Collision Box, <code>document.elementFromPoint</code>) มีความซับซ้อนสูง และอาจเจอปัญหา Gesture ไปแย่งกับการเลื่อน Scroll ของถาดการ์ด</li>
+</ul>
+</div>
+</div>
+
+<div class="recommendation">
+<b>💡 ข้อเสนอแนะเชิงกลยุทธ์ (Strategic Synergy):</b>
+<p>แทนที่จะเขียนดิบ Pointer Events เอง ให้<b>นำ <code>framer-motion</code> (ซึ่งอยู่ใน <code>package.json</code> อยู่แล้ว) มาใช้ตามข้อเสนอ P6 ไปพร้อมกัน</b> เพราะ <code>&lt;motion.div drag dragSnapToOrigin /&gt;</code> ของ Framer Motion:</p>
+<ul>
+<li>รองรับ Pointer Events และ Touch หน้าจอสัมผัส 100% โดยอัตโนมัติ</li>
+<li>มีฟิสิกส์การดีดกลับเข้าที่เดิมเมื่อปล่อยผิดตำแหน่ง (Snap-back physics)</li>
+<li>แอนิเมชันลื่นไหล 60fps โดยไม่ต้องเขียนโค้ดจับพิกัดเองนับร้อยบรรทัด</li>
+</ul>
+</div>
+</div>
+
+<div class="f m">
+<h3><span class="tag m">P5</span> ยุบบอร์ด 3 ตัว (6,576 บรรทัด) & Reducer Unification</h3>
+<p class="why"><b>การวิเคราะห์:</b> ความเห็นของ Claude เรื่องการมี Reducer <code>applyPlaymatAction</code> ที่ดีอยู่แล้วแต่ UI กลับไปกระจาย 75 <code>useState</code> เป็นการวิเคราะห์เชิงสถาปัตยกรรมที่ถูกต้อง</p>
+
+<div class="pro-con">
+<div class="box-pro">
+<b>👍 ข้อดี:</b>
+<ul>
+<li>ลดความซ้ำซ้อนของโค้ดอย่างมหาศาล (DRY)</li>
+<li>ป้องกัน State Drift และบั๊ก stale-closure ระหว่าง DuelBoard และ MobileController</li>
+<li>เขียน Unit Test ครอบคลุมได้ง่ายขึ้น</li>
+</ul>
+</div>
+<div class="box-con">
+<b>⚠️ ข้อจำกัด & ความเสี่ยงสูง (High Regression Risk):</b>
+<ul>
+<li>ทั้ง 3 บอร์ดมี <b>Layout แตกต่างกันอย่างสิ้นเชิง</b>:
+  <ul>
+    <li><code>PlaymatHostBoard</code>: จอใหญ่ แนวนอน แบ่ง 2 ฝั่งหันหน้าเข้าหากันสำหรับวางกลางโต๊ะ</li>
+    <li><code>PlaymatMobileController</code>: จอมือถือแนวตั้ง ออกแบบให้เข้ากับ iPhone Safe-Area, มีชุด Quick Meta Chips, และ Touch Drawer</li>
+    <li><code>PlaymatDuelBoard</code>: หน้าจอ Split-Screen สำหรับการเล่นออนไลน์ผ่านจอคอม/แท็บเล็ต</li>
+  </ul>
+</li>
+<li>การ Rewrite รวดเดียว 6,500 บรรทัด มีโอกาสสูงมากที่จะทำลาย Responsiveness หรือกระทบ E2E Test ทั้ง 172 ตัว</li>
+</ul>
+</div>
+</div>
+
+<div class="recommendation">
+<b>💡 ข้อเสนอแนะแนวทางปฏิบัติ:</b>
+<p><b>อย่า Rewrite แบบ Big-Bang!</b> ให้แบ่งเป็น 3 Phase:</p>
+<ul>
+<li><b>Phase 1 (Safe Extraction):</b> ดึง Presentational Components ที่ไม่มี State ออกมาก่อน เช่น <code>CardSprite</code>, <code>DamageCountersBadge</code>, <code>AttachedEnergyList</code></li>
+<li><b>Phase 2 (Zone Modules):</b> ดึง <code>BenchRow</code>, <code>ActiveSpot</code>, <code>PrizeZone</code> ที่ใช้ layout styling แยกตาม board type</li>
+<li><b>Phase 3 (State Unification):</b> เปลี่ยน State Management ภายในบอร์ดให้ Dispatch ผ่าน Reducer</li>
+</ul>
+</div>
+</div>
+
+---
+
+<h2>3. สรุปตารางเปรียบเทียบและการจัดลำดับความสำคัญ (Roadmap)</h2>
+
+<table>
+<tr><th>ข้อเสนอ</th><th>ผลตอบแทน (ROI)</th><th>ความเสี่ยง (Risk)</th><th>มติความเห็น</th><th>ลำดับดำเนินการ</th></tr>
+<tr>
+  <td><b>P3: Wake Lock & Haptics</b></td>
+  <td><span class="tag ok">สูงสุด (UX)</span></td>
+  <td><span class="tag ok">ต่ำมาก</span></td>
+  <td><b>เห็นชอบ 100%</b> — ทำทันที</td>
+  <td><b>Sprint 1 (ทันที)</b></td>
+</tr>
+<tr>
+  <td><b>P1: ย้าย/ลดขนาด History</b></td>
+  <td><span class="tag ok">สูงมาก (Perf)</span></td>
+  <td><span class="tag m">ปานกลาง</span></td>
+  <td><b>เห็นชอบแบบปรับปรุง</b> — ลดเหลือ 3 snapshot ก่อน จากนั้นค่อยย้ายลง Subcollection</td>
+  <td><b>Sprint 1 (ทันที)</b></td>
+</tr>
+<tr>
+  <td><b>P4 + P6: Motion Drag บน Touch</b></td>
+  <td><span class="tag h">สูง (Touch Support)</span></td>
+  <td><span class="tag m">ปานกลาง</span></td>
+  <td><b>เห็นชอบ</b> — แนะนำให้ใช้ Framer Motion Drag แทนการเขียน Pointer Event เอง</td>
+  <td><b>Sprint 2</b></td>
+</tr>
+<tr>
+  <td><b>P2: Partitioned Update (Delta)</b></td>
+  <td><span class="tag m">ปานกลาง</span></td>
+  <td><span class="tag m">ปานกลาง</span></td>
+  <td><b>เห็นชอบเฉพาะ Firestore Partition</b> — ยังไม่แนะนำให้ย้ายไป Realtime Database</td>
+  <td><b>Sprint 2</b></td>
+</tr>
+<tr>
+  <td><b>P5: Component & Reducer Refactoring</b></td>
+  <td><span class="tag m">ปานกลาง (Maintainability)</span></td>
+  <td><span class="tag c">สูงมาก (Regression)</span></td>
+  <td><b>เห็นชอบแบบแบ่ง 3 เฟส</b> — เริ่มจาก Dumb UI Components เพื่อรักษาความปลอดภัยของระบบ</td>
+  <td><b>Sprint 3</b></td>
+</tr>
+</table>
+
+---
+
+<h2>4. ประเด็นเสริมเรื่องการทดสอบ Firestore Rules</h2>
+<div class="note">
+<p>เห็นด้วยกับ Claude ในเรื่อง <b>Firestore Rules Unit Testing</b>: การที่ Playwright รันในสภาพแวดล้อมที่ไม่มี Firestore Emulator ทำให้แอป fallback ไปใช้ local storage เสมอ</p>
+<p><b>ข้อเสนอแนะ:</b> จัดตั้ง script <code>test:rules</code> ด้วย <code>@firebase/rules-unit-testing</code> โดยกำหนด configuration ใน <code>firebase.json</code> ให้พร้อมใช้งาน เพื่อให้ CI สามารถทดสอบ Rules ได้โดยไม่ต้องรอดูผลบน Production จริง</p>
+</div>
+
+<footer>
+Report compiled by Antigravity IDE (Gemini) · In response to Claude (Opus 5) <code>Report-Playmat.html</code> · Target Release: PokéCount Tracker v2.60.0
+</footer>
+
+</div></body></html>

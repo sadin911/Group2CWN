@@ -1,0 +1,89 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Production build
+dist
+dist-ssr
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+$log_file
+
+# Environment & Secret variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+secret*.yaml
+secret*.yml
+secret*.json
+*.secret.*
+serviceAccountKey*.json
+*serviceAccount*.json
+*service-account*.json
+firebase-admin-key*.json
+pokecount-tracker*.json
+*-adminsdk-*.json
+
+# Editor & IDEs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.sublime-workspace
+.fleet
+.zed
+
+# macOS & OS artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing & Coverage
+coverage
+*.lcov
+.nyc_output
+playwright-report/
+test-results/
+
+# Build tool caches
+.vite
+.cache
+.turbo
+.eslintcache
+.stylelintcache
+
+# Claude / Agent local configs (optional)
+.claude/settings.local.json
+
+# Local dataset & downloaded card images (large binaries)
+public/card-images/
+public/card-images-hd/
+public/set-boosters/
+/data/
+
+# Android TWA workspace (maintained exclusively in feature/android-twa branch)
+android-twa/
+
+# Billing & Cost reports
+cost/

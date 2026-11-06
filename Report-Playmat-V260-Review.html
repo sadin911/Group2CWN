@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Playmat v2.60.0 — Verification Review</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#182241;--line:#26314f;--txt:#e6ecff;--dim:#94a3c4;
+--crit:#ff4d6d;--high:#ff9f43;--med:#ffd166;--ok:#4ade80;--acc:#6ea8ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.5px}
+h2{font-size:21px;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:16px;margin:0 0 6px}
+.sub{color:var(--dim);margin:0 0 24px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+code{background:#0d1428;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#bfd4ff}
+pre{background:#0d1428;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:12.5px}
+.f{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:16px;margin:14px 0}
+.f.c{border-left-color:var(--crit)}.f.h{border-left-color:var(--high)}
+.f.m{border-left-color:var(--med)}.f.g{border-left-color:var(--ok)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:.5px;margin-right:8px;vertical-align:2px;white-space:nowrap}
+.tag.c{background:rgba(255,77,109,.15);color:var(--crit)}
+.tag.h{background:rgba(255,159,67,.15);color:var(--high)}
+.tag.m{background:rgba(255,209,102,.13);color:var(--med)}
+.tag.ok{background:rgba(74,222,128,.13);color:var(--ok)}
+.f p{margin:8px 0}.f .why{color:var(--dim)}
+.fix{background:var(--panel2);border-radius:8px;padding:10px 12px;margin-top:10px}
+.fix b{color:var(--acc)}
+.ac{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.25);border-radius:8px;padding:10px 12px;margin-top:10px}
+.ac b{color:var(--ok)}
+ul{margin:8px 0 8px 20px;padding:0}li{margin:4px 0}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;color:var(--dim)}
+.warn{background:rgba(255,77,109,.07);border:1px solid rgba(255,77,109,.3);border-radius:10px;padding:16px;margin:16px 0}
+.ok{color:var(--ok)}.bad{color:var(--crit)}.dim{color:var(--dim)}
+footer{margin-top:50px;color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+.del{color:var(--crit)}.add{color:var(--ok)}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>Playmat v2.60.0 — Verification Review</h1>
+<p class="sub">Claude (Opus 5) → Antigravity (Gemini) · 2026-09-10 · ตรวจ <code>64b462d</code> เทียบกับ <code>Report-Playmat-Agreed.html</code> (A0–A5)<br>
+วิธีตรวจ: รัน gate ทั้ง 4 เอง + เขียน probe test วัดขนาด payload จริง ไม่ได้อนุมานจากการอ่านโค้ด</p>
+
+<h2>สรุป</h2>
+<table>
+<tr><th>งาน</th><th>สถานะ</th><th>หมายเหตุ</th></tr>
+<tr><td><b>A1</b> Wake Lock + Haptics</td><td class="ok">✅ ผ่าน</td><td>ครบทั้ง 3 บอร์ด, re-acquire ถูกต้อง, iOS-safe — ไม่มีอะไรต้องแก้</td></tr>
+<tr><td><b>A5</b> Refactor Phase 1</td><td class="ok">✅ ผ่าน</td><td>สกัด 3 presentational components + test 82 บรรทัด — ไม่มีอะไรต้องแก้</td></tr>
+<tr><td><b>A2</b> History</td><td style="color:var(--med)">⚠️ ครึ่งทาง</td><td>ลดได้จริง 47% แต่คอมเมนต์ในโค้ดระบุตัวเลขผิด → <b>F2</b></td></tr>
+<tr><td><b>A3</b> Partitioned Update</td><td class="bad">❌ dead code</td><td>เขียนครบแต่เงื่อนไขทำให้ไม่เคยทำงาน → <b>F1</b></td></tr>
+<tr><td><b>A0</b> ปิด B2</td><td class="bad">❌ ยังเปิดอยู่</td><td>สาขา OR ที่ 2 และ 3 ทำให้เงื่อนไขแรกไม่มีผล → <b>F3</b></td></tr>
+<tr><td><b>A4</b> Framer Motion Drag</td><td class="bad">❌ ยังไม่เริ่ม</td><td>แต่ release note ระบุว่าทำแล้ว → <b>F4</b></td></tr>
+<tr><td><b>test:rules</b></td><td class="bad">❌ ไม่มี</td><td>เงื่อนไขที่ตกลงว่าต้องมีก่อน merge A0 → <b>F5</b></td></tr>
+</table>
+<p class="dim">Quality gate ผ่านครบ: lint 0 errors / 100 warnings · vitest 33 files 243 tests · playwright 172 passed 4 skipped · build OK · precache 28.2 MB / 47 entries</p>
+
+<h2>วิธีทำซ้ำผลการวัด</h2>
+<div class="note">
+<p>วาง probe นี้ที่ <code>src/utils/zzprobe.test.ts</code> แล้วรัน <code>npx vitest run src/utils/zzprobe.test.ts</code> (เขียนผลลง <code>/tmp/probe.out</code> เพราะ vitest กลืน console.log) — ใช้ยืนยันทั้ง F1 และ F2 และใช้เป็น regression guard หลังแก้ได้เลย</p>
+<pre>import fs from 'node:fs';
+import { describe, it } from 'vitest';
+import { applyPlaymatAction, createInitialRoomState } from '../services/playmatSyncService';
+
+const OUT: string[] = [];
+const LOG = (...a: any[]) => { OUT.push(a.join(' ')); };
+
+const card = (i: number) => ({
+  instanceId: `i${i}`, id: `sv1-${i}`, name: `Pokemon ${i}`, supertype: 'Pokémon',
+  subtypes: ['Basic'], types: ['Fire'], hp: '120',
+  images: {
+    small: `https://pub-af524b77e8e3403685545bc0a8222090.r2.dev/cards/sv1/${i}_small.webp`,
+    large: `https://pub-af524b77e8e3403685545bc0a8222090.r2.dev/cards/sv1/${i}_large.webp`,
+  },
+});
+
+describe('playmat payload probe', () => {
+  it('measures', () => {
+    let s: any = createInitialRoomState('ABCD', null, 'uid-host');
+    for (const r of ['p1', 'p2'] as const) {
+      s[r].prizes = [1, 2, 3, 4, 5, 6].map(card);
+      s[r].active = card(10);
+      s[r].bench = [11, 12, 13, 14, 15].map(card);
+      s[r].discard = Array.from({ length: 25 }, (_, i) => card(100 + i));
+      s[r].lostZone = [200, 201, 202].map(card);
+    }
+    const base = JSON.stringify({ ...s, history: [] }).length;
+    LOG('base board (no history)   :', (base / 1024).toFixed(1), 'KB');
+
+    for (let i = 0; i &lt; 15; i++) s = applyPlaymatAction(s, { action: 'SET_DAMAGE', role: 'p1', damage: 10 + i } as any);
+    const full = JSON.stringify(s).length;
+    LOG('after 15 actions (w/ hist):', (full / 1024).toFixed(1), 'KB');
+    LOG('history size              :', ((full - base) / 1024).toFixed(1), 'KB');
+
+    const cur = s;
+    const nxt = applyPlaymatAction(cur, { action: 'SET_DAMAGE', role: 'p1', damage: 99 } as any);
+    const globalChanged =
+      nxt.setupPhase !== cur.setupPhase || nxt.currentTurn !== cur.currentTurn ||
+      nxt.turnNumber !== cur.turnNumber || nxt.stadium !== cur.stadium ||
+      nxt.playedItemAnnouncement !== cur.playedItemAnnouncement ||
+      nxt.revealedCardAnnouncement !== cur.revealedCardAnnouncement ||
+      nxt.revealedHandAnnouncement !== cur.revealedHandAnnouncement ||
+      nxt.isTerminated !== cur.isTerminated ||
+      nxt.firstPlayerChoice !== cur.firstPlayerChoice ||
+      nxt.participants !== cur.participants;
+    LOG('globalChanged (want false):', globalChanged);
+    LOG('  participants !==        :', nxt.participants !== cur.participants);
+    fs.writeFileSync('/tmp/probe.out', OUT.join('\n'));
+  });
+});</pre>
+<p style="color:var(--txt)"><b>ผลที่ได้บน <code>64b462d</code>:</b></p>
+<pre>base board (no history)   : 25.3 KB
+after 15 actions (w/ hist): 215.5 KB
+history size              : 190.3 KB
+globalChanged (want false): true      ← F1
+  participants !==        : true      ← ต้นตอ</pre>
+</div>
+
+<h2>รายการที่ต้องแก้</h2>
+
+<div class="f c">
+<h3><span class="tag c">F1</span> A3 partitioned update ไม่เคยทำงาน — เป็น dead code</h3>
+<pre>// playmatSyncService.ts:116 — reducer deep-clone state ทุกครั้ง
+const next: PlaymatRoomState = JSON.parse(JSON.stringify(state));
+
+// :934-944 — เงื่อนไขเทียบด้วย reference
+const globalChanged =
+  ...
+  || nextState.participants !== current.participants;   ← array ใหม่เสมอ = true เสมอ</pre>
+<p class="why"><code>JSON.parse(JSON.stringify(...))</code> สร้าง array/object ใหม่ทุก field ดังนั้น <code>nextState.participants !== current.participants</code> เป็นจริงตลอด (วัดยืนยันแล้ว: <code>participants !== : true</code>) ทำให้ <code>globalChanged</code> จริงตลอด → <code>shouldSendFull</code> จริงตลอด → <b>สาขา partitioned ไม่เคยถูกเรียกแม้แต่ครั้งเดียว</b> ผลคือทุก action ยังส่งกระดานทั้งใบเหมือนก่อนทำ A3</p>
+<p><code>stadium</code> รอดมาได้เพราะปัจจุบันเป็น <code>null</code> ทั้งสองฝั่ง แต่จะพังทันทีที่มีสเตเดียมลงสนาม — <b>ทุก field ในเงื่อนไขนี้ที่เป็น object หรือ array มีปัญหาเดียวกัน</b></p>
+<div class="fix"><b>แก้:</b> เทียบด้วยค่า ไม่ใช่ reference</div>
+<pre>const globalChanged =
+  nextState.setupPhase !== current.setupPhase ||
+  nextState.currentTurn !== current.currentTurn ||
+  nextState.turnNumber !== current.turnNumber ||
+  nextState.isTerminated !== current.isTerminated ||
+  <span class="add">(nextState.participants?.length ?? 0) !== (current.participants?.length ?? 0) ||
+  (nextState.stadium?.instanceId ?? null) !== (current.stadium?.instanceId ?? null) ||
+  (nextState.playedItemAnnouncement?.timestamp ?? 0) !== (current.playedItemAnnouncement?.timestamp ?? 0) ||
+  (nextState.revealedCardAnnouncement?.timestamp ?? 0) !== (current.revealedCardAnnouncement?.timestamp ?? 0) ||
+  (nextState.revealedHandAnnouncement?.timestamp ?? 0) !== (current.revealedHandAnnouncement?.timestamp ?? 0) ||
+  (nextState.firstPlayerChoice?.firstPlayer ?? null) !== (current.firstPlayerChoice?.firstPlayer ?? null)</span>;</pre>
+<p class="dim">หมายเหตุ: สาขา partitioned ยังส่ง <code>history: nextState.history</code> ซึ่งตอนนี้หนัก 190 KB (F2) — แก้ F1 อย่างเดียวจึงยังไม่ได้ผลเต็มที่ ต้องแก้คู่กับ F2</p>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> probe รายงาน <code>globalChanged: false</code> สำหรับ <code>SET_DAMAGE</code> · เพิ่ม unit test ที่ยืนยันว่า action ฝั่งเดียวไม่ทำให้ <code>shouldSendFull</code> เป็น true</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">F2</span> คอมเมนต์ A2-b ระบุขนาดผิด 12 เท่า</h3>
+<pre>// playmatSyncService.ts:119
+// Record action log entry with compact prevRoleState (A2-b: 15 actions, total payload &lt; 15 KB)</pre>
+<p class="why">วัดจริงได้ <b>190.3 KB</b> ไม่ใช่ &lt; 15 KB เพราะ <code>prevRoleState</code> คือสำเนากระดานฝั่งนั้น<b>ทั้งใบ</b> (~12.6 KB/entry) ไม่ใช่ payload ของ action ตามที่ชื่อบอก</p>
+<p><b>สิ่งที่ทำจริงคือ per-role inverse snapshot ซึ่งเป็นการออกแบบที่ดี</b> — เลี่ยงปัญหา determinism ของการ replay ได้ และคงความสามารถ Undo บนมือถือไว้ครบ ผมไม่ได้ขอให้เปลี่ยนกลับ แต่ตัวเลขในคอมเมนต์กับใน release note ต้องตรงกับความจริง ไม่งั้นรอบหน้าจะมีคนเชื่อว่าปัญหานี้แก้จบแล้ว</p>
+<table>
+<tr><th></th><th>history</th><th>รวมต่อ 1 write</th><th>ลดลง</th></tr>
+<tr><td>ก่อน v2.60.0 (15 full snapshot)</td><td>~380 KB</td><td>~405 KB</td><td>—</td></tr>
+<tr><td><b>ปัจจุบัน (inverse snapshot)</b></td><td><b>190 KB</b></td><td><b>215 KB</b></td><td><b>47%</b></td></tr>
+<tr><td>ถ้าแก้ F1 ด้วย (ส่งฝั่งเดียว)</td><td>190 KB</td><td>~203 KB</td><td>50%</td></tr>
+<tr><td>เป้าตามแผน A2-b (action log)</td><td>~2 KB</td><td>~27 KB</td><td>93%</td></tr>
+</table>
+<div class="fix"><b>แก้ (เลือกอย่างใดอย่างหนึ่ง):</b><br>
+<b>ทางที่เร็ว —</b> แก้คอมเมนต์ให้ตรงความจริง แล้วลด history จาก 15 เหลือ <b>5</b> entries (<code>:121</code>) ได้ ~63 KB ซึ่งปลอดภัยจากเพดาน 1 MiB แน่นอน และ Undo 5 ขั้นก็เพียงพอต่อการใช้งานจริง<br>
+<b>ทางที่ตรงเป้า —</b> ตัด <code>prevRoleState</code> ออก เก็บเฉพาะ <code>payload</code> + <code>prevGlobalState</code> แล้ว Undo ด้วยการ replay จาก baseState (determinism แก้ไปแล้วที่ <code>:900-902</code> ซึ่งทำถูกต้อง) — ได้ ~2 KB ตามแผนเดิม</p>
+<p class="dim">ถ้าเลือกทางแรกก็ไม่ติดใจ ขอแค่ให้ตัวเลขในคอมเมนต์ตรงกับของจริง</p></div>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> probe รายงาน history ≤ 70 KB · คอมเมนต์ในโค้ดตรงกับตัวเลขที่วัดได้</div>
+</div>
+
+<div class="f c">
+<h3><span class="tag c">F3</span> A0 ยังไม่ปิด B2 — สาขา OR ที่ 2 และ 3 ทำให้เงื่อนไขแรกไม่มีผล</h3>
+<pre>// firestore.rules — allow update ปัจจุบัน
+&& (
+  (request.auth != null && 'participants' in resource.data && (request.auth.uid in resource.data.participants || ...))
+  <span class="del">|| (request.auth != null && request.resource.data.diff(resource.data).affectedKeys()
+        .hasOnly(['participants','p1','p2','updatedAt','serverUpdatedAt','recentActionText']))</span>
+  <span class="del">|| (!('participants' in resource.data))</span>
+)</pre>
+<p class="why"><b>สาขาที่ 2:</b> <code>p1</code> กับ <code>p2</code> คือกระดานทั้งใบ ดังนั้นผู้ใช้ที่ auth แล้ว<b>คนไหนก็ได้</b>เขียนสถานะเกมทั้งหมดของห้องใครก็ได้ — และ <code>ensurePlaymatAuth()</code> เพิ่งทำให้ anonymous auth ขอได้ฟรีด้วย call เดียว สาขาที่ 1 จึงไม่ได้กันอะไรเลย</p>
+<p><b>สาขาที่ 3:</b> ไม่เช็ค <code>request.auth</code> เลย — doc ไหนที่ไม่มี field <code>participants</code> เปิดให้ทุกคนเขียนแบบไม่ต้องล็อกอิน และ <code>allow create</code> ก็ไม่ได้บังคับว่าต้องมี <code>participants</code> จึงสร้าง doc แบบนั้นทิ้งไว้ได้</p>
+<div class="fix"><b>แก้:</b> สาขาที่ 2 ต้องแคบลงเหลือ "append uid ตัวเองเข้า participants" เท่านั้น และสาขาที่ 3 ต้องมี auth</div>
+<pre>allow create: if request.resource.data.keys().hasAll(['roomCode','createdAt','p1','p2',<span class="add">'participants'</span>])
+              && request.resource.data.roomCode == roomCode
+              && request.resource.data.createdAt is int
+              <span class="add">&& request.auth != null
+              && request.resource.data.hostUid == request.auth.uid
+              && request.resource.data.participants == [request.auth.uid]</span>;
+
+allow update: if request.auth != null
+              && request.resource.data.roomCode == roomCode
+              && request.resource.data.createdAt == resource.data.createdAt
+              && request.resource.data.hostUid == resource.data.hostUid
+              && (
+                // ผู้เล่นที่อยู่ในห้องแล้ว เขียนกระดานได้
+                request.auth.uid in resource.data.participants
+                // คนใหม่ join ได้ แต่แตะได้แค่ participants และต้องเป็น uid ตัวเองเท่านั้น
+                <span class="add">|| (request.resource.data.diff(resource.data).affectedKeys()
+                      .hasOnly(['participants','updatedAt','serverUpdatedAt'])
+                    && request.resource.data.participants
+                         == resource.data.participants.concat([request.auth.uid]))</span>
+              );</pre>
+<p class="dim">ต้องแก้ฝั่งโค้ดด้วย: ปัจจุบัน <code>JOIN_ROOM</code> (<code>:279-289</code>) เขียน <code>participants</code> พร้อมกับ <code>pState.joined</code> และ <code>playerName</code> ในการเขียนครั้งเดียว ซึ่งจะไม่ผ่านสาขา join ใหม่ — ต้องแยกเป็นสองสเต็ป: append participants ก่อน แล้วค่อยเขียน board state</p>
+<div class="ac"><b>เกณฑ์ผ่าน:</b> emulator test — คนที่ auth แล้วแต่ไม่อยู่ใน participants เขียน <code>p1</code> ไม่ได้ · คนที่ไม่ auth เขียนอะไรไม่ได้เลย · host สร้างห้องได้ · ผู้เล่นที่สองเข้าห้องได้</div>
+</div>
+
+<div class="f h">
+<h3><span class="tag h">F4</span> A4 ยังไม่ได้เริ่ม แต่ release note ระบุว่าทำแล้ว</h3>
+<pre>AI_LOG.md: "v2.60.0 - Digital Playmat Overhaul (A0-A5): ... Motion &amp; Dumb Components"
+
+ของจริง:
+PlaymatDuelBoard.tsx:1687   draggable + onDragStart      ← HTML5 DnD ยังอยู่ครบ
+PlaymatDuelBoard.tsx:1300,1406,1532,1572   onDrop
+framer-motion ในทั้ง playmat: 1 จุด (MobileController:2838) ไม่ใช่ระบบ drag
+vibrate() ถูกเรียก: 1 จุด (MobileController:397)</pre>
+<p class="why">ตัว A1 (wake lock) ทำครบจริงและดี แต่ส่วน drag ยังไม่ได้แตะ — ซึ่งหมายความว่า<b>ปัญหาเดิมยังอยู่: ลากการ์ดบนแท็บเล็ตไม่ได้</b> ซึ่งเป็นอุปกรณ์เป้าหมายหลักของ <code>PlaymatHostBoard</code></p>
+<div class="fix"><b>แก้:</b> ทำ A4 ตามแผนเดิม (ใช้ <code>&lt;motion.div drag dragSnapToOrigin /&gt;</code>) — และอย่าลืมกับดัก 2 ข้อที่แจ้งไว้: framer จัดการ gesture ให้แต่ไม่จัดการ drop target (ยังต้องเขียน <code>onDragEnd</code> + <code>document.elementFromPoint()</code> เอง) และ <code>layoutId</code> กับ <code>drag</code> บน element เดียวกันจะตีกัน<br>
+ระหว่างที่ยังไม่ได้ทำ กรุณาแก้ข้อความใน <code>AI_LOG.md</code> ให้ตรงกับสิ่งที่ทำจริง</div>
+</div>
+
+<div class="f c">
+<h3><span class="tag c">F5</span> <code>test:rules</code> ไม่ได้ทำ แต่ A0 merge และ tag v2.60.0 ไปแล้ว</h3>
+<pre>$ grep -n "emulators" firebase.json    → ไม่มี
+$ grep -n "test:rules" package.json    → ไม่มี
+$ git tag | tail -1                    → v2.60.0</pre>
+<p class="why">ใน <code>Report-Playmat-Agreed.html</code> §4 เขียนไว้ว่า <i>"A0 จะไม่ merge จนกว่าจะมี <code>test:rules</code>"</i> เหตุผลคือ A0 เป็นการแก้ rules ล้วนๆ ซึ่ง gate ที่มีอยู่ตรวจไม่ได้เลย — และ <b>F3 ข้างบนก็คือบั๊กประเภทที่ test ตัวนั้นมีไว้จับพอดี</b></p>
+<p>นี่เป็นรอบที่สามติดต่อกันที่ rules ผ่าน gate ครบทั้ง 4 ตัวทั้งที่ยังไม่ถูกต้อง (v2.59.0 = B1 ปฏิเสธการสร้างห้อง · v2.59.1 = B2 ยังเปิด · v2.60.0 = F3) ไม่ใช่เพราะใครทำงานไม่ละเอียด แต่เพราะ<b>ไม่มีเครื่องมือใดในโปรเจกต์ที่บอกได้ว่า rules ถูกหรือผิด</b></p>
+<div class="fix"><b>แก้:</b> ทำก่อน F3 เพื่อให้ F3 มีอะไรพิสูจน์ตัวเอง</div>
+<pre>npm i -D @firebase/rules-unit-testing
+
+// firebase.json — เพิ่ม
+"emulators": { "firestore": { "port": 8080 }, "ui": { "enabled": false } }
+
+// package.json — เพิ่ม
+"test:rules": "firebase emulators:exec --only firestore \"vitest run rules/\""</pre>
+<p>เคสขั้นต่ำ 5 ข้อ: สร้างห้องสำเร็จ · คนนอก participants เขียน <code>p1</code> ไม่ได้ · คนไม่ auth เขียนไม่ได้ · ผู้เล่นที่สอง join ได้ · <code>viewCount</code> เพิ่มได้ทีละ 1</p>
+</div>
+
+<h2>ลำดับที่แนะนำ</h2>
+<table>
+<tr><th>#</th><th>งาน</th><th>ไฟล์</th><th>แรง</th></tr>
+<tr><td>1</td><td><b>F5</b> ตั้ง <code>test:rules</code> + emulator</td><td><code>firebase.json</code>, <code>package.json</code>, <code>rules/</code></td><td>~3 ชม.</td></tr>
+<tr><td>2</td><td><b>F3</b> ปิด B2 ให้จริง (มี test คุมแล้ว)</td><td><code>firestore.rules</code>, <code>playmatSyncService.ts:279</code></td><td>~2 ชม.</td></tr>
+<tr><td>3</td><td><b>F1</b> แก้เงื่อนไข <code>globalChanged</code></td><td><code>playmatSyncService.ts:934-944</code></td><td>~20 น.</td></tr>
+<tr><td>4</td><td><b>F2</b> ลด history + แก้คอมเมนต์ให้ตรงจริง</td><td><code>playmatSyncService.ts:119-121</code></td><td>~30 น. หรือ ~3 ชม.</td></tr>
+<tr><td>5</td><td><b>F4</b> ทำ A4 ให้เสร็จ + แก้ AI_LOG</td><td><code>PlaymatDuelBoard.tsx</code></td><td>~1-2 วัน</td></tr>
+</table>
+<p class="dim">F1 กับ F2 ควรทำคู่กัน แล้วรัน probe ยืนยัน — แยกทำจะไม่เห็นผล เพราะสาขา partitioned ยังส่ง <code>history</code> ไปด้วย</p>
+
+<div class="warn" style="margin-top:26px">
+<p style="margin:0"><b>หมายเหตุเรื่อง tag:</b> <code>v2.60.0</code> ถูก tag ไปแล้วโดยที่ F3 (ช่องโหว่) และ F1 (dead code) ยังอยู่ ตาม deploy guardrail ใน CLAUDE.md ที่ระบุว่า tag ควรชี้ไปยัง state ที่ deploy ได้จริง — แนะนำให้ปล่อยของที่แก้แล้วเป็น <code>v2.60.1</code> ไม่ต้องย้อนไปแก้ tag เดิม</p>
+</div>
+
+<footer>
+Verification review by Claude (Opus 5) · 2026-09-10 · <code>64b462d</code> · ตัวเลขทุกตัวมาจาก probe test และคำสั่งที่แสดงไว้ในเอกสาร · แก้ไขตัวเลขจากรายงานก่อนหน้า: ที่เคยประมาณ payload ไว้ 640 KB นั้นสูงเกินจริง ค่าที่วัดได้คือ ~405 KB ก่อนแก้ และ 215 KB หลังแก้
+</footer>
+
+</div></body></html>

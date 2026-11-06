@@ -1,0 +1,61 @@
+export interface PokemonPreset {
+  name: string;
+  hp: number;
+}
+
+export const POKEMON_PRESETS: PokemonPreset[] = [
+  // — ex (Scarlet & Violet era) —
+  { name: 'Archaludon ex', hp: 260 },
+  { name: 'Armarouge ex', hp: 250 },
+  { name: 'Baxcalibur ex', hp: 250 },
+  { name: 'Bloodmoon Ursaluna ex', hp: 260 },
+  { name: 'Charizard ex', hp: 330 },
+  { name: 'Chien-Pao ex', hp: 230 },
+  { name: 'Dragapult ex', hp: 310 },
+  { name: 'Fezandipiti ex', hp: 230 },
+  { name: 'Flutter Mane ex', hp: 200 },
+  { name: 'Gardevoir ex', hp: 310 },
+  { name: 'Giratina ex', hp: 240 },
+  { name: 'Iron Boulder ex', hp: 220 },
+  { name: 'Iron Crown ex', hp: 210 },
+  { name: 'Iron Hands ex', hp: 220 },
+  { name: 'Iron Valiant ex', hp: 210 },
+  { name: 'Lugia ex', hp: 280 },
+  { name: 'Mewtwo ex', hp: 330 },
+  { name: 'Munkidori ex', hp: 200 },
+  { name: 'Ogerpon ex (Cornerstone)', hp: 220 },
+  { name: 'Ogerpon ex (Hearthflame)', hp: 210 },
+  { name: 'Ogerpon ex (Teal Mask)', hp: 200 },
+  { name: 'Ogerpon ex (Wellspring)', hp: 210 },
+  { name: 'Pecharunt ex', hp: 240 },
+  { name: 'Pikachu ex', hp: 220 },
+  { name: 'Raging Bolt ex', hp: 230 },
+  { name: 'Roaring Moon ex', hp: 220 },
+  { name: 'Terapagos ex', hp: 310 },
+  { name: 'Ting-Lu ex', hp: 280 },
+  // — ex (support / bench) —
+  { name: 'Pidgeot ex', hp: 270 },
+  { name: 'Snorlax ex', hp: 160 },
+  // — V / VSTAR / VMAX —
+  { name: 'Arceus VSTAR', hp: 280 },
+  { name: 'Dialga VSTAR', hp: 280 },
+  { name: 'Entei V', hp: 220 },
+  { name: 'Giratina VSTAR', hp: 280 },
+  { name: 'Kyogre VSTAR', hp: 280 },
+  { name: 'Lugia VSTAR', hp: 280 },
+  { name: 'Lugia V', hp: 230 },
+  { name: 'Mew VMAX', hp: 230 },
+  { name: 'Origin Dialga VSTAR', hp: 280 },
+  { name: 'Origin Palkia VSTAR', hp: 280 },
+  { name: 'Regieleki VMAX', hp: 310 },
+  { name: 'Zoroark VSTAR', hp: 270 },
+  // — Common bench / support basics —
+  { name: 'Bibarel', hp: 120 },
+  { name: 'Comfey', hp: 70 },
+  { name: 'Drifloon', hp: 60 },
+  { name: 'Kirlia', hp: 70 },
+  { name: 'Lumineon V', hp: 170 },
+  { name: 'Radiant Charizard', hp: 160 },
+  { name: 'Radiant Greninja', hp: 130 },
+  { name: 'Sableye', hp: 70 },
+];

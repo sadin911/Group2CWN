@@ -1,0 +1,682 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   3D Foil & Dynamic Specular Sheen (Exact Lorcana Physics Architecture)
+   ========================================================================== */
+
+@keyframes foil-holo-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+.foil-3d {
+  --foil-rx: 0deg;
+  --foil-ry: 0deg;
+  --foil-mx: 50%;
+  --foil-my: 50%;
+  --foil-sx: 0px;
+  --foil-sy: 8px;
+  --foil-on: 0;
+  --foil-dur: 420ms;
+
+  transform-style: preserve-3d;
+  /* translateZ keeps the card on its own compositor layer, so tracking the
+     input never triggers layout. */
+  transform: perspective(900px) rotateX(var(--foil-rx)) rotateY(var(--foil-ry))
+    scale(calc(1 + 0.02 * var(--foil-on))) translateZ(0);
+  transition:
+    transform var(--foil-dur) cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow var(--foil-dur) ease-out;
+  /* Shadow leans opposite the tilt. Kept subtle: with a shallow rotation a heavy
+     shadow is the thing that would look overdone. */
+  box-shadow:
+    var(--foil-sx) var(--foil-sy) calc(14px + 8px * var(--foil-on))
+      rgba(0, 0, 0, calc(0.28 + 0.2 * var(--foil-on))),
+    0 0 0 1px rgba(223, 199, 146, calc(0.3 + 0.35 * var(--foil-on)));
+}
+
+/* The holographic bands, oversized and positioned from the input, so they slide
+   across the art as the card turns. color-dodge is what makes them read as light
+   rather than as paint.
+
+   Two elements deep on purpose: the wrapper's opacity carries the tilt ramp, and
+   ::before carries the idle pulse. Put both on one element and the animation wins
+   over the declaration every frame. */
+.foil-holo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  opacity: calc(0.22 + 0.4 * var(--foil-on, 0));
+  transition: opacity var(--foil-dur, 420ms) ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -25%;
+    background-image:
+      repeating-linear-gradient(
+        112deg,
+        rgba(255, 214, 148, 0.3) 0%,
+        rgba(150, 226, 255, 0.26) 7%,
+        rgba(206, 164, 255, 0.24) 14%,
+        rgba(255, 236, 176, 0.3) 21%,
+        rgba(255, 214, 148, 0.3) 28%
+      ),
+      radial-gradient(58% 42% at 24% 14%, rgba(223, 199, 146, 0.48), transparent 70%),
+      radial-gradient(52% 44% at 78% 78%, rgba(146, 206, 232, 0.4), transparent 70%);
+    background-size: 240% 240%, auto, auto;
+    background-position: var(--foil-mx) var(--foil-my);
+    transition: background-position var(--foil-dur) ease-out;
+    animation: foil-holo-pulse 9s ease-in-out infinite;
+    animation-delay: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      animation: none;
+    }
+  }
+}
+
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+    --pokeball-red: #EE1515;
+    --pokeball-red-dark: #CC0000;
+    --pokeball-white: #FFFFFF;
+    --pokeball-dark: #1E293B;
+    --pokeball-black: #0F172A;
+    --pokeball-yellow: #FFCB05;
+    --pokeball-blue: #2A75BB;
+
+    /* Header control surface tokens.
+
+       The top bar used to give every control its own colour, which read as noise
+       rather than as hierarchy. Controls now share one neutral surface and the
+       accent is spent only on what is active or needs attention. */
+    --surface: #f1f5f9;         /* slate-100 */
+    --surface-hover: #e2e8f0;   /* slate-200 */
+    --surface-border: #e2e8f0;  /* slate-200 */
+    --surface-fg: #334155;      /* slate-700 */
+    --surface-muted: #64748b;   /* slate-500 */
+    --accent: #7c3aed;          /* violet-600 */
+    --accent-hover: #6d28d9;    /* violet-700 */
+    --accent-fg: #ffffff;
+
+    /* Mobile Safe Area Insets (iOS Notch / Dynamic Island / Navigation Bar) */
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+  }
+
+  html.dark {
+    color-scheme: dark;
+
+    --surface: #1e293b;         /* slate-800 */
+    --surface-hover: #334155;   /* slate-700 */
+    --surface-border: #334155;  /* slate-700 */
+    --surface-fg: #e2e8f0;      /* slate-200 */
+    --surface-muted: #94a3b8;   /* slate-400 */
+    --accent: #fbbf24;          /* amber-400 — the wordmark's colour in dark */
+    --accent-hover: #f59e0b;    /* amber-500 */
+    --accent-fg: #0f172a;
+  }
+
+  html.light {
+    color-scheme: light;
+  }
+
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100%;
+    @apply transition-colors duration-200;
+  }
+
+  html.dark body {
+    @apply bg-slate-950 text-slate-100;
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(238, 21, 21, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(42, 117, 187, 0.05) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(255, 203, 5, 0.02) 0%, transparent 60%);
+  }
+
+  html.light body {
+    @apply bg-slate-100 text-slate-900;
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(238, 21, 21, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(42, 117, 187, 0.04) 0%, transparent 45%);
+  }
+
+  #root {
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* Battle mode: full viewport height without outer scroll */
+  html[data-game-mode="pokemon"] body,
+  html[data-game-mode="pokemon"] #root {
+    overflow: hidden;
+    height: 100dvh;
+    width: 100%;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* Card Skeleton Loading Shimmer */
+@keyframes card-skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-skeleton-shimmer {
+  animation: card-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Playmat V3 Custom Precision Gaming Cursor
+   ========================================================================== */
+.playmat-custom-cursor {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 3l7 17 3-6 6-3L3 3z' fill='%230f172a' stroke='%2334d399' stroke-width='1.5' stroke-linejoin='round'/%3E%3Ccircle cx='6' cy='6' r='1.5' fill='%2334d399'/%3E%3C/svg%3E") 3 3, default;
+}
+
+.playmat-custom-cursor button,
+.playmat-custom-cursor [role="button"],
+.playmat-custom-cursor .cursor-pointer,
+.playmat-custom-cursor [data-slot-zone="true"] {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M3 3l6 16 3-5 5-3L3 3z' fill='%230284c7' stroke='%23bae6fd' stroke-width='1.5' stroke-linejoin='round'/%3E%3Ccircle cx='18' cy='18' r='4' fill='%23ffffff' stroke='%23ef4444' stroke-width='2'/%3E%3Cline x1='14' y1='18' x2='22' y2='18' stroke='%230f172a' stroke-width='1.2'/%3E%3Ccircle cx='18' cy='18' r='1.2' fill='%230f172a'/%3E%3C/svg%3E") 3 3, pointer;
+}
+
+.playmat-custom-cursor .cursor-grab,
+.playmat-custom-cursor [draggable="true"] {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8' fill='%230f172a' stroke='%23fbbf24' stroke-width='2'/%3E%3Cpath d='M4 12h16' stroke='%23fbbf24' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23ffffff' stroke='%230f172a' stroke-width='1.5'/%3E%3C/svg%3E") 12 12, grab;
+}
+
+.playmat-custom-cursor .active\:cursor-grabbing:active,
+.playmat-custom-cursor:active {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='7' fill='%23f59e0b' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M5 12h14' stroke='%23ffffff' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='2.5' fill='%23ffffff' stroke='%230f172a' stroke-width='1'/%3E%3C/svg%3E") 12 12, grabbing;
+}
+
+/* ==========================================================================
+   Playmat V3: Full-Bleed Adaptive Card Scaling (Zero Dead Space)
+   ========================================================================== */
+:root {
+  --playmat-active-h: clamp(84px, 12.0vh, 120px);
+  --playmat-bench-h: clamp(64px, 9.0vh, 88px);
+  --playmat-deck-h: clamp(56px, 8.0vh, 76px);
+  --playmat-discard-h: clamp(48px, 6.8vh, 66px);
+  --playmat-prize-h: clamp(38px, 5.5vh, 54px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --playmat-active-h: clamp(92px, 13vh, 130px);
+    --playmat-bench-h: clamp(70px, 9.8vh, 98px);
+    --playmat-deck-h: clamp(62px, 8.6vh, 84px);
+    --playmat-discard-h: clamp(52px, 7.2vh, 72px);
+    --playmat-prize-h: clamp(42px, 6.0vh, 60px);
+  }
+}
+
+#playmat-v3-board {
+  container-type: size;
+  container-name: playmat-board;
+}
+
+@container playmat-board (min-width: 768px) {
+  #playmat-arena-container {
+    --playmat-active-h: clamp(88px, 20.8cqh, 115px);
+    --playmat-bench-h: clamp(64px, 14.8cqh, 82px);
+    --playmat-deck-h: clamp(60px, 13.8cqh, 78px);
+    --playmat-discard-h: clamp(50px, 11.5cqh, 65px);
+    --playmat-prize-h: clamp(40px, 9.5cqh, 54px);
+  }
+}
+
+@container playmat-board (min-width: 768px) and (min-height: 520px) {
+  #playmat-arena-container {
+    --playmat-active-h: clamp(112px, 22.0cqh, 150px);
+    --playmat-bench-h: clamp(80px, 15.6cqh, 108px);
+    --playmat-deck-h: clamp(75px, 14.6cqh, 100px);
+    --playmat-discard-h: clamp(62px, 12.2cqh, 84px);
+    --playmat-prize-h: clamp(50px, 10.0cqh, 68px);
+  }
+}
+
+@container playmat-board (min-width: 768px) and (min-height: 650px) {
+  #playmat-arena-container {
+    --playmat-active-h: clamp(142px, 23.4cqh, 190px);
+    --playmat-bench-h: clamp(102px, 16.6cqh, 136px);
+    --playmat-deck-h: clamp(95px, 15.4cqh, 126px);
+    --playmat-discard-h: clamp(78px, 12.6cqh, 105px);
+    --playmat-prize-h: clamp(65px, 10.5cqh, 88px);
+  }
+}
+
+@container playmat-board (min-width: 768px) and (min-height: 800px) {
+  #playmat-arena-container {
+    --playmat-active-h: clamp(175px, 23.6cqh, 245px);
+    --playmat-bench-h: clamp(125px, 16.8cqh, 175px);
+    --playmat-deck-h: clamp(116px, 15.8cqh, 162px);
+    --playmat-discard-h: clamp(95px, 13.0cqh, 132px);
+    --playmat-prize-h: clamp(78px, 10.8cqh, 110px);
+  }
+}
+
+@container playmat-board (min-width: 768px) and (min-height: 1050px) {
+  #playmat-arena-container {
+    --playmat-active-h: clamp(235px, 24.2cqh, 520px);
+    --playmat-bench-h: clamp(168px, 17.2cqh, 370px);
+    --playmat-deck-h: clamp(156px, 16.0cqh, 340px);
+    --playmat-discard-h: clamp(128px, 13.2cqh, 280px);
+    --playmat-prize-h: clamp(104px, 11.0cqh, 220px);
+  }
+}
+
+.card-active-size {
+  height: var(--playmat-active-h);
+  aspect-ratio: 63 / 88;
+  width: auto;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.card-bench-size {
+  height: var(--playmat-bench-h);
+  aspect-ratio: 63 / 88;
+  width: auto;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.card-deck-size {
+  height: var(--playmat-deck-h);
+  aspect-ratio: 63 / 88;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.card-discard-size {
+  height: var(--playmat-discard-h);
+  aspect-ratio: 63 / 88;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.card-prize-size {
+  height: var(--playmat-prize-h);
+  aspect-ratio: 63 / 88;
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Fluid Playmat Card Motion Suite (Draw, Placement, Swap, and Retreat)
+   ========================================================================== */
+
+@keyframes card-draw-glide {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.88);
+  }
+  65% {
+    transform: translateY(-3px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-draw-glide {
+  animation: card-draw-glide 220ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+@keyframes card-placement-impact {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+  }
+  65% {
+    transform: translateY(1.5px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: none;
+  }
+}
+
+.card-placement-impact {
+  animation: card-placement-impact 200ms cubic-bezier(0.25, 1, 0.35, 1) backwards;
+}
+
+@keyframes card-swap-stepup {
+  0% {
+    opacity: 0.6;
+    transform: translateY(14px) scale(0.92);
+    filter: brightness(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+
+.card-swap-stepup {
+  animation: card-swap-stepup 220ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+@keyframes card-swap-retreat {
+  0% {
+    opacity: 0.7;
+    transform: translateY(-10px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-swap-retreat {
+  animation: card-swap-retreat 200ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+@keyframes card-placement-ripple {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.85;
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8);
+  }
+  100% {
+    transform: scale(1.12);
+    opacity: 0;
+    box-shadow: 0 0 0 18px rgba(56, 189, 248, 0);
+  }
+}
+
+.card-placement-ripple {
+  animation: card-placement-ripple 280ms ease-out forwards;
+}
+
+/* ==========================================================================
+   Balatro-Style Card Juice & Physics Animations
+   ========================================================================== */
+
+@keyframes balatro-card-slam {
+  0% {
+    transform: perspective(800px) scale3d(1.16, 1.16, 1) translateY(-16px) rotate(-1.8deg);
+    filter: brightness(1.25) drop-shadow(0 16px 30px rgba(0, 0, 0, 0.7));
+  }
+  35% {
+    transform: perspective(800px) scale3d(0.93, 0.96, 1) translateY(4px) rotate(0.6deg);
+    filter: brightness(1.08) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.9));
+  }
+  65% {
+    transform: perspective(800px) scale3d(1.05, 1.03, 1) translateY(-3px) rotate(-0.2deg);
+    filter: brightness(1.02);
+  }
+  85% {
+    transform: perspective(800px) scale3d(0.99, 0.99, 1) translateY(1px) rotate(0deg);
+  }
+  100% {
+    transform: perspective(800px) scale3d(1, 1, 1) translateY(0) rotate(0deg);
+    filter: brightness(1);
+  }
+}
+
+.animate-balatro-slam {
+  animation: balatro-card-slam 360ms cubic-bezier(0.25, 1.4, 0.5, 1) forwards;
+  will-change: transform, filter;
+  transform-style: preserve-3d;
+}
+
+@keyframes balatro-badge-float {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0px) scale(0.55) rotate(-5deg);
+  }
+  22% {
+    opacity: 1;
+    transform: translate(-50%, -14px) scale(1.15) rotate(2deg);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(-50%, -26px) scale(1.0) rotate(0deg);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(-50%, -38px) scale(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -48px) scale(0.88);
+  }
+}
+
+.animate-balatro-badge-float {
+  animation: balatro-badge-float 850ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Balatro Polychrome Rainbow Holographic Sheen */
+.balatro-polychrome-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.balatro-polychrome-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 0, 128, 0.22) 35%,
+    rgba(0, 255, 255, 0.25) 45%,
+    rgba(255, 230, 0, 0.28) 55%,
+    rgba(0, 255, 128, 0.22) 65%,
+    transparent 80%
+  );
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 250ms ease-out;
+  transform: rotate(15deg);
+}
+
+.balatro-polychrome-shimmer:hover::before {
+  opacity: 1;
+  animation: balatro-foil-sweep 1.8s infinite linear;
+}
+
+@keyframes balatro-foil-sweep {
+  0% {
+    transform: translate(-40%, -40%) rotate(15deg);
+  }
+  100% {
+    transform: translate(40%, 40%) rotate(15deg);
+  }
+}
+
+/* ==========================================================================
+   Balatro Card Flight & Sliding Dynamic Animations
+   ========================================================================== */
+
+@keyframes balatro-flight-arc {
+  0% {
+    transform: translate3d(var(--flight-start-x, 0px), var(--flight-start-y, 0px), 0) rotate(var(--flight-start-rot, -8deg)) scale(var(--flight-start-scale, 0.88));
+    opacity: 0.9;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  }
+  46% {
+    transform: translate3d(calc((var(--flight-start-x, 0px) + var(--flight-end-x, 0px)) / 2), calc(min(var(--flight-start-y, 0px), var(--flight-end-y, 0px)) - 55px), 30px) rotate(calc((var(--flight-start-rot, 0deg) + var(--flight-end-rot, 0deg)) / 2 + 5deg)) scale(1.18);
+    filter: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.75));
+  }
+  86% {
+    transform: translate3d(calc(var(--flight-end-x, 0px) + (var(--flight-start-x, 0px) - var(--flight-end-x, 0px)) * 0.04), calc(var(--flight-end-y, 0px) - 5px), 10px) rotate(calc(var(--flight-end-rot, 0deg) * 1.05)) scale(1.04);
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.5));
+  }
+  100% {
+    transform: translate3d(var(--flight-end-x, 0px), var(--flight-end-y, 0px), 0) rotate(var(--flight-end-rot, 0deg)) scale(var(--flight-end-scale, 1));
+    opacity: 1;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  }
+}
+
+.balatro-flying-card {
+  animation: balatro-flight-arc var(--flight-duration, 420ms) cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;
+}
+
+/* ==========================================================================
+   AAA 3D Casino Riffle Deck Shuffle Animations
+   ========================================================================== */
+
+@keyframes deck-split-left {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  28% {
+    transform: translate3d(-36px, -12px, 18px) rotate(-14deg) scale(1.04);
+    filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.6));
+  }
+  70% {
+    transform: translate3d(-18px, -4px, 8px) rotate(-6deg) scale(1.02);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  }
+}
+
+@keyframes deck-split-right {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  28% {
+    transform: translate3d(36px, -12px, 18px) rotate(14deg) scale(1.04);
+    filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.6));
+  }
+  70% {
+    transform: translate3d(18px, -4px, 8px) rotate(6deg) scale(1.02);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  }
+}
+
+@keyframes deck-riffle-flutter {
+  0% {
+    transform: translate3d(var(--riffle-x, 0px), 0, 0) rotate(var(--riffle-rot, 0deg));
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate3d(calc(var(--riffle-x, 0px) * 0.4), -14px, 20px) rotate(calc(var(--riffle-rot, 0deg) * 0.4));
+    opacity: 1;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.5));
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes deck-bridge-arc {
+  0% {
+    transform: scale(1) translateY(0) rotateX(0deg);
+  }
+  38% {
+    transform: scale(1.1) translateY(-26px) rotateX(20deg);
+    filter: drop-shadow(0 20px 24px rgba(0, 0, 0, 0.7));
+  }
+  72% {
+    transform: scale(1.04) translateY(-10px) rotateX(10deg);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotateX(0deg);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  }
+}
+
+/* ==========================================================================
+   Pokémon TCG Pocket / Hearthstone Card Draw (Hand Slot Slide-Up & 3D Flip)
+   ========================================================================== */
+
+@keyframes ptcg-hand-slide-flip {
+  0% {
+    opacity: 0;
+    transform: perspective(800px) translateY(65px) scale(0.72) rotateY(65deg);
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  65% {
+    opacity: 1;
+    transform: perspective(800px) translateY(-12px) scale(1.06) rotateY(-6deg);
+    filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.75));
+  }
+  85% {
+    transform: perspective(800px) translateY(-2px) scale(1.02) rotateY(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(800px) translateY(0px) scale(1) rotateY(0deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+  }
+}
+
+.ptcg-card-draw-entrance {
+  animation: ptcg-hand-slide-flip 320ms cubic-bezier(0.2, 0.9, 0.3, 1) var(--draw-delay, 0ms) both;
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;
+}
+
+@keyframes deck-peel-slide {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(-12px, -8px, 6px) scale(1.02) rotate(-3deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(-24px, -14px, 12px) scale(0.98) rotate(-6deg);
+    opacity: 0;
+  }
+}
+
+.deck-peel-animation {
+  animation: deck-peel-slide 180ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  pointer-events: none;
+}
+
+
+
+
