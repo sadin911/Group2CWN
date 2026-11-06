@@ -14,13 +14,26 @@
 
 <br />
 
-**[🌐 เข้าใช้งานเว็บไซต์ทางการ (Cloudflare Production)](https://pokef.tcgcount.com)** • 
-**[📚 สมุดสะสมการ์ด (PokéCollection)](https://pokef.tcgcount.com/collection)** • 
-**[🃏 ระบบจัดการเด็ค (Deck Builder)](https://pokef.tcgcount.com/deck)** • 
-**[📑 เอกสารสรุปความต้องการ (Requirements)](./REQUIREMENTS.md)**
+# 🚀 [👉 คลิกเพื่อเข้าสู่เว็บไซต์ทางการ: https://pokef.tcgcount.com 👈](https://pokef.tcgcount.com)
 
-> 🪄 หมายเหตุ: โหมด Disney Lorcana ได้ถูกแยกออกไปเป็นโปรเจกต์อิสระแล้ว →
-> **[LorcanaCountTracker](https://github.com/sadin911/LorcanaCountTracker)**
+### 📌 ทางลัดเข้าสู่ระบบต่างๆ (Quick Navigation)
+| 🌟 บริการ | 🔗 ลิงก์เข้าใช้งานโดยตรง | 📝 คำอธิบาย |
+|---|---|---|
+| **🌐 หน้าหลักเว็บไซต์** | **[pokef.tcgcount.com](https://pokef.tcgcount.com)** | หน้ารวมศูนย์กลางระบบ PWA และการเข้าถึงทุกฟังก์ชัน |
+| **📚 สมุดสะสมการ์ด** | **[pokef.tcgcount.com/collection](https://pokef.tcgcount.com/collection)** | คลังสมุดสะสมการ์ดภาษาไทย 9,600+ ใบ แยกประเภทฟอยล์ |
+| **🃏 ระบบจัดการเด็ค** | **[pokef.tcgcount.com/deck](https://pokef.tcgcount.com/deck)** | จัดเด็ค 60 ใบ ตรวจสอบการ์ดที่ขาด และนำเข้าเมต้าเด็ค |
+| **📑 สรุปความต้องการ** | **[REQUIREMENTS.md](./REQUIREMENTS.md)** | เอกสาร Functional Requirements และ Specification |
+
+<br />
+
+> [!NOTE]
+> ### 💡 กรณีศึกษาการแชร์ข้ามโปรเจกต์ (Case Study: Cross-Project Skills Sharing)
+> **โหมดการ์ดเกม Disney Lorcana** ได้ถูกแยกออกไปเป็นโปรเจกต์อิสระเพื่อความคล่องตัวในการพัฒนาเฉพาะทาง → **[LorcanaCountTracker](https://github.com/sadin911/LorcanaCountTracker)**
+> 
+> โดยทั้งสองโปรเจกต์นี้ถูกออกแบบให้เป็น **กรณีศึกษาการทำงานร่วมกันระหว่าง AI Agents และทีมพัฒนา (Multi-Agent Architecture)** ซึ่งใช้ **Agent Skills และโมดูลมาตรฐานร่วมกัน (Shared Agent Skills & Tooling)** เช่น:
+> - **Shared Skill Sets**: ชุด Skill สำหรับการจัดการ PWA Offline Storage, สถาปัตยกรรม Atomic Release, และ Playwright E2E Quality Gates
+> - **Unified Data Model Standards**: มาตรฐานโครงสร้างข้อมูลสะสม (Binder Schema) และตรรกะระบบกรองการ์ด
+> - **Cross-Agent Logging**: การบันทึกและส่งต่อบริบทการพัฒนาร่วมกันผ่าน `AI_LOG.md` ทำให้ทีมงานหรือ Agent สามารถสลับไปทำงานบนอีกโปรเจกต์หนึ่งได้อย่างไร้รอยต่อ
 
 </div>
 

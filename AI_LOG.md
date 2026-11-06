@@ -1204,3 +1204,7 @@
 [2026-11-06 15:19] Major | Antigravity | Edit | Update README.md live URL to pokef.tcgcount.com
 
 [2026-11-06 15:27] Major | Antigravity | Edit | README.md - Comprehensive documentation update in Thai
+
+[2026-11-06 15:36] Major | Antigravity | Edit | README.md - Added prominent web link & Lorcana shared-skills case study
+
+[2026-11-06 16:00] Major | Antigravity | Edit | Compressed interview video from 355MB to 3.2MB for GitHub compatibility
