@@ -1,0 +1,26 @@
+{
+  "normal_mode": {
+    "total": 30,
+    "passed": 30,
+    "failed": 0,
+    "p1_passed": "27/27"
+  },
+  "bug_mode": {
+    "total": 30,
+    "passed": 25,
+    "failed": 5,
+    "p1_passed": "22/27"
+  },
+  "newly_failed_in_bug_mode": [
+    "TC-MIS-03",
+    "TC-MIS-04",
+    "TC-DCK-03",
+    "TC-BAT-02",
+    "TC-SEC-03"
+  ],
+  "bugs_caught": [
+    "BUG-1 (Double Discount Stacking)",
+    "BUG-2 (Card Copy Limit Checked by ID instead of Thai Name)",
+    "BUG-3 (Bench Weakness Applied & Tombstone Ignored)"
+  ]
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>บท 04 · PokéCount Tracker (Sabai Spa Methodology Edition) — Multi-Source Interview to Test Plan & Bug Hunt</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card: #1e293b;
+      --card-alt: #0f172a;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --gold: #facc15;
+      --blue: #38bdf8;
+      --green: #4ade80;
+      --red: #f87171;
+      --purple: #c084fc;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Thai", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 2rem 1rem 4rem;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--gold);
+      border-radius: 14px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.75rem;
+    }
+    h1 { margin: 0 0 0.5rem; font-size: 1.75rem; color: var(--gold); }
+    h2 { color: var(--blue); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; margin-top: 2rem; }
+    h3 { color: #e2e8f0; margin-top: 1.25rem; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .badge.gold { background: rgba(250, 204, 21, 0.16); color: var(--gold); border: 1px solid rgba(250, 204, 21, 0.4); }
+    .badge.green { background: rgba(74, 222, 128, 0.16); color: var(--green); border: 1px solid rgba(74, 222, 128, 0.4); }
+    .badge.blue { background: rgba(56, 189, 248, 0.16); color: var(--blue); border: 1px solid rgba(56, 189, 248, 0.4); }
+    .badge.purple { background: rgba(192, 132, 252, 0.16); color: var(--purple); border: 1px solid rgba(192, 132, 252, 0.4); }
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .source-box {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+    }
+    .source-box h4 { margin: 0 0 0.4rem; color: var(--gold); font-size: 1rem; }
+    .source-box p { margin: 0.3rem 0 0; font-size: 0.88rem; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.91rem; }
+    th, td { border: 1px solid var(--border); padding: 0.65rem 0.8rem; text-align: left; vertical-align: top; }
+    th { background: #090d16; color: var(--gold); }
+    tr:nth-child(even) td { background: rgba(15, 23, 42, 0.45); }
+    code { background: #090d16; color: var(--blue); padding: 0.15rem 0.4rem; border-radius: 5px; font-size: 0.86em; }
+    a { color: var(--blue); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>บท 04 · PokéCount Tracker: จากการฟังพหุแหล่งข้อมูล (Multi-Source Interview) สู่แผนทดสอบและการล่าบั๊กครบ LAB 1–13</h1>
+      <p style="margin:0.35rem 0 0; color:var(--muted);">
+        ยึดโครงสร้างและระเบียบวิธีตาม <code>04_sabai-spa-web-and-testplan-from-interview</code> ทุกขั้นตอน โดยใช้ <strong>PokéCount Tracker (v2.44.0)</strong> เป็นระบบหลัก และยกระดับต้นทางบทสัมภาษณ์เป็น <strong>Multi-Source Evidence 6 รูปแบบ</strong>
+      </p>
+      <div class="badge-row">
+        <span class="badge gold">Repo: /Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition</span>
+        <span class="badge blue">Multi-Source Interview: 6 รูปแบบ + 7 Personas</span>
+        <span class="badge green">LAB 1–4: 24 US · 24 FR · 20 BR · 45 แถวค่าขอบ</span>
+        <span class="badge purple">LAB 7–13: 6 Charters · 30 TC · จับบั๊กปริศนา 3/3 ตัว</span>
+      </div>
+    </header>
+
+    <!-- MULTI-SOURCE INTERVIEW SHOWCASE -->
+    <section class="section-card">
+      <h2>🌟 ไฮไลต์คะแนนพิเศษ: ข้อมูลต้นทางการสัมภาษณ์แบบพหุแหล่งข้อมูล (6 Multi-Source Interview Artifacts)</h2>
+      <p>
+        แทนที่จะใช้บันทึกสัมภาษณ์แผ่นเดียว เราจัดเตรียมหลักฐานชั้นต้น <strong>6 รูปแบบไฟล์ที่แตกต่างกัน</strong> ในโฟลเดอร์ <code>interview/sources/</code>
+        เพื่อให้เห็นกระบวนการสกัดความต้องการจากหลายแหล่งและการตรวจจับข้อมูลที่ขัดแย้งกันข้ามแหล่ง (<code>CONF-01..04</code>) ก่อนให้เจ้าของระบบยืนยันในรอบที่ 2:
+      </p>
+
+      <div class="source-grid">
+        <div class="source-box">
+          <h4>1. 🎙️ ถอดเทปเสียงสัมภาษณ์ภาคสนาม (Audio Transcript)</h4>
+          <div><a href="interview/sources/01-field-interview-transcript.md"><code>01-field-interview-transcript.md</code></a></div>
+          <p>บันทึกคำต่อคำพร้อม Timestamp จากงานแข่ง Regional Mega Bangna ครบ 7 Personas (คุณซาดิน, คุณอาร์ต, คุณภูมิ, น้องมีน, Mr. Kenji, น้องข้าวปั้น, เฮียหมง)</p>
+        </div>
+        <div class="source-box">
+          <h4>2. 💬 แชตกลุ่ม LINE OpenChat & Discord Bug Log</h4>
+          <div><a href="interview/sources/02-line-discord-bug-thread.md"><code>02-line-discord-bug-thread.md</code></a></div>
+          <p>ข้อความแจ้งปัญหาจริงจากผู้เล่นเรื่องสมุดสะสมที่ลบแล้วฟื้นคืนชีพ (Zombie Binder), ข้อมูลโหมด Guest ไหลปนตอน Logout, และการปิดบังเลขผู้เสียภาษี PDPA</p>
+        </div>
+        <div class="source-box">
+          <h4>3. 📊 ตาราง CSV ราคาตลาดและตัวคูณความหายาก</h4>
+          <div><a href="interview/sources/03-partner-pricing-sheet.csv"><code>03-partner-pricing-sheet.csv</code></a></div>
+          <p>สเปรดชีตจริงจากร้านเฮียหมง ระบุราคา USD, อัตราแลกเปลี่ยน 34.00, ตัวคูณ <code>thaiPriceRatio</code> (0.60 / 0.85 / 1.10) และตัวอย่างปัดเศษ <code>.50</code> ของการ์ด SAR</p>
+        </div>
+        <div class="source-box">
+          <h4>4. 📜 ระเบียบกรรมการตรวจเด็คงานแข่ง Regional</h4>
+          <div><a href="interview/sources/04-tournament-deckcheck-rules.md"><code>04-tournament-deckcheck-rules.md</code></a></div>
+          <p>เอกสารทางการของคุณอาร์ต (Head Judge) ระบุกฎเหล็ก 60 ใบ, Basic ≥ 1, ชื่อไทยซ้ำ ≤ 4 ยกเว้นพลังงานพื้นฐาน, ACE SPEC ≤ 1, Radiant ≤ 1 และสูตรดาเมจ Active vs Bench</p>
+        </div>
+        <div class="source-box">
+          <h4>5. 🚨 รายงาน Incident Post-Mortem (v2.33.0 & v2.42.1)</h4>
+          <div><a href="interview/sources/05-incident-postmortems-v2.md"><code>05-incident-postmortems-v2.md</code></a></div>
+          <p>บันทึกวิศวกรรมจากบั๊กจริงใน Production เรื่อง <code>costPrice</code> รั่วในลิงก์แชร์สาธารณะ <code>pk_xxxxxxxx</code> และกลไก <code>deletedBinderIds</code> Tombstone</p>
+        </div>
+        <div class="source-box">
+          <h4>6. 📈 ผลสำรวจนักสะสมไทย 120 คน (JSON Telemetry)</h4>
+          <div><a href="interview/sources/06-user-survey-analytics.json"><code>06-user-survey-analytics.json</code></a></div>
+          <p>ข้อมูล JSON สำรวจ Pain Points อันดับ 1–4 และสถิติการใช้งานผ่านหน้าจอมือถือ <code>375px</code> สูงถึง 88.5% ที่นำไปสู่ข้อกำหนด NFR-01 และ NFR-02</p>
+        </div>
+      </div>
+
+      <p style="margin-top:1.1rem;">
+        👉 เอกสารสังเคราะห์รอบแรก: <a href="interview/INTERVIEW.md"><strong><code>interview/INTERVIEW.md</code></strong></a> ·
+        เอกสารเจ้าของระบบตอบกลับรอบที่ 2: <a href="interview/OWNER-ANSWERS.md"><strong><code>interview/OWNER-ANSWERS.md</code></strong></a>
+      </p>
+    </section>
+
+    <!-- LAB WALKTHROUGH TABLE -->
+    <section class="section-card">
+      <h2>🗺️ สรุปผลงานครบทุกช่วง (LAB 1 ถึง LAB 13 ตามแนวทางบทเรียนที่ 04)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ช่วง</th>
+            <th>LAB</th>
+            <th>ไฟล์ส่งอาจารย์</th>
+            <th>สรุปผลลัพธ์สำคัญ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🟢 <strong>ฟังร้าน</strong></td>
+            <td><strong>LAB 1</strong></td>
+            <td><a href="USER-STORIES.md"><code>USER-STORIES.md</code></a></td>
+            <td>สกัด User Stories ครบ <strong>24 ข้อ</strong> (<code>Must 18 / Should 3 / Could 3</code>), คำถามกลับ <code>Q1–Q10</code>, และเรื่องที่ข้อมูลขัดกันเอง <code>CONF-01..04</code></td>
+          </tr>
+          <tr>
+            <td>🟢 <strong>ฟังร้าน</strong></td>
+            <td><strong>LAB 2</strong></td>
+            <td><a href="REQUIREMENTS.md"><code>REQUIREMENTS.md</code></a></td>
+            <td>หลังเจ้าของตอบกลับ ได้ <code>FR-01..24</code>, กฎธุรกิจ <code>BR-01..20</code> พร้อมค่าขอบครบ 3 ค่าทุกข้อ, สมมติฐาน <code>⚠️A-01..03</code>, และ <code>NFR-01..06</code></td>
+          </tr>
+          <tr>
+            <td>🟢 <strong>ฟังร้าน</strong></td>
+            <td><strong>LAB 3</strong></td>
+            <td><a href="DESIGN.md"><code>DESIGN.md</code></a></td>
+            <td>ครบทั้ง 5 แผนภาพ Mermaid: <strong>Architecture · Use Case · Pricing Flowchart · ERD · Tombstone Sync Sequence Diagram</strong></td>
+          </tr>
+          <tr>
+            <td>🟢 <strong>ฟังร้าน</strong></td>
+            <td><strong>LAB 4</strong></td>
+            <td><a href="TEST-DATA.md"><code>TEST-DATA.md</code></a></td>
+            <td>บัญชีตั้งต้น <code>U01–U07</code>, ตารางค่าขอบ <code>E01–E45</code>, ตารางคำนวณใบเสนอราคา <code>M01–M08</code>, และผลตรวจคำนวณซ้ำโดย Subagent อิสระตรงกัน 100%</td>
+          </tr>
+          <tr>
+            <td>🟡 <strong>เชื่อมเว็บ</strong></td>
+            <td><strong>LAB 5–6</strong></td>
+            <td><a href="BUILD-PROMPT.md"><code>BUILD-PROMPT.md</code></a></td>
+            <td>ใบสั่งงานเชื่อมระบบจริง <code>PokéCount Tracker</code>, สัญญา API ทั้ง 8 จุด, และสวิตช์จำลองบั๊กปริศนา <code>BUG_MODE=1</code></td>
+          </tr>
+          <tr>
+            <td>🔵 <strong>สำรวจ</strong></td>
+            <td><strong>LAB 7–9</strong></td>
+            <td><a href="CHARTERS.md"><code>CHARTERS.md</code></a>, <a href="exploration/c1.md"><code>exploration/c1..c6.md</code></a>, <a href="EXPLORATION.md"><code>EXPLORATION.md</code></a></td>
+            <td>เทียบ 3 ทาง (<code>[D]</code> vs <code>[A]</code> vs <code>[O]</code>), แบ่ง 6 Charters สำรวจขนานครบทุกกฎ, และให้ผู้ตัดสินความเสี่ยงอิสระจัดลำดับ <code>P1 / P2</code></td>
+          </tr>
+          <tr>
+            <td>🟠 <strong>เขียนแผน</strong></td>
+            <td><strong>LAB 10–11</strong></td>
+            <td><a href="TEST-PLAN.md"><code>TEST-PLAN.md</code></a>, <a href="PLAN-REVIEW.md"><code>PLAN-REVIEW.md</code></a></td>
+            <td>แผนการทดสอบ <strong>30 ข้อ</strong> แบ่งตาม 6 สาย Writer (<code>5.1–5.6</code>) พร้อมป้าย <code>[D]</code>, <code>[D][R]</code>, <code>[R] ⚠️A-xx</code> และผ่านการรีวิวโดยผู้รีวิวอิสระ</td>
+          </tr>
+          <tr>
+            <td>🟣 <strong>พิสูจน์</strong></td>
+            <td><strong>LAB 12–13</strong></td>
+            <td><a href="e2e/index.html"><code>e2e/index.html</code></a>, <a href="BUG-HUNT.md"><code>BUG-HUNT.md</code></a></td>
+            <td>รันผ่านรอบปกติ <code>30/30 (100%)</code> และในรอบฝังบั๊ก <code>BUG_MODE=1</code> จับบั๊กปริศนาได้ครบ <strong>3 จาก 3 ตัว (100%)</strong> พร้อมตารางพิสูจน์ว่าถ้าลอกหน้าจอ <code>[O]</code> จะจับบั๊กไม่ได้เลย (`0/3`)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
