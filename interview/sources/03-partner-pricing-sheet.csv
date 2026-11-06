@@ -1,0 +1,11 @@
+card_id,set_code,card_number,name_th,name_en,rarity,smart_variants_allowed,tcgplayer_usd,fx_rate_thb,thai_price_ratio,expected_market_thb,partner_stock_status,notes
+SV1-001,SV1,001/078,เนียโอฮะ,Sprigatito,C,normal|mirror|holo,0.50,34.00,0.60,10,IN_STOCK,การ์ดพื้นฐาน 3 ช่อง Variant
+SV2a-165,SV2a,165/165,มิว ex,Mew ex,RR,normal|mirror|holo,3.00,34.00,0.60,61,IN_STOCK,การ์ด ex ระดับ RR ใช้ตัวคูณ 0.60
+SV2a-173,SV2a,173/165,พิคาชู,Pikachu,AR,holo,10.00,34.00,0.85,289,IN_STOCK,การ์ด Art Rare มีเฉพาะช่อง Holo
+SV3-125,SV3,125/108,ลิซาร์ดอน ex,Charizard ex,SAR,holo,12.50,34.00,1.10,468,LOW_STOCK,ทศนิยม 467.50 ปัดขึ้นด้วย Math.round เป็น 468 บาท
+SV4a-349,SV4a,349/190,ลิซาร์ดอน ex,Charizard ex,SAR,holo,15.00,34.00,1.10,561,IN_STOCK,ชื่อไทยซ้ำกับ SV3-125 นับรวมในโควตา 4 ใบต่อเด็ค
+SV5K-064,SV5K,064/071,ไพรม์แคตเชอร์,Prime Catcher,ACE_SPEC,holo,8.00,34.00,1.10,299,IN_STOCK,การ์ด ACE SPEC ใส่ได้ไม่เกิน 1 ใบต่อเด็ค
+SV5M-066,SV5M,066/071,แม็กซิมัมเบลต์,Maximum Belt,ACE_SPEC,holo,4.00,34.00,1.10,150,IN_STOCK,การ์ด ACE SPEC ห้ามใส่คู่กับไพรม์แคตเชอร์
+S10b-011,S10b,011/071,ลิซาร์ดอนเปล่งประกาย,Radiant Charizard,R_RADIANT,holo,6.00,34.00,0.85,173,IN_STOCK,การ์ด Radiant ใส่ได้ไม่เกิน 1 ใบต่อเด็ค
+S9a-026,S9a,026/067,เก็คโคกะเปล่งประกาย,Radiant Greninja,R_RADIANT,holo,5.00,34.00,0.85,145,IN_STOCK,การ์ด Radiant ห้ามใส่คู่กับลิซาร์ดอนเปล่งประกาย
+SVE-002,SVE,002/008,พลังงานไฟพื้นฐาน,Basic Fire Energy,BASIC_ENERGY,normal|holo,0.25,34.00,0.60,5,IN_STOCK,พลังงานพื้นฐาน ยกเว้นกฎ 4 ใบ (ใส่ได้ไม่จำกัดภายใน 60 ใบ)
