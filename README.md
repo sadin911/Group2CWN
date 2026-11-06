@@ -12,8 +12,9 @@
 
 <br />
 
-**[🌐 เข้าใช้งานเว็บไซต์ (Live Website)](https://sadin911.github.io/PokeCountTracker/)** • 
-**[📚 สมุดสะสมการ์ด (PokéCollection)](https://sadin911.github.io/PokeCountTracker/collection)**
+**[🌐 เข้าใช้งานเว็บไซต์ (Cloudflare Production)](https://pokef.tcgcount.com)** • 
+**[📚 สมุดสะสมการ์ด (PokéCollection)](https://pokef.tcgcount.com/collection)** • 
+**[📑 เอกสารทบทวนความต้องการ (User Requirement Review)](./review/USER-REQUIREMENTS-REVIEW-PLAY.md)**
 
 > 🪄 โหมด Disney Lorcana ถูกแยกออกไปเป็นโปรเจกต์อิสระแล้ว →
 > **[LorcanaCountTracker](https://github.com/sadin911/LorcanaCountTracker)**
