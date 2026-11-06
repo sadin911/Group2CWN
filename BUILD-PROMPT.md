@@ -9,7 +9,7 @@
 - **ระบบต้นแบบจริง**: `PokéCount Tracker v2.44.0` (`/Users/sadin/Project/PokeCountTracker`)
 - **เส้นทางหน้าเว็บหลัก (`Routes`)**:
   - `/th` และ `/en` — หน้าหลักคลังการ์ดโปเกมอนไทย 9,554+ ใบ (โหลดทีละ `60` ใบ) พร้อมตัวสลับสมุดสะสม (`1..10` เล่ม) และปุ่มนับจำนวนตาม `Smart Variant System` (`0..99` ใบ)
-  - `/th/decks` — หน้าจัดเด็ค 60 ใบ พร้อมตัวตรวจกติกา (`DeckValidator`: 60 ใบ, Basic $\ge 1$, ชื่อไทยซ้ำ $\le 4$ ยกเว้น Basic Energy, `ACE SPEC <= 1`, `Radiant <= 1`), นำเข้าเด็ค PTCGL, และคำนวณใบเสนอราคา `Missing Cards` + ส่วนลดพาร์ทเนอร์
+  - `/th/decks` — หน้าจัดเด็ค 60 ใบ พร้อมตัวตรวจกติกา (`DeckValidator`: 60 ใบ, Basic $\ge 1$, ชื่อไทยซ้ำ $\le 4$ ยกเว้น Basic Energy, `ACE SPEC <= 1`, `Radiant <= 1`), นำเข้าเด็ค PTCGL, และคำนวณรายการการ์ดที่ขาด `Missing Cards` + การคำนวณแบบ Equivalent
   - `/th/battle` — หน้ากระดานแข่ง `Battle Companion` (`maxHp 30..340`, โจมตีแยก `ACTIVE` vs `BENCH`, จบเทิร์น `Checkup` พิษ `+10` / ไฟไหม้ `+20`, วิวัฒนาการ/ถอยล้างสถานะ)
   - `/th/share/:shareId` — หน้าลิงก์แชร์สมุดสะสมสาธารณะรหัส `pk_xxxxxxxx` (แสดงมูลค่าตลาดรวมโดยไม่มี `costPrice`, `customPrice`, `privateNotes`)
   - `/th/admin` — หน้าผู้ดูแลระบบ (เฉพาะ `owner@pokecount.test`) สำหรับอนุมัติคู่การ์ดไทย-อังกฤษ
@@ -24,7 +24,7 @@
 4. `POST /api/binders` และ `DELETE /api/binders/:binderId` — สร้าง/ลบสมุดสะสมภายใต้โควตา `1..10` เล่ม พร้อมบันทึก `deletedBinderIds`
 5. `POST /api/share/snapshot` และ `GET /api/share/:shareId` — สร้างและดึง Snapshot สาธารณะที่ตัด `costPrice` ออก 100%
 6. `POST /api/decks/validate` — ตรวจกติกาเด็ค 60 ใบ
-7. `POST /api/decks/missing-quote` — คำนวณการ์ดที่ขาดและเปรียบเทียบส่วนลด `PARTNER_10PCT` vs `TOURNAMENT150` พร้อมปิดบังเลขผู้เสียภาษี 13 หลัก
+7. `POST /api/decks/missing-quote` — คำนวณการ์ดที่ขาดและเปรียบเทียบการคำนวณการ์ดที่ขาด `PARTNER_10PCT` vs `Exact Mode` พร้อมปิดบังรหัสการ์ดสองภาษา 13 หลัก
 8. `POST /api/battle/attack`, `POST /api/battle/checkup`, `POST /api/battle/evolve-or-retreat` — คำนวณดาเมจและสถานะบนกระดานแข่ง
 
 ---

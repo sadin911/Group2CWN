@@ -54,7 +54,7 @@ flowchart LR
         UC1("นับการ์ด 0..99 ตาม Smart Variant & จัดการสมุด 1..10 เล่ม")
         UC2("คำนวณราคาตลาดไทย THB & แชร์ลิงก์ pk_xxxxxxxx (ไร้ costPrice)")
         UC3("จัดเด็ค 60 ใบ & ตรวจกฎ 4 ใบ / ACE SPEC / Radiant")
-        UC4("คำนวณการ์ดที่ขาด & เทียบส่วนลดพาร์ทเนอร์ 10% vs TOURNAMENT150")
+        UC4("คำนวณการ์ดที่ขาด & เทียบโหมดคำนวณ Equivalent vs Exact Mode")
         UC5("คำนวณดาเมจกระดานแข่ง (Active vs Bench) & จบเทิร์น Checkup")
         UC6("ซิงค์สมุดสะสมข้ามอุปกรณ์ & ป้องกันสมุดผีด้วย Tombstone")
         UC7("อนุมัติคู่การ์ดไทย-อังกฤษในหน้า /admin")
@@ -73,23 +73,23 @@ flowchart LR
 
 ---
 
-## 3. ผังงานการคำนวณส่วนลดร้านพาร์ทเนอร์และคูปอง (`Pricing & Discount Flowchart`)
+## 3. ผังงานการคำนวณการคำนวณการ์ดที่ขาดร้านพาร์ทเนอร์และคูปอง (`Pricing & Discount Flowchart`)
 
 ```mermaid
 flowchart TD
-    Start(["เริ่มคำนวณใบเสนอราคา Missing Cards"]) --> CalcMissing["สำหรับแต่ละใบในเด็ค:\nmissingQty = max(0, neededQty - ownedInBinder)"]
+    Start(["เริ่มคำนวณรายการการ์ดที่ขาด Missing Cards"]) --> CalcMissing["สำหรับแต่ละใบในเด็ค:\nmissingQty = max(0, neededQty - ownedInBinder)"]
     CalcMissing --> Gross["คำนวณยอดรวมก่อนลด:\ngrossMissingThb = Σ (missingQty × round(usd × 34.0 × thaiPriceRatio))"]
     Gross --> Check1000{"grossMissingThb >= 1,000 THB?"}
     Check1000 -- ใช่ --> P10["partnerDiscount = round(grossMissingThb × 0.10)"]
     Check1000 -- ไม่ใช่ --> P0["partnerDiscount = 0"]
-    P10 --> CheckCoupon{"กรอกคูปอง TOURNAMENT150\nและ grossMissingThb >= 1,500?"}
+    P10 --> CheckCoupon{"กรอกโหมด Exact\nและ grossMissingThb >= 1,500?"}
     P0 --> CheckCoupon
     CheckCoupon -- ใช่ --> C150["couponDiscount = 150"]
     CheckCoupon -- ไม่ใช่ --> C0["couponDiscount = 0"]
     C150 --> Compare{"partnerDiscount >= couponDiscount?"}
     C0 --> Compare
     Compare -- "ใช่ (รวมกรณีเท่ากันที่ 1,500฿)" --> UsePartner["เลือก PARTNER_10PCT\nappliedDiscount = partnerDiscount"]
-    Compare -- ไม่ใช่ --> UseCoupon["เลือก COUPON_TOURNAMENT150\nappliedDiscount = 150"]
+    Compare -- ไม่ใช่ --> UseCoupon["เลือก COUPON_Exact Mode\nappliedDiscount = 150"]
     UsePartner --> Net["netTotalThb = grossMissingThb - appliedDiscount"]
     UseCoupon --> Net
     Net --> End(["คืนค่า JSON Quote พร้อม Masked Tax ID"])
