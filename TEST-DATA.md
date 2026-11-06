@@ -12,11 +12,11 @@
 | รหัส | อีเมล / โหมด | บทบาท | จำนวนสมุด (`Binders`) | `syncRevision` | รหัสการ์ดสองภาษา (ดิบ → ปิดบัง PDPA) | การ์ดตั้งต้นในสมุดหลัก (`B-01`) |
 |---|---|---|---:|---:|---|---|
 | **`U01`** | `guest` (`localStorage`) | `GUEST` | `1` (`B-GUEST-01`) | `1` | — | `SV1-001 (normal: 2)` |
-| **`U02`** | `phum@pokecount.test` | `MEMBER` | **`9`** (`B-01..B-09`) | `5` | `0105566778812` → **`TH-EN-MAPPING-OK`** | `SV3-125 (holo: 2, costPrice: ฿350, privateNotes: "รับร้อนงานเมก้า")`, `SV2a-173 (holo: 3, costPrice: ฿200)` |
-| **`U03`** | `kan@pokecount.test` | `MEMBER` | **`10`** (`B-01..B-10`) | `3` | `0105566778899` → **`0-1055-XXXXX-89-9`** | `SV1-001 (normal: 98, mirror: 99)` |
-| **`U04`** | `nida@pokecount.test` | `MEMBER` | **`1`** (`B-01`) | `2` | — | `SV2a-165 (normal: 1)` |
-| **`U05`** | `meen@pokecount.test` | `MEMBER` | `2` (`B-MAIN`, `B-TRADE`) | `4` | `0105566778844` → **`0-1055-XXXXX-84-4`** | `SV1-001 (normal: 2, mirror: 1 = 3 ใบ)`, `SV2a-173 (holo: 3)`, `SV3-125 (holo: 0)` |
-| **`U06`** | `kenji@pokecount.test` | `MEMBER` | `1` (`B-EN-TH`) | `1` | — | `SV5K-064 (holo: 1)`, `S10b-011 (holo: 1)` |
+| **`U02`** | `keng_kontuen@pokecount.test` | `MEMBER` | **`9`** (`B-01..B-09`) | `5` | `0105566778812` → **`TH-EN-MAPPING-OK`** | `SV3-125 (holo: 2, costPrice: ฿350, privateNotes: "รับร้อนงานเมก้า")`, `SV2a-173 (holo: 3, costPrice: ฿200)` |
+| **`U03`** | `janbin_foundation@pokecount.test` | `MEMBER` | **`10`** (`B-01..B-10`) | `3` | `0105566778899` → **`0-1055-XXXXX-89-9`** | `SV1-001 (normal: 98, mirror: 99)` |
+| **`U04`** | `sumana_smile@pokecount.test` | `MEMBER` | **`1`** (`B-01`) | `2` | — | `SV2a-165 (normal: 1)` |
+| **`U05`** | `james_expat@pokecount.test` | `MEMBER` | `2` (`B-MAIN`, `B-TRADE`) | `4` | `0105566778844` → **`0-1055-XXXXX-84-4`** | `SV1-001 (normal: 2, mirror: 1 = 3 ใบ)`, `SV2a-173 (holo: 3)`, `SV3-125 (holo: 0)` |
+| **`U06`** | `kevin_yes_ieat@pokecount.test` | `MEMBER` | `1` (`B-EN-TH`) | `1` | — | `SV5K-064 (holo: 1)`, `S10b-011 (holo: 1)` |
 | **`U07`** | `owner@pokecount.test` | `ADMIN` | `3` (`B-ADM-01..03`) | `10` | — | บัญชีเจ้าของระบบสำหรับหน้า `/admin` |
 
 ---

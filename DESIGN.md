@@ -44,10 +44,10 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    Guest["👤 น้องข้าวปั้น (Guest / Tabletop Battler)"]
-    Col["💼 คุณภูมิ (Whale Collector)"]
-    Play["🏆 น้องมีน (Competitive Meta Player)"]
-    Expat["🌏 Mr. Kenji (Expat EN User)"]
+    Guest["👤 น้อง Only (Guest / Tabletop Battler)"]
+    Col["💼 พรี่เก่ง คนตื่น (Whale Collector)"]
+    Play["🏆 สุมนา ยิ้มหน้า แม่เธอสิ (Competitive Meta Player)"]
+    Expat["🌏 จาเมส (Expat EN User)"]
     Admin["🛡️ คุณซาดิน (Admin / Owner)"]
 
     subgraph PokeCount["ระบบ PokéCount Tracker"]
@@ -164,7 +164,7 @@ erDiagram
 
 ```mermaid
 sequenceDiagram
-    actor DevA as "อุปกรณ์ A (iPad คุณภูมิ)"
+    actor DevA as "อุปกรณ์ A (iPad พรี่เก่ง คนตื่น)"
     actor DevB as "อุปกรณ์ B (มือถือเพิ่งต่อเน็ต)"
     participant API as "PokéCount Sync API"
     participant DB as "Firestore / State Store"

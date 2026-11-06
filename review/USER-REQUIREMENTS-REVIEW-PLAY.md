@@ -2,119 +2,134 @@
 ## โปรเจกต์: PokéCount Tracker (ฉบับ Production & Cloudflare Edge)
 
 > **บริบทของฉาก (Context & Setting)**:
-> ห้องประชุมทีมพัฒนา PokéCount Tracker ณ อาคารสำนักงานใหญ่ 
-> ผู้มีส่วนได้ส่วนเสียหลักจากการใช้งานจริง (ผู้พัฒนา, จัดเด็คแข่งขัน, นักสะสมการ์ดหายาก, ผู้เล่นต่างชาติ, และทีม QA) 
-> มานั่งรีวิวฟังก์ชันจริงของระบบ **ที่ไม่มีฟีเจอร์เกินจริง (ไม่แต่งเรื่องระบบสั่งซื้อหน้าร้านหรือคูปองส่วนลดที่ไม่มีในโค้ด)**
-> ทุกประเด็นอิงจากประวัติการพัฒนาจริง: ระบบจัดเด็ค 60 ใบ, คำนวณการ์ดที่ขาด (Missing Cards Shopping List), ระบบสมุดสะสม, Realtime Sync, และความปลอดภัย Zero Secret Leak
+> ห้องประชุมใหญ่ชั้น 4 บรรยากาศสุดคึกคักหลังการทดสอบระบบเสร็จสิ้นสมบูรณ์
+> สมาชิกและผู้มีส่วนได้ส่วนเสียครบทุกสาย นำโดยคุณซาดิน (Product Owner) พร้อมด้วยเหล่าเซเลบและผู้ใช้งานระดับตำนานทั้ง 14 ท่าน
+> ร่วมกันตรวจสอบฟังก์ชันที่มีอยู่จริงในระบบ **PokéCount Tracker** (`https://pokef.tcgcount.com`) 
+> ไม่มีระบบแต่งเติมหลอกลวง (ไม่มีตะกร้าสั่งซื้อ, ไม่มีคูปองลดราคา) ยึดตามระบบจัดเด็ค 60 ใบ, การนับการ์ด Binder, และการคำนวณการ์ดที่ขาด (Missing Cards Shopping List) 100%
 > 
-> **ผู้ร่วมประชุม (Personas)**:
+> **ผู้ร่วมประชุม (Personas ทั้ง 14 ท่าน)**:
 > 1. **คุณซาดิน (Sadin)** — *Product Owner & Lead Developer*
-> 2. **คุณอาร์ต (Art)** — *Official Head Judge & Tournament Organizer* (กรรมการควบคุมระเบียบการแข่งขัน TCG)
-> 3. **คุณภูมิ (Poom)** — *Whale Collector & High-End Investor* (นักสะสมการ์ดมูลค่าสูง ดูแลพอร์ตสมุดสะสม)
-> 4. **น้องมีน (Meen)** — *Competitive Meta Player* (ผู้เล่นสายทัวร์นาเมนต์ นำเข้าเด็คจาก PTCGL/Limitless)
-> 5. **Mr. Kenji Sato** — *Expat Player & International Collector* (ผู้เล่นต่างชาติ ค้นหาการ์ดไทย-อังกฤษ)
-> 6. **พี่นก (Nok) & คุณณัฐ (Nat)** — *Independent QA & System Auditor* (ทีมตรวจสอบคุณภาพระบบและ E2E)
+> 2. **พรี่เก่ง คนตื่น** — *Whale Collector & High-End Investor* (นักสะสมการ์ดมูลค่าสูง ดูแลพอร์ตสมุดสะสม 9 เล่ม)
+> 3. **สุมนา ยิ้มหน้า แม่เธอสิ** — *Competitive Meta Player* (ผู้เล่นสายทัวร์นาเมนต์ นำเข้าเด็คจาก PTCGL/Limitless)
+> 4. **จานบิน มูลนิธิร่วมกันทำไม** — *Deck Builder Specialist* (ผู้เชี่ยวชาญการจัดเด็คและวิเคราะห์การ์ดที่ขาด)
+> 5. **พรี่กฤษ ทรี แมน อัพ** — *Official Head Judge* (กรรมการควบคุมกฎกติกาการแข่งขันการ์ดโปเกมอน)
+> 6. **จาเมส** — *Expat Player & International Collector* (ผู้เล่นต่างชาติ ค้นหาการ์ดสองภาษา)
+> 7. **พ.บ.** — *Lead QA Auditor* (หัวหน้าทีมทดสอบคุณภาพและตรวจสอบความปลอดภัย)
+> 8. **คุณบุ** — *System Architect* (สถาปัตยกรรมระบบ Cloud Sync และ Local-First)
+> 9. **พรี่ยุต** — *Community Moderator* (ผู้ดูแลคอมมูนิตี้และระบบแชร์การ์ด)
+> 10. **พรี่เพียรตากล้อง 48TH** — *Visual & Perceptual Hash Specialist* (ผู้เชี่ยวชาญการจับคู่รูปภาพการ์ด)
+> 11. **น้อง Only** — *Junior Tabletop Battler* (ผู้เล่นรุ่นเยาว์ ใช้งานกระดานช่วยเล่น)
+> 12. **พรี่เควิน เยส แห่งกนอ.** — *Regulatory & Data Security Officer* (ผู้ตรวจสอบมาตรฐานความปลอดภัยข้อมูล)
+> 13. **นนทิชา** — *UX/UI Designer* (ผู้ออกแบบหน้าจอ Responsive 375px)
+> 14. **หนึ่งนะจ๊ะ** — *Performance Engineer* (ผู้ดูแล Cloudflare Edge & PWA)
+> 15. **เจ๊ไกด์** — *General Manager & Sign-off Witness* (ผู้จัดการทั่วไปและพยานการเซ็นส่งมอบ)
 
 ---
 
 ### 🎬 องก์ที่ 1: ตรวจสอบความปลอดภัยข้อมูลส่วนบุคคล (Zero Cost Price Leakage)
 
-*(คุณภูมินั่งเปิดหน้าจอแชร์สมุดสะสมบน iPad Pro)*
+*(พรี่เก่ง คนตื่น นั่งเปิดหน้าจอแชร์สมุดสะสมบน iPad Pro สีหน้าจริงจัง พลางหันไปมองพรี่เควิน เยส แห่งกนอ.)*
 
-**คุณภูมิ (Whale Collector):** 
-"คุณซาดินครับ เรื่องแรกที่ผมต้องการให้คอนเฟิร์มก่อนเริ่มปล่อยเวอร์ชันนี้ คือเรื่อง **ลิงก์แชร์สมุดสะสมสาธารณะ (`/share/:id`)**
-ผมเป็นนักสะสม ในสมุดสะสมผมมีการจดราคาต้นทุนที่รับซื้อมาจริง (`costPrice`) และบันทึกโน้ตส่วนตัว (`privateNotes`) เอาไว้ทุกใบ 
-ในอดีต (Incident v2.33.0) เคยมีปัญหาว่าหน้าเว็บไม่แสดงคำว่าต้นทุนก็จริง แต่พอส่อง Network tab ใน DevTools กลับพบว่าตัวแอปส่งฟิลด์ `costPrice` หลุดไปใน JSON payload ด้วย! ตอนนี้ในโค้ดแก้เรื่องนี้ขาดหรือยังครับ?"
+**พรี่เก่ง คนตื่น (Whale Collector):** 
+"คุณซาดินครับ! เรื่องแรกที่ผมต้องคุยให้เคลียร์ก่อนใคร คือเรื่อง **ลิงก์แชร์สมุดสะสมสาธารณะ (`/share/:id`)** 
+สมุดสะสมของผม 9 เล่ม มูลค่าหลักแสน ผมบันทึกราคาต้นทุนที่รับซื้อมาจริง (`costPrice`) กับบันทึกโน้ตลับ (`privateNotes`) เอาไว้ทุกใบ!
+ถ้าผมส่งลิงก์แชร์ไปให้เพื่อนดูการ์ด แล้วมีใครเปิด DevTools ดัก JSON payload เจอฟิลด์ต้นทุนของผมเหมือนในอดีต (Incident v2.33.0) ผมเสียหายหนักมากนะคุณซาดิน!"
+
+**พรี่เควิน เยส แห่งกนอ. (Security Officer):** 
+"ใช่ครับ ในมุมมองของการกำกับดูแลข้อมูล ข้อมูลราคาทุนและการจดบันทึกภายใน ถือเป็นข้อมูลสำคัญส่วนบุคคล จะปล่อยให้รั่วไหลไปใน Network Response ไม่ได้เด็ดขาด ทางทีม Dev จัดการตรงนี้อย่างไรครับ?"
 
 **คุณซาดิน (Product Owner):** 
-"แก้ขาด 100% แล้วครับคุณภูมิ! ใน [`src/services/sharedCollectionService.ts`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/services/sharedCollectionService.ts) เราทำ Data Sanitization ก่อนจะเขียนลง Firestore หรือส่งออก:
+"สบายใจได้เลยครับพรี่เก่ง และพรี่เควิน! ใน [`src/services/sharedCollectionService.ts`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/services/sharedCollectionService.ts) เราทำการ Sanitization ข้อมูลก่อนส่งออกหรือบันทึกลง Cloud อย่างรัดกุม:
 ```typescript
-// สกัดเฉพาะข้อมูลสาธารณะ ตัด costPrice และ privateNotes ทิ้งเด็ดขาด
+// สกัดเฉพาะข้อมูลสาธารณะ ตัด costPrice, customPrice, และ privateNotes ทิ้ง 100%
 const sanitizedCards = cards.map(({ costPrice, customPrice, privateNotes, ...publicCard }) => publicCard);
 ```
-และในชุดทดสอบ Unit test `sharedCollectionService.test.ts` รวมถึง E2E test `share-collection.spec.ts` เราตรวจ assertion ลงลึกถึงระดับ Network response ว่าไม่มีฟิลด์ต้นทุนหลุดออกมาแน่นอนครับ"
+และในชุดทดสอบ `sharedCollectionService.test.ts` เราได้ตั้งค่า Assertion ตรวจสอบอย่างเข้มงวดว่า payload ที่ส่งออกต้องไม่มีฟิลด์ต้นทุนหลุดรอดไปแม้แต่ตัวเดียวครับ"
 
-**พี่นก (QA Auditor):** 
-"ผลการรัน E2E ยืนยันตรงกันค่ะ ตัว Payload ของ Shared Binder มีเฉพาะรหัสการ์ด, ชื่อ, รูปภาพ, และจำนวนการ์ด ไม่พบ Key ที่เกี่ยวกับต้นทุนเลยค่ะ"
-
----
-
-### 🎬 องก์ที่ 2: วิกฤตสมุดผีคืนชีพ (Zombie Binder & Concurrency Control)
-
-*(คุณณัฐ ฝ่าย Architecture เปิดสไลด์เรื่อง Cloud Sync และ Local-First)*
-
-**คุณณัฐ (System Auditor):** 
-"ประเด็นถัดมาที่เคยเกิดขึ้นใน `SRC-02` คือกรณีที่ผู้ใช้งานลบสมุดสะสมในเครื่องหนึ่ง แต่พอเปิดแอปในอีกเครื่องที่ค้างหน้าจอไว้ ข้อมูลสมุดที่ลบไปแล้วกลับถูก sync ย้อนกลับขึ้น Cloud กลายเป็น **Zombie Binder** กู้ตัวเองกลับมาทับข้อมูลใหม่ คุณซาดินแก้ปัญหาการชนกันนี้อย่างไรครับ?"
-
-**คุณซาดิน (Product Owner):** 
-"เราแก้ด้วย 2 กลไกหลักใน [`src/store/collectionStore.ts`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/store/collectionStore.ts) ครับ:
-1. **ระบบ Tombstone (`deletedBinderIds`)**: เมื่อผู้ใช้สั่งลบสมุด รหัสสมุดจะถูกบันทึกเป็น Tombstone หากเครื่องอื่นต่อเน็ตเข้ามา sync จะต้องตรวจเช็ครายชื่อใน `deletedBinderIds` ก่อนเสมอ หากพบว่าสมุดใดอยู่ในรายการที่ถูกลบไปแล้ว ให้ลบออกจากเครื่องนั้นทันที ห้ามดันกลับขึ้น Cloud
-2. **Reconciliation Guard**: ควบคุมการเขียน Cloud ในระดับ Store หากล็อกอินโหมด Guest หรือยังไม่ผ่านการ Authenticate จะบล็อกการยิง Cloud Write เป็น 0 (`cloudWrites = 0`) เพื่อไม่ให้ข้อมูลท้องถิ่นไหลปนกับผู้ใช้จริง"
-
-**คุณณัฐ (System Auditor):** 
-"ทดสอบผ่าน `collectionStore.syncReconcile.test.ts` และ `collectionStore.cloudGuard.test.ts` แล้ว ผลการจำลองลบสมุดข้ามอุปกรณ์ไม่เกิดการคืนชีพของสมุดผีอีกต่อไปครับ"
+**พ.บ. (Lead QA Auditor):** 
+"ทางทีม QA ตรวจสอบแล้วค่ะ รัน E2E test `share-collection.spec.ts` ส่องทะลุไปถึงระดับ Network response ของ Cloudflare Workers ยืนยันว่า Response JSON คลีน 100% ปราศจาก `costPrice` ค่ะ!"
 
 ---
 
-### 🎬 องก์ที่ 3: ระบบตรวจกติกาเด็ค 60 ใบ (Deck Validator Rules)
+### 🎬 องก์ที่ 2: วิกฤตสมุดผีคืนชีพ (Zombie Binder & Concurrency Guard)
 
-*(คุณอาร์ต Head Judge กางหน้าระเบียบ Tournament Rules บนโต๊ะ)*
+*(คุณบุ System Architect ลุกขึ้นเปิดไดอะแกรมการทำงานของ Local-First และ Cloud Sync)*
 
-**คุณอาร์ต (Head Judge):** 
-"ในทัวร์นาเมนต์แข่งขัน กฎการตรวจเด็คเข้มงวดมาก ตัว Deck Validator ในหน้า `/deck` ช่วยป้องกันไม่ให้ผู้เล่นจัดเด็คผิดกติกาได้อย่างไรบ้าง?"
+**คุณบุ (System Architect):** 
+"ผมขอรายงานเรื่อง Concurrency และ Cloud Sync ครับ ก่อนหน้านี้มีเคสที่ผู้ใช้ลบสมุดสะสมในมือถือไปแล้ว แต่อีกเครื่องที่เปิดแท็บค้างไว้ หรือเครื่องที่เพิ่งต่อเน็ต กลับดันสมุดเล่มนั้นกลับขึ้นมาบน Cloud จนเกิด **Zombie Binder (สมุดผีคืนชีพ)** ทำให้สมุดที่ลบแล้วกลับมาโผล่ใหม่ พรี่ยุตเคยเจอปัญหานี้ในกลุ่มใช่ไหมครับ?"
+
+**พรี่ยุต (Community Moderator):** 
+"ใช่เลยคุณบุ! ลูกเพจหลายคนทักเข้ามาถามบ่อยมากว่ากดลบสมุดไปแล้ว ทำไมเปิดคอมอีกเครื่องแล้วสมุดยังโผล่มาซ้อนกับเล่มใหม่อีก บางคนสมุดสะสมเต็มโควตา 10 เล่มจนสร้างใหม่ไม่ได้เลย"
 
 **คุณซาดิน (Product Owner):** 
-"ระบบตรวจจับกติกาแบบ Real-time อยู่ใน [`src/utils/deckCalculator.ts`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/utils/deckCalculator.ts) โดยมีเงื่อนไขบังคับดังนี้:
-1. **การ์ดต้องครบ 60 ใบพอดี**: ขาดแม้แต่ใบเดียว (เช่น 59 ใบ) หรือเกิน (61 ใบ) ระบบจะแสดงสถานะเด็คไม่สมบูรณ์
-2. **ต้องมี Basic Pokémon อย่างน้อย 1 ใบ**: ป้องกันเด็คที่ไม่มีตัวลงเทิร์นแรก
-3. **กฎชื่อซ้ำไม่เกิน 4 ใบ (Rule of Four)**: นับรวมตามชื่อการ์ด แม้จะต่างชุดหรือต่างภาพประกอบก็ห้ามเกิน 4 ใบ (ยกเว้น Basic Energy ที่ใส่ได้ไม่จำกัด)
-4. **ACE SPEC Limit**: เด็คใส่การ์ดที่มี Tag หรือ Rarity เป็น `ACE SPEC` ได้สูงสุดเพียง **1 ใบต่อเด็ค** เท่านั้น
-5. **Radiant Pokémon Limit**: ใส่โปเกมอนประกายแสง (Radiant) ได้สูงสุด **1 ตัวต่อเด็ค**"
-
-**น้องมีน (Competitive Meta Player):** 
-"หนูลองใช้ฟังก์ชัน Import ลิสต์เด็คจาก PTCGL Text Format ผ่าน `ptcglDeckParser.ts` แล้วค่ะ ถ้าเผลอใส่การ์ดผิดกฎ หรือใส่ ACE SPEC ซ้ำ 2 ใบ ระบบจะมี Badge สีแดงเตือนทันที และคลิกดูรายละเอียดได้เลยว่าผิดกฎข้อไหน ทำให้จัดเด็คได้อย่างมั่นใจก่อนส่ง Deck List ให้ Judge ค่ะ"
+"เพื่อแก้ปัญหานี้อย่างเด็ดขาด เราใส่กลไก **Tombstone (`deletedBinderIds`)** ลงใน [`src/store/collectionStore.ts`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/store/collectionStore.ts):
+1. เมื่อผู้ใช้สั่งลบสมุด รหัสสมุดจะถูกบันทึกเข้าสู่รายการ Tombstone ทันที
+2. เมื่ออุปกรณ์อื่นทำการ Sync ข้อมูล ระบบจะเปรียบเทียบกับ `deletedBinderIds` หากพบว่าสมุดใดถูกสั่งลบไปแล้ว จะสั่งลบออกจาก LocalStorage ของเครื่องนั้นทันที และไม่อนุญาตให้ดันกลับขึ้น Cloud
+3. เสริมด้วย **Cloud Guard**: หากผู้ใช้ใช้งานในโหมด `Guest` ระบบจะบล็อกไม่ให้มีการยิงคำขอเขียนลง Cloud โดยเด็ดขาด (`cloudWrites = 0`)"
 
 ---
 
-### 🎬 องก์ที่ 4: การคำนวณการ์ดที่ยังขาด (Missing Cards Calculator & Shopping List)
+### 🎬 องก์ที่ 3: กติกาเหล็กจัดเด็ค 60 ใบกับการแข่งขันจริง (Deck Validator)
 
-*(น้องมีน เปิดหน้าต่าง Missing Cards Modal ในระบบเด็ค)*
+*(พรี่กฤษ ทรี แมน อัพ กางสมุดคู่มือกรรมการ TCG บนโต๊ะ พร้อมสุมนา ยิ้มหน้า แม่เธอสิ ที่กำลังเปิดแอปโชว์)*
 
-**น้องมีน (Competitive Meta Player):** 
-"ฟีเจอร์ที่หนูชอบมากที่สุดคือ **Missing Cards Calculator** ค่ะ แต่หนูอยากให้รีวิว Requirement ตรงนี้นิดนึง เรื่องโหมดการคำนวณแบบ **Equivalent (ชื่อเดียวกันนับแทนกันได้)** กับ **Exact (ตรงชุด/ตรงภาพ)**"
+**พรี่กฤษ ทรี แมน อัพ (Official Head Judge):** 
+"ในฐานะ Head Judge กฎเหล็กของโปเกมอน TCG ในการแข่งขันระดับทัวร์นาเมนต์คือชีวิตของนักแข่ง ถ้าจัดเด็คผิดแม้แต่นิดเดียวคือโดนโทษ Game Loss ทันที ระบบ Deck Validator ในหน้า `/deck` ช่วยกลั่นกรองกติกาอะไรบ้างครับคุณซาดิน?"
 
 **คุณซาดิน (Product Owner):** 
-"ใช่ครับ ใน [`src/components/deck/MissingCardsModal.tsx`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/components/deck/MissingCardsModal.tsx) และ `deckCalculator.ts` เราออกแบบเพื่อตอบโจทย์ผู้เล่นจริง 2 กลุ่ม:
-- **โหมด Equivalent (สำหรับสายแข่ง)**: ถ้าเด็คใส่การ์ด เช่น *'คำสั่งของบอส'* จากชุดล่าสุด แต่ในสมุดสะสมผู้ใช้มีการ์ดชื่อเดียวกันจากชุดเก่าอยู่แล้ว ระบบจะนับว่า **มีแล้ว** ไม่นับเป็นการ์ดขาด ช่วยประหยัดเงินผู้เล่น
-- **โหมด Exact (สำหรับนักสะสม/ผู้เล่นที่ต้องการภาพตรงเป๊ะ)**: ระบบจะเช็คเทียบกับ `cardCode` ตรงชุดเท่านั้น ถ้าไม่ตรงชุดจะนับว่ายังขาด
-- **ฟังก์ชัน Export Shopping List Text**: ผู้ใช้สามารถกดปุ่ม *'คัดลอกรายการการ์ดที่ขาด'* เพื่อนำข้อความสรุปจำนวนที่ขาดและชื่อการ์ดภาษาไทยไปโพสต์หาของในกลุ่มหรือส่งให้เพื่อนดูได้ทันทีด้วยปุ่มเดียว โดยระบบจะจัดกลุ่มโปเกมอน, เทรนเนอร์, และพลังงานให้อย่างสวยงามครับ"
+"ระบบตรวจจับกติกาทำงานแบบ Real-time ตามระเบียบสากล 5 ข้อหลักครับ:
+1. **ครบ 60 ใบเป๊ะ**: ไม่ขาด ไม่เกิน (เด็ค 59 หรือ 61 ใบจะขึ้นสถานะ Invalid ทันที)
+2. **ต้องมี Basic Pokémon อย่างน้อย 1 ใบ**: ป้องกันเด็คที่ไม่สามารถเริ่มเกมได้
+3. **กฎชื่อซ้ำไม่เกิน 4 ใบ (Rule of Four)**: ตรวจสอบจากชื่อการ์ดภาษาไทย แม้จะเป็นคนละชุดหรือภาพต่างกัน ก็นับรวมกันห้ามเกิน 4 ใบ (ยกเว้น Basic Energy ที่ใส่ได้ไม่จำกัด)
+4. **โควตา ACE SPEC $\le$ 1 ใบ**: เด็คใส่การ์ด ACE SPEC ได้สูงสุดเพียงใบเดียว
+5. **โควตา Radiant Pokémon $\le$ 1 ตัว**: มีโปเกมอนประกายแสงได้ไม่เกิน 1 ตัวต่อเด็ค"
 
-**คุณภูมิ (Whale Collector):** 
-"ระบบไม่จำเป็นต้องมีตะกร้าสั่งซื้อในเว็บให้วุ่นวายครับ ผู้เล่นการ์ดส่วนใหญ่ต้องการแค่รายการสรุปชัดเจนว่าขาดใบไหน กี่ใบ แล้วกดก็อปปี้ไปดีลต่อในคอมมูนิตี้ แบบนี้ตอบโจทย์ตรงการใช้งานจริงที่สุดแล้วครับ!"
+**สุมนา ยิ้มหน้า แม่เธอสิ (Competitive Meta Player):** 
+"เรื่องนี้หนูเลิฟมากค่ะ! หนูก็อปปี้โค้ดเด็คจาก Limitless มา Import ผ่านระบบ Text Parser ถ้าเผลอใส่การ์ดเกิน หรือใส่ ACE SPEC ซ้ำ 2 ใบ ตัวระบบจะขึ้น Badge สีแดงเตือนทันทีว่า *'เด็คนี้มี ACE SPEC เกิน 1 ใบ'* ทำให้หนูตรวจเด็คตัวเองได้เป๊ะ 100% ก่อนลงแข่งจริงเลยค่ะ!"
 
 ---
 
-### 🎬 องก์ที่ 5: ค้นหาการ์ดข้ามภาษา (Thai-English Card Mapping) และการ Deploy บน Cloudflare Edge
+### 🎬 องก์ที่ 4: การคำนวณการ์ดที่ยังขาด (Missing Cards Calculator & Shopping List Export)
 
-*(Mr. Kenji Sato ยกมือขึ้นถาม)*
+*(จานบิน มูลนิธิร่วมกันทำไม เปิดหน้าต่าง Missing Cards Modal ขึ้นมาอธิบาย)*
 
-**Mr. Kenji Sato:** 
-"As an expat player, I often copy decklists from English tournament sites like LimitlessTCG. How does the system map English names to Thai cards accurately?"
+**จานบิน มูลนิธิร่วมกันทำไม (Deck Builder Specialist):** 
+"ประเด็นที่ผมประทับใจคือความตรงไปตรงมาของระบบ **Missing Cards Calculator** ครับ ในเว็บไม่มีระบบตะกร้าสินค้าหรือระบบสั่งซื้อที่ไม่จำเป็น เพราะในความเป็นจริง สังคมการ์ดเราไม่ได้ซื้อผ่านเว็บตรงๆ แต่เราต้องการรู้ว่า **เด็คนี้เราขาดการ์ดอะไรบ้าง และมีฟังก์ชันส่งออกข้อความอย่างไร** ครับ"
 
 **คุณซาดิน (Product Owner):** 
-"We built a multi-signal card matching engine in [`src/utils/thaiEnglishCardMatcher.ts`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/utils/thaiEnglishCardMatcher.ts) that uses:
-1. Exact Set Code and Card Number alignment
-2. Baseline dictionary mapping
-3. PHash image perceptual hashing to match artworks between Thai and English printings
-This allows players to import PTCGL English exports directly and have them automatically resolve to the corresponding Thai cards!"
+"ถูกต้องครับอาจารย์จานบิน! ใน [`src/components/deck/MissingCardsModal.tsx`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/components/deck/MissingCardsModal.tsx) และ [`src/utils/deckCalculator.ts`](file:///Users/sadin/Project/HR/CWN2026_pokecount_sabai_edition/src/utils/deckCalculator.ts) เราพัฒนาฟังก์ชันเพื่อการใช้งานจริง:
+- **โหมด Equivalent (สายแข่ง)**: หากในการ์ดเด็คระบุต้องการการ์ดชุดใหม่ แต่ในสมุดสะสมของเรามีการ์ดชื่อเดียวกันจากชุดเก่าอยู่แล้ว ระบบจะนับว่า 'มีแล้ว' ไม่คิดเป็นการ์ดขาด ช่วยประหยัดเงินผู้เล่น
+- **โหมด Exact (สายสะสม)**: ตรวจสอบแบบตรงรหัสชุดและภาพประกอบเป๊ะๆ
+- **ปุ่มคัดลอก Shopping List Text**: เมื่อกดปุ่ม ระบบจะสรุปรายชื่อการ์ดที่ขาด แยกหมวดหมู่ โปเกมอน, เทรนเนอร์, พลังงาน พร้อมจำนวนที่ต้องหาเพิ่ม ลงใน Clipboard ให้ผู้เล่นนำไปโพสต์หาการ์ดในกลุ่มเฟซบุ๊กหรือส่งให้เพื่อนดูได้ทันทีด้วยคลิกเดียวครับ"
 
-**พี่นก (QA Auditor):** 
-"และสำหรับการ Deploy ตัวโปรเจกต์นี้ทำงานบน **Cloudflare Workers & Static Assets** ภายใต้ Subdomain [https://pokef.tcgcount.com](https://pokef.tcgcount.com):
-- แคชหน้าเว็บและ PWA Service Worker ครบถ้วน
-- สัญญาณความเร็ว HTTP 200 OK เสี้ยววินาที
-- รองรับขนาดหน้าจอมือถือมาตรฐาน 375px อย่างสมบูรณ์
-- รัน Vitest ผ่านทั้งหมด **551/551 tests**
+**น้อง Only (Junior Battler):** 
+"สะดวกมากครับพี่ซาดิน! หนูกดปุ่มเดียว ข้อความก็ก๊อปปี้มาเลย เอาไปส่งให้พี่ๆ ช่วยหาของให้ได้ทันที ไม่ยุ่งยากเลยครับ!"
 
-ทางทีม QA และตัวแทนผู้ใช้งานขอสรุปอนุมัติ (Sign-off) ความต้องการระบบตามการทำงานจริงของ PokéCount Tracker ได้เลยค่ะ!"
+---
 
-*(ทุกคนในที่ประชุมเห็นชอบและเซ็นอนุมัติปิดการประชุมอย่างเป็นเอกฉันท์)*
+### 🎬 องก์ที่ 5: การค้นหาการ์ดสองภาษา ประสิทธิภาพบน Cloudflare Edge และบทสรุป
+
+*(จาเมส และ พรี่เพียรตากล้อง 48TH แลกเปลี่ยนความคิดเห็นกันอย่างตื่นเต้น)*
+
+**จาเมส (Expat Player):** 
+"For expat players, the Thai-English card matching is brilliant. Even when searching by English card names like *'Iono'* or *'Charizard ex'*, it immediately finds the exact Thai cards in the database!"
+
+**พรี่เพียรตากล้อง 48TH (Perceptual Hash Specialist):** 
+"เพราะเบื้องหลัง เราใช้ Perceptual Art Hashing ในการจับคู่ภาพงานศิลป์ของการ์ดไทยและอังกฤษ ทำให้ไม่ว่าจะพิมพ์ค้นหาด้วยภาษาไหน หรือรหัสชุดใด ระบบก็จับคู่การ์ดได้อย่างแม่นยำครับ"
+
+**นนทิชา (UX/UI Designer):** 
+"และในด้าน UI/UX หน้าจอรองรับขนาดจอมือถือมาตรฐาน 375px อย่างสมบูรณ์แบบ การ์ดทุกใบจัดวางอย่างลงตัว ไม่มีการล้นหน้าจอหรือปุ่มกดทับซ้อนค่ะ"
+
+**หนึ่งนะจ๊ะ (Performance Engineer):** 
+"ด้านโครงสร้างพื้นฐาน การ Deploy บน **Cloudflare Workers & Static Assets** ที่โดเมน [https://pokef.tcgcount.com](https://pokef.tcgcount.com) ตอบสนองด้วยความเร็วสูง `HTTP 200 OK` พร้อมแคช Service Worker แบบ PWA เปิดใช้งานออฟไลน์ได้ทันใจครับ"
+
+**พ.บ. (Lead QA Auditor):** 
+"ผลการทดสอบทั้งหมด: Vitest ผ่านครบ **551/551 tests**, TypeCheck ผ่าน 100%, และ E2E Playwright ครบทุกโฟลว์หลัก ระบบพร้อมส่งมอบแล้วค่ะ!"
+
+**เจ๊ไกด์ (General Manager & Sign-off Witness):** 
+"ยอดเยี่ยมมากทุกคน! ในเมื่อระบบสะท้อนความต้องการจริงของผู้ใช้ทุกกลุ่มอย่างครบถ้วน ถูกต้องตามระเบียบ และไม่มีฟังก์ชันหลอกลวงใดๆ เจ๊ขออนุมัติ Sign-off รับรองโปรเจกต์นี้อย่างเป็นทางการจ้า!"
+
+*(เสียงปรบมือดังสนั่นห้องประชุม ทุกคนยิ้มแย้มและร่วมเซ็นเอกสารปิดฉากการทบทวนความต้องการอย่างสมบูรณ์แบบ)*
+
+---
+**จบการประชุมทบทวนความต้องการ (Curtain Falls)**
